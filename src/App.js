@@ -11,6 +11,7 @@ function App() {
       <Container>
         <Routes>
           <Route path="/" element={<p>Home Page</p>}/>
+          <Route path="/second/" element={<p>Second Page</p>}/>
         </Routes>
       </Container>
     </div>
