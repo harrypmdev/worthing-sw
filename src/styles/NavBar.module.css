@@ -1,0 +1,10 @@
+.active {
+    font-weight: bold;
+    background-color: rgb(103, 118, 255);
+    border-radius: 5px;
+    color: white;
+}
+
+.active:hover {
+    color: white;
+}

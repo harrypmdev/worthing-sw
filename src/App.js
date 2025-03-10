@@ -1,8 +1,10 @@
+import { Route, Routes } from 'react-router-dom'
+
+import Container from 'react-bootstrap/Container';
+
 import './App.css';
 import NavBar from './components/NavBar';
-import { Route, Routes } from 'react-router-dom'
-import Container from 'react-bootstrap/Container';
-import Home from './components/Home';
+import Home from './pages/Home';
 import styles from './styles/App.module.css'
 
 function App() {
