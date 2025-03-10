@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
+
+import homeImage from '../assets/home-image.webp';
 
 const Home = () => {
   return (
@@ -17,7 +20,9 @@ const Home = () => {
                 <Button variant="primary me-3">Register</Button>
                 <Button variant="secondary ms-3">See What's On</Button>
             </Col>
-            <Col className='col-6 text-center'>Part 2</Col>
+            <Col className='col-6 text-center'>
+              <Image fluid rounded src={homeImage}/>
+            </Col>
         </Row>
     </Container>
   )
