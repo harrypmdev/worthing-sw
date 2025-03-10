@@ -1,7 +1,7 @@
 ---
-name: 'TASK:'
+name: Task
 about: A template for user story tasks.
-title: ''
+title: 'TASK:'
 labels: Task
 assignees: ''
 
