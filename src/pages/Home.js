@@ -17,7 +17,7 @@ const Home = () => {
           Worthing Sound Wave is a site for local Worthing musicians to discuss music,
           collaborate or share new tracks. You can find bandmates, emerging artists and events.
           </p>
-          <Button variant="primary me-3">Register</Button>
+          <Button variant="primary me-3">Get Started</Button>
           <Button variant="secondary ms-3">See What's On</Button>
         </Col>
         <Col xs="12" md="6"  className='text-center d-md-block'>
