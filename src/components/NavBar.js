@@ -35,7 +35,7 @@ function NavBar() {
           <Nav className="ms-auto">
             <Nav.Link href="/" className={`mx-2 ${location.pathname === '/' ? getActive() : ''}`}>Home</Nav.Link>
             <Nav.Link href="" className={`mx-2 ${location.pathname === '/general-feed/' ? getActive() : ''}`}>General Feed</Nav.Link>
-            <Nav.Link href="" className={`mx-2 ${location.pathname === '/login/' ? getActive() : ''}`}>Login</Nav.Link>
+            <Nav.Link href="/login/" className={`mx-2 ${location.pathname === '/login/' ? getActive() : ''}`}>Login</Nav.Link>
             <Nav.Link href="/register/" className={`mx-2 ${location.pathname === '/register/' ? getActive() : ''}`}>Register</Nav.Link>
           </Nav>
         </Navbar.Collapse>

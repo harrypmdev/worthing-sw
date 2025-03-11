@@ -6,6 +6,7 @@ import './App.css';
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import Register from './pages/auth/Register';
+import Login from './pages/auth/Login';
 import styles from './styles/App.module.css'
 import './api/axiosDefaults';
 
@@ -16,6 +17,7 @@ function App() {
       <Container className="d-flex flex-column flex-grow-1">
         <Routes>
           <Route path="/" element={<Home />}/>
+          <Route path="/login/" element={<Login />}/>
           <Route path="/register/" element={<Register />}/>
         </Routes>
       </Container>
