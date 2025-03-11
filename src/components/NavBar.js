@@ -15,15 +15,15 @@ function NavBar() {
     <Navbar expand="lg" className="bg-body-tertiary" sticky="top">
       <Container>
         <Navbar.Brand href="/">
-            <img src={logo} width="300"/>
+            <img alt="Worthing Sound Wave" src={logo} width="300"/>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="/" className={`mx-2 ${location.pathname == '/' ? styles.active : ''}`}>Home</Nav.Link>
-            <Nav.Link href="#home" className={`mx-2 ${location.pathname == '/general-feed/' ? styles.active : ''}`}>General Feed</Nav.Link>
-            <Nav.Link href="#home" className={`mx-2 ${location.pathname == '/login/' ? styles.active : ''}`}>Login</Nav.Link>
-            <Nav.Link href="#home" className={`mx-2 ${location.pathname == '/register/' ? styles.active : ''}`}>Register</Nav.Link>
+            <Nav.Link href="/" className={`mx-2 ${location.pathname === '/' ? styles.active : ''}`}>Home</Nav.Link>
+            <Nav.Link href="#home" className={`mx-2 ${location.pathname === '/general-feed/' ? styles.active : ''}`}>General Feed</Nav.Link>
+            <Nav.Link href="#home" className={`mx-2 ${location.pathname === '/login/' ? styles.active : ''}`}>Login</Nav.Link>
+            <Nav.Link href="#home" className={`mx-2 ${location.pathname === '/register/' ? styles.active : ''}`}>Register</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
