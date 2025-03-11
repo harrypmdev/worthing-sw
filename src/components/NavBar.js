@@ -28,7 +28,12 @@ function NavBar() {
     >
       <Container>
         <Navbar.Brand href="/">
-            <img alt="Worthing Sound Wave" src={logo} width="300" height="56"/>
+            <img 
+              alt="Worthing Sound Wave" 
+              src={logo} 
+              width="265"
+              height="50"
+            />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
