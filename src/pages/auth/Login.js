@@ -1,30 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import axios from 'axios';
+import { Alert } from 'react-bootstrap';
 
 import loginImage from '../../assets/login-image.webp';
 import styles from '../../styles/RegisterLogin.module.css';
+import { setCurrentUserContext } from '../../App';
 
 
 function Login() {
+  const setCurrentUser = useContext(setCurrentUserContext);
+  const navigate = useNavigate();
+
   const [loginData, setLoginData] = useState({
     username: '',
-    password1: '',
-    password2: '',
+    password: '',
   })
-  const {username, password1, password2} = loginData();
+  const {username, password} = loginData;
+
+  const [errors, setErrors] = useState({})
 
   const handleSubmit = async event => {
     event.preventDefault();
     try {
-       // API contact 
+      const {data} = await axios.post('/dj-rest-auth/login/', loginData)
+      setCurrentUser(data.user);
+      navigate('/');
     } catch (err) {
-      // Catch error
+      setErrors(err.response?.data)
     }
+  }
+
+  const handleChange = event => {
+    setLoginData({
+      ...loginData,
+      [event.target.name]: event.target.value,
+    })
   }
 
   return (
@@ -52,8 +69,15 @@ function Login() {
               type="text"
               placeholder="Username"
               name="username"
+              value={username}
+              onChange={handleChange}
             />
           </Form.Group>
+          {errors.username?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
           <Form.Group>
             <Form.Label className='d-none'>Password</Form.Label>
             <Form.Control 
@@ -61,11 +85,23 @@ function Login() {
               placeholder="Password"
               name="password"
               className='mt-3 mb-3'
+              value={password}
+              onChange={handleChange}
             />
-          </Form.Group> 
+          </Form.Group>
+          {errors.password?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
           <Button type="submit" className='w-100'>
             Submit
           </Button>
+          {errors.non_field_errors?.map((message, idx) => (
+              <Alert key={idx} variant="warning" className="mt-3">
+                {message}
+              </Alert>
+            ))}
         </Form>
         </Col>
     </Row>

@@ -6,12 +6,12 @@ import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-
-import registerImage from '../../assets/register-image.webp';
-import styles from '../../styles/RegisterLogin.module.css';
 import axios from 'axios';
 import { useRedirect } from '../../hooks/useRedirect';
 import { Alert } from 'react-bootstrap';
+
+import registerImage from '../../assets/register-image.webp';
+import styles from '../../styles/RegisterLogin.module.css';
 
 
 function Register() {
@@ -34,7 +34,6 @@ function Register() {
       await axios.post('/dj-rest-auth/registration/', registerData)
       navigate('/login/');
     } catch (err) {
-      console.log(err)
       setErrors(err.response?.data)
     }
   }
@@ -63,12 +62,13 @@ function Register() {
           className="text-center bg-light my-2 p-3 rounded shadow-sm"
         >
           <h1 className="h2 mb-3">Register</h1>
+          <hr />
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label className='d-none'>Username</Form.Label>
               <Form.Control 
                 type="text"
-                placeholder="Username"
+                placeholder="Username*"
                 name="username"
                 value={username}
                 className='mt-1 mb-3'
@@ -96,7 +96,7 @@ function Register() {
               <Form.Label className='d-none'>Password</Form.Label>
               <Form.Control 
                 type="password"
-                placeholder="Password"
+                placeholder="Password*"
                 name="password1"
                 value={password1}
                 className='my-3'
@@ -110,7 +110,7 @@ function Register() {
               <Form.Label className='d-none'>Confirm Password</Form.Label>
               <Form.Control 
                 type="password"
-                placeholder="Confirm Password"
+                placeholder="Confirm Password*"
                 name="password2"
                 value={password2}
                 className='my-3'
@@ -123,6 +123,11 @@ function Register() {
             <Button type="submit" className="w-100" >
               Submit
             </Button>
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert key={idx} variant='warning' className="mt-3">
+                {message}
+              </Alert>
+            ))}
           </Form>
         </Col>
       </Row>
