@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -11,6 +11,13 @@ import styles from '../../styles/RegisterLogin.module.css';
 
 
 function Login() {
+  const [loginData, setLoginData] = useState({
+    username: '',
+    password1: '',
+    password2: '',
+  })
+  const {username, password1, password2} = loginData();
+
   const handleSubmit = async event => {
     event.preventDefault();
     try {
