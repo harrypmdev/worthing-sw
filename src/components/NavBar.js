@@ -1,17 +1,19 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
-
+import { useLocation, NavLink } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import axios from 'axios';
 
 import logo from '../assets/logo.webp'
 import styles from '../styles/NavBar.module.css'
-import { useCurrentUser } from '../contexts/CurrentUserContext';
+import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import Avatar from './Avatar';
+
 
 function NavBar() {
   const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
   const location = useLocation();
   const [navExpanded, setNavExpanded] = React.useState(false);
 
@@ -19,21 +21,37 @@ function NavBar() {
     setNavExpanded(expanded);
   }
 
+  const handleSignOut = async () => {
+    console.log("function triggers at all");
+    try {
+      console.log(await axios.post('/dj-rest-auth/logout/'));
+      setCurrentUser(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getRelevantClasses = ({isActive}) => (
+    `${styles.NavLink} ${isActive ? getActive() : ''}`
+  );
+
   const getActive = () => navExpanded ? 'fw-bold' : styles.active;
 
   const loggedOut = <>
-    <Nav.Link href="/" className={`mx-2 ${location.pathname === '/' ? getActive() : ''}`}>Home</Nav.Link>
-    <Nav.Link href="" className={`mx-2 ${location.pathname === '/general-feed/' ? getActive() : ''}`}>General Feed</Nav.Link>
-    <Nav.Link href="/login/" className={`mx-2 ${location.pathname === '/login/' ? getActive() : ''}`}>Login</Nav.Link>
-    <Nav.Link href="/register/" className={`mx-2 ${location.pathname === '/register/' ? getActive() : ''}`}>Register</Nav.Link>
+    <NavLink to="/" className={getRelevantClasses}>Home</NavLink>
+    <NavLink to="/general-feed/" className={getRelevantClasses}>General Feed</NavLink>
+    <NavLink to="/login/" className={getRelevantClasses}>Login</NavLink>
+    <NavLink to="/register/" className={getRelevantClasses}>Register</NavLink>
   </>
 
   const loggedIn = <>
-    <Nav.Link href="" className={`mx-2 ${location.pathname === '/new-post/' ? getActive() : ''}`}>New Post</Nav.Link>
-    <Nav.Link href="" className={`mx-2 ${location.pathname === '/my-feed/' ? getActive() : ''}`}>My Feed</Nav.Link>
-    <Nav.Link href="" className={`mx-2 ${location.pathname === '/general-feed/' ? getActive() : ''}`}>General Feed</Nav.Link>
-    <Nav.Link href="" className={`mx-2 ${location.pathname === '/logout/' ? getActive() : ''}`}>Logout</Nav.Link>
-      <Avatar src={currentUser?.profile_image} text={currentUser?.username} height={40} />
+    <NavLink to="/new-post/" className={getRelevantClasses}>New Post</NavLink>
+    <NavLink to="/my-feed/" className={getRelevantClasses}>My Feed</NavLink>
+    <NavLink to="/general-feed/" className={getRelevantClasses}>General Feed</NavLink>
+    <NavLink to="/" className={styles.NavLink} onClick={handleSignOut}>
+      Logout
+    </NavLink>
+    <Avatar src={currentUser?.profile_image} text={currentUser?.username} height={40} />
   </>
 
   return (

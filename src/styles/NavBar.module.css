@@ -1,7 +1,16 @@
+.NavLink {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    margin: 0 10px;
+}
+
 .active {
     font-weight: bold;
     background-color: rgb(103, 118, 255);
     border-radius: 5px;
+    padding: 10px;
+    text-decoration: none;
     color: white;
 }
 
