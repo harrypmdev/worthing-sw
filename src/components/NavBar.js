@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Container from 'react-bootstrap/Container';
@@ -7,10 +7,11 @@ import Navbar from 'react-bootstrap/Navbar';
 
 import logo from '../assets/logo.webp'
 import styles from '../styles/NavBar.module.css'
-import { CurrentUserContext } from '../App';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
+import Avatar from './Avatar';
 
 function NavBar() {
-  const currentUser = useContext(CurrentUserContext);
+  const currentUser = useCurrentUser();
   const location = useLocation();
   const [navExpanded, setNavExpanded] = React.useState(false);
 
@@ -21,11 +22,20 @@ function NavBar() {
   const getActive = () => navExpanded ? 'fw-bold' : styles.active;
 
   const loggedOut = <>
+    <Nav.Link href="/" className={`mx-2 ${location.pathname === '/' ? getActive() : ''}`}>Home</Nav.Link>
+    <Nav.Link href="" className={`mx-2 ${location.pathname === '/general-feed/' ? getActive() : ''}`}>General Feed</Nav.Link>
     <Nav.Link href="/login/" className={`mx-2 ${location.pathname === '/login/' ? getActive() : ''}`}>Login</Nav.Link>
     <Nav.Link href="/register/" className={`mx-2 ${location.pathname === '/register/' ? getActive() : ''}`}>Register</Nav.Link>
   </>
 
-  const loggedIn = <>{currentUser?.username}</>
+  const loggedIn = <>
+    <Nav.Link href="" className={`mx-2 ${location.pathname === '/new-post/' ? getActive() : ''}`}>New Post</Nav.Link>
+    <Nav.Link href="" className={`mx-2 ${location.pathname === '/my-feed/' ? getActive() : ''}`}>My Feed</Nav.Link>
+    <Nav.Link href="" className={`mx-2 ${location.pathname === '/general-feed/' ? getActive() : ''}`}>General Feed</Nav.Link>
+    <Nav.Link href="" className={`mx-2 ${location.pathname === '/logout/' ? getActive() : ''}`}>Logout</Nav.Link>
+    <Avatar src={currentUser?.profile_image} text={currentUser?.profile_image} height={40} />
+    {console.log(currentUser)}
+  </>
 
   return (
     <Navbar 
@@ -47,8 +57,6 @@ function NavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="/" className={`mx-2 ${location.pathname === '/' ? getActive() : ''}`}>Home</Nav.Link>
-            <Nav.Link href="" className={`mx-2 ${location.pathname === '/general-feed/' ? getActive() : ''}`}>General Feed</Nav.Link>
             {currentUser ? loggedIn : loggedOut}
           </Nav>
         </Navbar.Collapse>

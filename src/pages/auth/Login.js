@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
@@ -11,11 +11,11 @@ import { Alert } from 'react-bootstrap';
 
 import loginImage from '../../assets/login-image.webp';
 import styles from '../../styles/RegisterLogin.module.css';
-import { setCurrentUserContext } from '../../App';
+import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 
 
 function Login() {
-  const setCurrentUser = useContext(setCurrentUserContext);
+  const setCurrentUser = useSetCurrentUser;
   const navigate = useNavigate();
 
   const [loginData, setLoginData] = useState({
@@ -30,6 +30,8 @@ function Login() {
     event.preventDefault();
     try {
       const {data} = await axios.post('/dj-rest-auth/login/', loginData)
+      console.log("Returned from login:");
+      console.log(data);
       setCurrentUser(data.user);
       navigate('/');
     } catch (err) {
