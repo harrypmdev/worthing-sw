@@ -28,7 +28,7 @@ function Login() {
 
   const handleSubmit = async event => {
     event.preventDefault();
-    try {
+    try { 
       const {data} = await axios.post('/dj-rest-auth/login/', loginData)
       console.log("Returned from login:");
       console.log(data.user);
@@ -47,7 +47,7 @@ function Login() {
   }
 
   return (
-    <Container fluid className="flex-grow-1 d-flex flex-column">
+    <Container className="flex-grow-1 d-flex flex-column">
     <Row className="d-flex flex-grow-1 align-items-center pb-6">
         <Col xs="12" md="6" className="text-center d-none d-md-block">
         <Image fluid rounded src={loginImage} className={styles.registerImage} />

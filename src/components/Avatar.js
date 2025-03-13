@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import styles from '../styles/Avatar.module.css'
 
-const Avatar = ({ src, height = 45, text, to = '/' }) => {
+const Avatar = ({ src, height = 45, text, to = '/profile/' }) => {
   return (
     <NavLink 
       to={to}
