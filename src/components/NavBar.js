@@ -33,8 +33,7 @@ function NavBar() {
     <Nav.Link href="" className={`mx-2 ${location.pathname === '/my-feed/' ? getActive() : ''}`}>My Feed</Nav.Link>
     <Nav.Link href="" className={`mx-2 ${location.pathname === '/general-feed/' ? getActive() : ''}`}>General Feed</Nav.Link>
     <Nav.Link href="" className={`mx-2 ${location.pathname === '/logout/' ? getActive() : ''}`}>Logout</Nav.Link>
-    <Avatar src={currentUser?.profile_image} text={currentUser?.profile_image} height={40} />
-    {console.log(currentUser)}
+      <Avatar src={currentUser?.profile_image} text={currentUser?.username} height={40} />
   </>
 
   return (
@@ -56,7 +55,7 @@ function NavBar() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
+          <Nav className='ms-auto align-items-lg-center'>
             {currentUser ? loggedIn : loggedOut}
           </Nav>
         </Navbar.Collapse>

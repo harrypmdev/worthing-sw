@@ -15,7 +15,7 @@ import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 
 
 function Login() {
-  const setCurrentUser = useSetCurrentUser;
+  const setCurrentUser = useSetCurrentUser();
   const navigate = useNavigate();
 
   const [loginData, setLoginData] = useState({
@@ -31,7 +31,7 @@ function Login() {
     try {
       const {data} = await axios.post('/dj-rest-auth/login/', loginData)
       console.log("Returned from login:");
-      console.log(data);
+      console.log(data.user);
       setCurrentUser(data.user);
       navigate('/');
     } catch (err) {
