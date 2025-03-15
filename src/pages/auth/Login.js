@@ -12,6 +12,7 @@ import { Alert } from 'react-bootstrap';
 import loginImage from '../../assets/login-image.webp';
 import styles from '../../styles/RegisterLogin.module.css';
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
+import { setTokenTimestamp } from '../../utils/utils';
 
 
 function Login() {
@@ -30,9 +31,8 @@ function Login() {
     event.preventDefault();
     try { 
       const {data} = await axios.post('/dj-rest-auth/login/', loginData)
-      console.log("Returned from login:");
-      console.log(data.user);
       setCurrentUser(data.user);
+      setTokenTimestamp(data);
       navigate('/');
     } catch (err) {
       setErrors(err.response?.data)

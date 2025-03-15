@@ -10,12 +10,12 @@ import styles from '../styles/NavBar.module.css'
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import Avatar from './Avatar';
 import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
+import { removeTokenTimestamp } from '../utils/utils';
 
 
 function NavBar() {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
-  const location = useLocation();
   const {navExpanded, setNavExpanded, ref} = useClickOutsideToggle();
 
   function toggleNav(expanded) {
@@ -25,8 +25,9 @@ function NavBar() {
   const handleSignOut = async () => {
     console.log("function triggers at all");
     try {
-      console.log(await axios.post('/dj-rest-auth/logout/'));
+      await axios.post('/dj-rest-auth/logout/');
       setCurrentUser(null);
+      removeTokenTimestamp();
     } catch (err) {
       console.log(err);
     }
