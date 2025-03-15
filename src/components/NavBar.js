@@ -9,13 +9,14 @@ import logo from '../assets/logo.webp'
 import styles from '../styles/NavBar.module.css'
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import Avatar from './Avatar';
+import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
 
 
 function NavBar() {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const location = useLocation();
-  const [navExpanded, setNavExpanded] = React.useState(false);
+  const {navExpanded, setNavExpanded, ref} = useClickOutsideToggle();
 
   function toggleNav(expanded) {
     setNavExpanded(expanded);
@@ -71,7 +72,7 @@ function NavBar() {
               height="50"
             />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle ref={ref} aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className='ms-auto align-items-lg-center'>
             {currentUser ? loggedIn : loggedOut}

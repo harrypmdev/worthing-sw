@@ -7,7 +7,7 @@ const Profile = () => {
   const currentUser = useCurrentUser();
 
   return (
-    <Container fluid className="flex-grow-1 d-flex flex-column">
+    <Container className="flex-grow-1 d-flex flex-column">
       <Row className="d-flex flex-grow-1 align-items-md-center pb-6">
         <Col xs='12' md='9'>
           Col1
