@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 import Profile from './pages/Profile';
+import GeneralFeed from './pages/GeneralFeed';
 import styles from './styles/App.module.css'
 import './api/axiosDefaults';
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login/" element={<Login />}/>
           <Route path="/register/" element={<Register />}/>
           <Route path='/profile/' element={<Profile />}/>
+          <Route path='/general-feed/' element={<GeneralFeed />}/>
         </Routes>
       </Container>
     </div>
