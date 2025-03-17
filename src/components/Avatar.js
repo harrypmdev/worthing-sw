@@ -3,11 +3,19 @@ import { NavLink } from 'react-router-dom';
 
 import styles from '../styles/Avatar.module.css'
 
-const Avatar = ({ src, height = 45, text, to = '/profile/' }) => {
+const Avatar = (props) => {
+  const { 
+    src, 
+    height = 45, 
+    text, 
+    to = '/profile/',
+    color = 'dark'
+  } = props;
+
   return (
     <NavLink 
       to={to}
-      className={`bg-dark bg-gradient text-white
+      className={`bg-${color} bg-gradient text-white
                  rounded ps-2 pe-3 py-2 d-flex align-items-center 
                  text-decoration-none ${styles.Avatar}`}
     >
