@@ -16,7 +16,7 @@ const Avatar = (props) => {
     <NavLink 
       to={to}
       className={`bg-${color} bg-gradient text-white
-                 rounded ps-2 pe-3 py-2 d-flex align-items-center 
+                 rounded ps-2 pe-3 py-2 d-inline-flex w-auto align-items-center 
                  text-decoration-none ${styles.Avatar}`}
     >
       <img 

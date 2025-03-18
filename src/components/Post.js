@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { axiosReq } from '../api/axiosDefaults';
 import Song from './Song';
 
-const Post = ({post, link=true, song_details=false}) => {
+const Post = ({post, link=true, songDetails=false}) => {
   const [song, setSong] = useState('');
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -24,15 +24,15 @@ const Post = ({post, link=true, song_details=false}) => {
     if (post.song) {
       fetchPosts();
     }
-  }, []);
+  }, [post.song]);
 
   return (
     <Row>
       <Card className='bg-light m-2'>
         <Card.Body>
           <Col>
-            <Row>
-                <Col lg='10' className='d-flex align-items-center'>
+            <Row className='align-items-center'>
+                <Col>
                   {link ? (<>
                     <Link to={`/posts/${post.id}`} className='text-decoration-none text-dark'>
                       <h2 className='h4'>{post.title}</h2>
@@ -43,7 +43,7 @@ const Post = ({post, link=true, song_details=false}) => {
                     </span> 
                   </>)}
                 </Col>
-                <Col lg='2' className='d-none d-lg-inline'>
+                <Col className='d-none d-lg-inline flex-shrink-0 flex-grow-0'>
                   <Avatar 
                     src={post.user_image} 
                     text={post.user}
@@ -70,7 +70,7 @@ const Post = ({post, link=true, song_details=false}) => {
               </Col>
               <Col lg='4' className='d-none d-lg-inline'>
                 {post.song && hasLoaded ? (
-                  <Song song={song} include_details={song_details}/>
+                  <Song song={song} includeDetails={songDetails}/>
                 ) : post.song && !hasLoaded ? (
                   <div className='d-flex justify-content-center'>
                     <Spinner />

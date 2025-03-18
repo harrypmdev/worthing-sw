@@ -1,34 +1,35 @@
 import React, { useEffect, useState } from 'react'
-import { Container } from 'react-bootstrap';
 import { axiosReq } from '../api/axiosDefaults';
-import Post from './Post';
+import { Container } from 'react-bootstrap';
+import Song from './Song';
 import FullPageSpinner from './FullPageSpinner';
 
-const Feed = ({user_id=null, limit=10}) => {
-  const [posts, setPosts] = useState({ results: []});
+const SongList = ({user_id}) => {
+  const [songList, setSongList] = useState('');
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchSongList = async () => {
       try {
-        let filter = user_id ? `?user=${user_id}` : ''
-        const {data} = await axiosReq.get(`/posts/${filter}`);
+        const {data} = await axiosReq.get(`/songs/?ordering=-net_votes&user=${user_id}`);
         setHasLoaded(true);
-        setPosts(data);
+        setSongList(data);
       } catch (err) {
         console.log(err);
       }
     }
-
     setHasLoaded(false);
-    fetchPosts();
+    fetchSongList();
   }, [user_id]);
-
+    
   return (
     <Container className="flex-grow-1 d-flex flex-column">
       { hasLoaded ? (<>
-        { posts.results.slice(0, limit).map((post) => (
-          <Post post={post} key={post.id}/>
+        { songList.results.map((song) => (
+          <>
+          <Song song={song} includeDetails/>
+          <br />
+          </>
         ))}
       </>) : (<>
         <FullPageSpinner />
@@ -37,4 +38,4 @@ const Feed = ({user_id=null, limit=10}) => {
   )
 }
 
-export default Feed
+export default SongList
