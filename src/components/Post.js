@@ -4,7 +4,7 @@ import { Card, Col, Row } from 'react-bootstrap'
 import Avatar from './Avatar';
 import { Link } from 'react-router-dom';
 
-const Post = ({post}) => {
+const Post = ({post, link = true}) => {
   return (
     <Row>
       <Card className='bg-light m-2'>
@@ -12,9 +12,15 @@ const Post = ({post}) => {
           <Col>
             <Row>
                 <Col md='10' className='d-flex align-items-center'>
-                  <Link to={`/posts/${post.id}`} className='text-decoration-none text-dark'>
-                    <h2 className='h4'>{post.title}</h2>
-                  </Link> 
+                  {link ? (<>
+                    <Link to={`/posts/${post.id}`} className='text-decoration-none text-dark'>
+                      <h2 className='h4'>{post.title}</h2>
+                    </Link> 
+                  </>) : (<>
+                    <span>
+                      <h2 className='h4'>{post.title}</h2>
+                    </span> 
+                  </>)}
                 </Col>
                 <Col md='2' className='d-none d-lg-inline'>
                   <Avatar 
@@ -26,9 +32,15 @@ const Post = ({post}) => {
                 </Col>  
             </Row>
             <hr />
-            <Link to={`/posts/${post.id}`} className='text-decoration-none text-dark'>
-              <p>{post.content}</p>
-            </Link>
+            {link ? (<>
+              <Link to={`/posts/${post.id}`} className='text-decoration-none text-dark'>
+                <p>{post.content}</p>
+              </Link> 
+            </>) : (<>
+              <span>
+                <p>{post.content}</p>
+              </span> 
+            </>)}
             <p className='text-info fst-italic d-lg-none'>
               by {post.user}
             </p>

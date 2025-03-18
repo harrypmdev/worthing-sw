@@ -4,9 +4,11 @@ import Post from '../components/Post';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { axiosReq } from '../api/axiosDefaults';
 import { Container } from 'react-bootstrap';
+import FullPageSpinner from '../components/FullPageSpinner';
 
 const PostPage = () => {
   const {id} = useParams();
+  const [hasLoaded, setHasLoaded] = useState(false);
   const [post, setPost] = useState({});
 
   const currentUser = useCurrentUser();
@@ -22,16 +24,22 @@ const PostPage = () => {
             ])
             setPost(post)
             setComments(comments)
+            setHasLoaded(true);
         } catch(err){
             console.log(err)
         }
     }
+    setHasLoaded(false);
     fetchPost();
   }, [id])
 
   return (
-    <Container>
-      <Post post={post}/>
+    <Container className="flex-grow-1 d-flex flex-column">
+      { hasLoaded ? (<>
+          <Post post={post} link={false}/>
+      </>) : (<>
+        <FullPageSpinner />
+      </>)}
     </Container>
   )
 }

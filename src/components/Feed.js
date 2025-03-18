@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { axiosReq } from '../api/axiosDefaults';
 import Post from './Post';
+import FullPageSpinner from './FullPageSpinner';
 
 const Feed = () => {
   const [posts, setPosts] = useState({ results: []});
@@ -23,10 +24,14 @@ const Feed = () => {
   }, []);
 
   return (
-    <Container>
-      { posts.results.map((post) => (
-        <Post post={post} key={post.id}/>
-      ))}
+    <Container className="flex-grow-1 d-flex flex-column">
+      { hasLoaded ? (<>
+        { posts.results.map((post) => (
+          <Post post={post} key={post.id}/>
+        ))}
+      </>) : (<>
+        <FullPageSpinner />
+      </>)}
     </Container>
   )
 }
