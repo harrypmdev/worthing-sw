@@ -8,8 +8,10 @@ import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 import Profile from './pages/Profile';
 import GeneralFeed from './pages/GeneralFeed';
+import PostPage from './pages/PostPage';
 import styles from './styles/App.module.css'
 import './api/axiosDefaults';
+
 
 
 function App() {
@@ -18,11 +20,12 @@ function App() {
       <NavBar />
       <Container fluid className="d-flex flex-column flex-grow-1">
         <Routes>
-          <Route path="/" element={<Home />}/>
-          <Route path="/login/" element={<Login />}/>
-          <Route path="/register/" element={<Register />}/>
-          <Route path='/profile/' element={<Profile />}/>
-          <Route path='/general-feed/' element={<GeneralFeed />}/>
+          <Route exact path="/" element={<Home />}/>
+          <Route exact path="/login/" element={<Login />}/>
+          <Route exact path="/register/" element={<Register />}/>
+          <Route exact path='/profile/' element={<Profile />}/>
+          <Route exact path='/general-feed/' element={<GeneralFeed />}/>
+          <Route exact path="/posts/:id" element ={<PostPage />} />
         </Routes>
       </Container>
     </div>

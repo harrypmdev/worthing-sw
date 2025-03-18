@@ -19,19 +19,13 @@ const Feed = () => {
     }
 
     setHasLoaded(false);
-    const timer = setTimeout(() => {
-        fetchPosts();
-    }, 1000);
-
-    return () => {
-        clearTimeout(timer);
-    }
+    fetchPosts();
   }, []);
 
   return (
-    <Container className='border-start border-end'>
+    <Container>
       { posts.results.map((post) => (
-        <Post post={post} />
+        <Post post={post} key={post.id}/>
       ))}
     </Container>
   )
