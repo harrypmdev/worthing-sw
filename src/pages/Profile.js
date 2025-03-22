@@ -10,13 +10,15 @@ const Profile = ({ownProfile}) => {
   const currentUser = useCurrentUser();
 
   return (
-    <Container className="flex-grow-1 d-flex flex-column mt-2">
+    <Container fluid className="flex-grow-1 d-flex flex-column mt-2">
       <Row>
-        <Col xs='12' md='4' lg='3' xl='2'>
+        <Col xs='12' md='4'>
           <ProfileSummary user={currentUser}/>
         </Col>
-        <Col className='d-flex' xs='12' md='8' lg='9' xl='10'>
-            <Feed user_id={currentUser?.pk} limit={3}/>
+        <Col className='d-flex flex-column' xs='12' md='8'>
+            <Feed user_id={currentUser?.pk}/>
+
+            <div className='text-center my-3 fst-italic'>No more posts from {currentUser?.username} yet.</div>
         </Col>
       </Row>
     </Container>
