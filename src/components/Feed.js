@@ -4,32 +4,36 @@ import { axiosReq } from '../api/axiosDefaults';
 import Post from './Post';
 import FullPageSpinner from './FullPageSpinner';
 
-const Feed = ({user_id=null, limit=10}) => {
+const Feed = ({profile=null, limit=10, trailingText='No more posts.', useAvatars=true}) => {
   const [posts, setPosts] = useState({ results: []});
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
+      setHasLoaded(false);
       try {
-        let filter = user_id ? `?user=${user_id}` : ''
-        const {data} = await axiosReq.get(`/posts/${filter}`);
-        setHasLoaded(true);
+        let filter = profile ? `?user=${profile?.id}` : '';
+        const { data } = await axiosReq.get(`/posts/${filter}`);
         setPosts(data);
+        setHasLoaded(profile != null);
       } catch (err) {
         console.log(err);
       }
-    }
-
-    setHasLoaded(false);
+    };
+  
     fetchPosts();
-  }, [user_id]);
+  }, [profile]);
+
 
   return (
     <Container className="flex-grow-1 d-flex flex-column">
       { hasLoaded ? (<>
         { posts.results.slice(0, limit).map((post) => (
-          <Post post={post} key={post.id}/>
+          <Post useAvatar={useAvatars} post={post} key={post.id}/>
         ))}
+        <div className='text-center my-3 fst-italic'>
+          {posts.results.length ? trailingText : `No posts from ${profile.user} yet.`}
+        </div>        
       </>) : (<>
         <FullPageSpinner />
       </>)}

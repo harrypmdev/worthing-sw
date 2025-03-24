@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { axiosReq } from '../api/axiosDefaults';
 import Song from './Song';
 
-const Post = ({post, link=true, songDetails=false}) => {
+const Post = ({post, link=true, songDetails=false, useAvatar=true}) => {
   const [song, setSong] = useState('');
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -43,14 +43,18 @@ const Post = ({post, link=true, songDetails=false}) => {
                     </span> 
                   </>)}
                 </Col>
-                <Col className='d-none d-lg-inline flex-shrink-0 flex-grow-0'>
-                  <Avatar 
-                    src={post.user_image} 
-                    text={post.user}
-                    height='30'
-                    color='secondary'
-                  />
-                </Col>  
+                {useAvatar && (
+                  <Col className='d-none d-lg-inline flex-shrink-0 flex-grow-0'>
+                    <Avatar 
+                      src={post.user_image} 
+                      text={post.user}
+                      height='30'
+                      color='secondary'
+                      to={`/profile/${post.profile_id}`}
+                    />
+                  </Col>  
+                )}
+
             </Row>
             <hr />
             <Row>

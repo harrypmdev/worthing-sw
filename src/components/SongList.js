@@ -31,6 +31,9 @@ const SongList = ({user_id}) => {
           <br />
           </>
         ))}
+        { !songList.results.length && (
+          <div className='text-center my-3 fst-italic'>No songs yet.</div>
+        )}
       </>) : (<>
         <FullPageSpinner />
       </>)}

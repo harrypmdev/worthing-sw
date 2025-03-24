@@ -53,7 +53,12 @@ function NavBar() {
     <NavLink to="/" className={styles.NavLink} onClick={handleSignOut}>
       Logout
     </NavLink>
-    <Avatar src={currentUser?.profile_image} text={currentUser?.username} height={40} />
+    <Avatar 
+      src={currentUser?.profile_image} 
+      text={currentUser?.username} 
+      height={40}
+      to={`/profile/${currentUser?.profile_id}`}
+    />
   </>
 
   return (
