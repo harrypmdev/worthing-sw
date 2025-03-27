@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import Post from '../components/Post';
-import { useCurrentUser } from '../contexts/CurrentUserContext';
-import { axiosReq } from '../api/axiosDefaults';
+import Post from '../../components/Post';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import { axiosReq } from '../../api/axiosDefaults';
 import { Container } from 'react-bootstrap';
-import FullPageSpinner from '../components/FullPageSpinner';
+import FullPageSpinner from '../../components/FullPageSpinner';
 
 const PostPage = () => {
   const {id} = useParams();

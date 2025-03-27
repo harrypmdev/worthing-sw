@@ -2,16 +2,16 @@ import { Route, Routes } from 'react-router-dom'
 import Container from 'react-bootstrap/Container';
 
 import './App.css';
+import './api/axiosDefaults';
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 import Profile from './pages/Profile';
-import GeneralFeed from './pages/GeneralFeed';
-import PostPage from './pages/PostPage';
+import GeneralFeed from './pages/posts/GeneralFeed';
+import PostPage from './pages/posts/PostPage';
 import styles from './styles/App.module.css'
-import './api/axiosDefaults';
-
+import CreateSong from './pages/songs/CreateSong';
 
 
 function App() {
@@ -27,6 +27,7 @@ function App() {
           <Route exact path='/profile/:id' element={<Profile />}/>
           <Route exact path='/general-feed/' element={<GeneralFeed />}/>
           <Route exact path="/posts/:id" element ={<PostPage />} />
+          <Route exact path='/create-song/' element={<CreateSong />} /> 
         </Routes>
       </Container>
     </div>

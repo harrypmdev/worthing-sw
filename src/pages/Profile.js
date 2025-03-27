@@ -19,7 +19,6 @@ const Profile = () => {
         try {
             const {data} = await axiosReq.get(`/profiles/${id}`);
             setProfile(data);
-            console.log(data.id);
             setHasLoaded(true);
         } catch(err){
             console.log(err)

@@ -21,7 +21,7 @@ const ProfileSummary = ({profile}) => {
             Following: {profile?.following_count}
             </p>
             {profile.is_user && (
-              <Link to='/add-song/'>
+              <Link to='/create-song/'>
                 <Button variant='outline-primary' className='mb-3'>Add Song</Button>
               </Link>
             )}
