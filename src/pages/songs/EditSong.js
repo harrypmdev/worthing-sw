@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Alert } from 'react-bootstrap';
+import { Alert, Modal } from 'react-bootstrap';
 
 import createSongImage from '../../assets/create_song_image.webp';
 import styles from '../../styles/RegisterLogin.module.css';
 import { useRedirect } from '../../hooks/useRedirect';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import FullPageSpinner from '../../components/FullPageSpinner';
 
 
-function CreateSong() {
+function EditSong() {
   useRedirect('loggedOut')
+  const {id} = useParams();
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
 
@@ -28,15 +30,32 @@ function CreateSong() {
   })
   const {title, link_to_song, artist_name, audio_file} = songData;
   const [errors, setErrors] = useState({})
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    if (currentUser?.username) {
-      setSongData((prevState) => ({
-        ...prevState,
-        artist_name: currentUser.username,
-      }));
-    }
-  }, [currentUser]);
+    const fetchSong = async () => {
+      try {
+        const { data } = await axiosReq.get(`/songs/${id}/`);
+        if (!data.is_user) {
+          navigate(`/profile/${currentUser.profile_id}`); // Redirect unauthorized users
+          return;
+        }
+        setSongData({
+          title: data.title,
+          link_to_song: data.link_to_song,
+          artist_name: data.artist_name,
+          audio_file: null, // File fields can't be pre-filled; it needs to be replaced if edited
+        });
+        setHasLoaded(true);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    
+    setHasLoaded(false);
+    fetchSong();
+  }, [id, currentUser?.username, currentUser.profile_id, navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -47,10 +66,13 @@ function CreateSong() {
     if (link_to_song) formData.append("link_to_song", link_to_song);
     if (audio_file) formData.append("audio_file", audio_file);
     try {
-      await axiosReq.post("/songs/", formData);
+      await axiosReq.put(`/songs/${id}`, formData);
       navigate(`/profile/${currentUser.profile_id}`);
     } catch (err) {
       console.log(err);
+      if (err.response?.status === 404 || err.response?.status === 403) {
+        navigate(`/profile/${currentUser.profile_id}`); // Redirect to profile if song is not found or unauthorized
+      }
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -74,16 +96,26 @@ function CreateSong() {
     }
   }
 
+  const handleDelete = async () => {
+    try {
+      await axiosReq.delete(`/songs/${id}/`);
+      navigate(`/profile/${currentUser.profile_id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+
   return (
     <Container className="flex-grow-1 d-flex flex-column">
-    <Row className="d-flex flex-grow-1 align-items-center pb-6">
+    { hasLoaded ? (
+    <Row className="d-flex flex-grow-1 align-items-center pb-6 pt-2">
       <Col
       xs="12" 
-      md="5"
+      lg="5"
       className="bg-light p-3 text-center rounded shadow-sm"
       > {/* Col for all actual form box content */}
-        <h1 className="h2 mb-3">Create Song</h1>
-        <p>Add a new song to your profile. You can have up to three.</p>
+        <h1 className="h2 mb-3">Edit Song</h1>
         <hr />
         <Form onSubmit={handleSubmit}>
           <Form.Group>
@@ -139,7 +171,7 @@ function CreateSong() {
               </Alert>
           ))}
           <Form.Group>
-            <Form.Label className='d-none'>Upload WAV File</Form.Label>
+            <Form.Label className="d-none">Upload WAV File</Form.Label>
             <Form.Control
               type="file"
               name="audio_file"
@@ -148,11 +180,11 @@ function CreateSong() {
               onChange={handleSongChange}
             />
             <Form.Text className="text-muted">
-              Please upload a short WAV file.
+              Upload a new WAV file only if you wish to replace the current song file.
             </Form.Text>
           </Form.Group>
-          <Button type="submit" className='w-100 mt-2'>
-            Submit
+          <Button type="submit" className="w-100 mt-2">
+            Save Changes
           </Button>
           {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
@@ -160,18 +192,46 @@ function CreateSong() {
               </Alert>
           ))}
         </Form>
+        <hr />
+        <Button
+          variant="danger"
+          className="w-100 mt-1"
+          onClick={() => setShowModal(true)} // Open the modal
+        >
+          Delete Song
+        </Button>
+        <small className={`form-text mx-auto my-2 ${styles.dangerHelper}`}>This cannot be undone.</small>
       </Col>
       <Col
           xs='12'
-          md='1'
-          className='d-none d-md-block'
+          lg='1'
+          className='d-none d-lg-block'
         /> {/* Col purely for layout formatting */}
-      <Col xs="12" md="6" className="text-center d-none d-md-block">
+      <Col xs="12" lg="6" className="text-center d-none d-lg-block">
         <Image fluid rounded src={createSongImage} className={styles.registerImage} />
       </Col>
     </Row>
+    ) : (
+      <FullPageSpinner />
+    )}
+    <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+      <Modal.Header closeButton>
+        <Modal.Title>Confirm Deletion</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        Are you sure you want to delete this song? This action cannot be undone.
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={() => setShowModal(false)}>
+          Cancel
+        </Button>
+        <Button variant="danger" onClick={handleDelete}>
+          Delete
+        </Button>
+      </Modal.Footer>
+    </Modal>
     </Container>
   );
 }
 
-export default CreateSong
+export default EditSong

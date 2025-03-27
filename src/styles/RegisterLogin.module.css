@@ -1,3 +1,7 @@
 .registerImage {
     max-height: 80vh;
 }
+
+.dangerHelper {
+  color: #8F0000;
+}

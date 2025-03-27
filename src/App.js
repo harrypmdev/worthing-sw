@@ -12,6 +12,7 @@ import GeneralFeed from './pages/posts/GeneralFeed';
 import PostPage from './pages/posts/PostPage';
 import styles from './styles/App.module.css'
 import CreateSong from './pages/songs/CreateSong';
+import EditSong from './pages/songs/EditSong';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route exact path='/general-feed/' element={<GeneralFeed />}/>
           <Route exact path="/posts/:id" element ={<PostPage />} />
           <Route exact path='/create-song/' element={<CreateSong />} /> 
+          <Route exact path='/edit-song/:id/' element={<EditSong />} />
         </Routes>
       </Container>
     </div>

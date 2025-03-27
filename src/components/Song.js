@@ -1,9 +1,10 @@
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const Song = ({song, includeDetails = false}) => {
-  return (
-    <div className='border rounded p-2 bg-secondary-subtle bg-gradient'>
+  return (<>
+    <div className={`border rounded p-2 bg-secondary-subtle bg-gradient ${song.is_user && 'rounded-bottom-0'}`}>
       { includeDetails ? (<>
         <Row className='text-center m-2'>
           <Col>
@@ -20,7 +21,15 @@ const Song = ({song, includeDetails = false}) => {
         </audio>
       </Row>
     </div>
-  )
+    { song.is_user && (
+      <Link
+        to={`/edit-song/${song.id}`}
+        className='btn btn-warning w-100 rounded-top-0 text-center'>
+        Edit&ensp;
+        <i className="fa-solid fa-pen-to-square" />
+      </Link>
+    )}
+  </>)
 }
 
 export default Song
