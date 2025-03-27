@@ -26,10 +26,13 @@ const SongList = ({profile}) => {
     
   return (
     <Container className="flex-grow-1 d-flex flex-column">
+      { songList?.results?.length && (
+        <h2 className='h6 text-center fw-bold'>Songs ({profile.songs_count}/3)</h2>
+      )}
       { hasLoaded ? (<>
-        { songList.results.map((song) => (
+        { songList.results.map((song, index) => (
           <div key={song.id}>
-          <Song song={song} includeDetails/>
+          <Song song={song} number={index+1} includeDetails editable/>
           <br />
           </div>
         ))}

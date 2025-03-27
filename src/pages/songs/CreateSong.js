@@ -30,13 +30,28 @@ function CreateSong() {
   const [errors, setErrors] = useState({})
 
   useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const { data } = await axiosReq.get(`/profiles/${currentUser.profile_id}/`);
+        if (data.songs_count >= 3) {
+          navigate(`/profile/${currentUser?.profile_id}`); // Redirect if songs_count >= 3
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    if (currentUser?.profile_id) {
+      fetchProfile();
+    }
+
     if (currentUser?.username) {
       setSongData((prevState) => ({
         ...prevState,
         artist_name: currentUser.username,
       }));
     }
-  }, [currentUser]);
+  }, [currentUser, navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

@@ -20,7 +20,7 @@ const ProfileSummary = ({profile}) => {
             Followers: {profile?.followers_count}&nbsp;
             Following: {profile?.following_count}
             </p>
-            {profile.is_user && (
+            {profile.is_user && (profile.songs_count < 3) && (
               <Link to='/create-song/'>
                 <Button variant='outline-primary' className='mb-3'>Add Song</Button>
               </Link>
