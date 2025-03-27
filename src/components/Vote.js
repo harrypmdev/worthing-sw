@@ -8,13 +8,13 @@ const Vote = ({song=null, post=null}) => {
   const item = song || post;
   const endpoint = song ? '/song_votes/' : '/post_votes/';
   const foreignKey = song ? 'song' : 'post'; // The foreign key that should be set for new votes
+  const [loading, setLoading] = useState(false);
 
-  // Local state for user votes and net votes
+  // Local state for user votes, net votes and the id of the existing vote
   const [userUpvoted, setUserUpvoted] = useState(!!item?.user_upvoted);
   const [userDownvoted, setUserDownvoted] = useState(!!item?.user_downvoted);
   const [netVotes, setNetVotes] = useState(item?.net_votes || 0);
   const [userVoteId, setUserVoteId] = useState(item?.user_vote_id || null)
-  const [loading, setLoading] = useState(false);
 
   const handleUpvote = async () => {
     if (loading) return;
