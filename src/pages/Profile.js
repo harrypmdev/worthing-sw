@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Container, Image, Row } from 'react-bootstrap'
+import { Col, Container, Row } from 'react-bootstrap'
 
-import { useCurrentUser } from '../contexts/CurrentUserContext';
-import SongList from '../components/SongList';
 import Feed from '../components/Feed';
 import ProfileSummary from '../components/ProfileSummary';
 import { axiosReq } from '../api/axiosDefaults';
