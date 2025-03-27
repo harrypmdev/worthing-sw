@@ -19,7 +19,7 @@ const Profile = () => {
         try {
             const {data} = await axiosReq.get(`/profiles/${id}`);
             setProfile(data);
-            console.log("profile fetched")
+            console.log(data.id);
             setHasLoaded(true);
         } catch(err){
             console.log(err)
@@ -31,7 +31,7 @@ const Profile = () => {
 
   return (
     <Container fluid className="flex-grow-1 d-flex flex-column mt-2">
-      {hasLoaded ? (
+      {hasLoaded && profile ? (
         <Row>
           <Col xs='12' md='4'>
             <ProfileSummary profile={profile}/>

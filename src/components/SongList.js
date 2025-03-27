@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { axiosReq } from '../api/axiosDefaults';
-import { Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import Song from './Song';
 import FullPageSpinner from './FullPageSpinner';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
 
-const SongList = ({user_id}) => {
+const SongList = ({profile}) => {
   const [songList, setSongList] = useState('');
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     const fetchSongList = async () => {
       try {
-        const {data} = await axiosReq.get(`/songs/?ordering=-net_votes&user=${user_id}`);
+        console.log(`request: /songs/?ordering=-net_votes&user=${profile.id}`);
+        const {data} = await axiosReq.get(`/songs/?ordering=-net_votes&user=${profile.id}`);
         setHasLoaded(true);
         setSongList(data);
       } catch (err) {
@@ -20,7 +22,7 @@ const SongList = ({user_id}) => {
     }
     setHasLoaded(false);
     fetchSongList();
-  }, [user_id]);
+  }, [profile.id]);
     
   return (
     <Container className="flex-grow-1 d-flex flex-column">

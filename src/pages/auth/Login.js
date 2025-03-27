@@ -13,9 +13,11 @@ import loginImage from '../../assets/login-image.webp';
 import styles from '../../styles/RegisterLogin.module.css';
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 import { setTokenTimestamp } from '../../utils/utils';
+import { useRedirect } from '../../hooks/useRedirect';
 
 
 function Login() {
+  useRedirect('loggedIn')
   const setCurrentUser = useSetCurrentUser();
   const navigate = useNavigate();
 

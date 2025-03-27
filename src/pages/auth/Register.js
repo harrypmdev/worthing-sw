@@ -15,8 +15,8 @@ import styles from '../../styles/RegisterLogin.module.css';
 
 
 function Register() {
+  useRedirect('loggedIn')
   const navigate = useNavigate();
-  // useRedirect('loggedIn');
 
   const [registerData, setRegisterData] = useState({
     username: '',

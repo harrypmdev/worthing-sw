@@ -68,9 +68,11 @@ const Post = ({post, link=true, songDetails=false, useAvatar=true}) => {
                     <p>{post.content}</p>
                   </span> 
                 </>)}
+                { useAvatar && (
                 <p className='text-info fst-italic d-lg-none'>
                   by {post.user}
                 </p>
+                )}
               </Col>
               <Col lg='4' className='d-none d-lg-inline'>
                 {post.song && hasLoaded ? (

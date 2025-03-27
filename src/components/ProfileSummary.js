@@ -1,7 +1,10 @@
 import React from 'react';
+import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
 import SongList from './SongList';
-import { Col, Container, Row } from 'react-bootstrap';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
+
 
 const ProfileSummary = ({profile}) => {
   return (
@@ -13,9 +16,18 @@ const ProfileSummary = ({profile}) => {
               src={profile?.image}
             />
             <h1 className='h3 my-3 text-center'>{profile?.user}</h1>
+            <p>
+            Followers: {profile?.followers_count}&nbsp;
+            Following: {profile?.following_count}
+            </p>
+            {profile.is_user && (
+              <Link to='/add-song/'>
+                <Button variant='outline-primary' className='mb-3'>Add Song</Button>
+              </Link>
+            )}
           </Col>
           <Col xs='12'>
-            <SongList user_id={profile?.id}/>
+            <SongList profile={profile}/>
           </Col>
       </Container>
   )

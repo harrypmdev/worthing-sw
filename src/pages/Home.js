@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -6,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 
 import homeImage from '../assets/home-image.webp';
+
 
 const Home = () => {
   return (
@@ -17,8 +19,12 @@ const Home = () => {
           Worthing Sound Wave is a site for local Worthing musicians to discuss music,
           collaborate or share new tracks. You can find bandmates, emerging artists and events.
           </p>
-          <Button variant="primary me-3">Get Started</Button>
-          <Button variant="secondary ms-3">See What's On</Button>
+          <Link to='/register/'>
+            <Button variant="primary" className='me-3'>Get Started</Button>
+          </Link>
+          <Link to='/general-feed/'>
+            <Button variant="secondary" className='ms-3'>See What's On</Button>
+          </Link>
         </Col>
         <Col xs="12" md="6"  className='text-center d-md-block'>
           <Image fluid rounded src={homeImage}/>
