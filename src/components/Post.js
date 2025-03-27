@@ -5,6 +5,7 @@ import Avatar from './Avatar';
 import { Link } from 'react-router-dom';
 import { axiosReq } from '../api/axiosDefaults';
 import Song from './Song';
+import Vote from './Vote';
 
 const Post = ({post, link=true, songDetails=false, useAvatar=true}) => {
   const [song, setSong] = useState('');
@@ -42,6 +43,9 @@ const Post = ({post, link=true, songDetails=false, useAvatar=true}) => {
                       <h2 className='h4'>{post.title}</h2>
                     </span> 
                   </>)}
+                </Col>
+                <Col xs='auto'>
+                <Vote post={post} />
                 </Col>
                 {useAvatar && (
                   <Col className='d-none d-lg-inline flex-shrink-0 flex-grow-0'>

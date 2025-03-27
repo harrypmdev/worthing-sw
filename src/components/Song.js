@@ -17,7 +17,7 @@ const Song = ({song, includeDetails=false, editable=false, number=false}) => {
             <span className='fw-bold'>{song.title}</span> by <span className='fw-bold'>{song.artist_name}</span>
           </Col>
           <Col xs='auto' className='text-end'>
-            <Vote />
+            <Vote song={song}/>
           </Col>
         </Row>
       <hr />
