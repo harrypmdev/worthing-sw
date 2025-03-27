@@ -26,10 +26,10 @@ const SongList = ({user_id}) => {
     <Container className="flex-grow-1 d-flex flex-column">
       { hasLoaded ? (<>
         { songList.results.map((song) => (
-          <>
+          <div key={song.id}>
           <Song song={song} includeDetails/>
           <br />
-          </>
+          </div>
         ))}
         { !songList.results.length && (
           <div className='text-center my-3 fst-italic'>No songs yet.</div>
