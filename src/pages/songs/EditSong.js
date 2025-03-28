@@ -31,6 +31,7 @@ function EditSong() {
   const {title, link_to_song, artist_name, audio_file} = songData;
   const [errors, setErrors] = useState({})
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -97,11 +98,13 @@ function EditSong() {
   }
 
   const handleDelete = async () => {
+    setDeleteLoading(true);
     try {
       await axiosReq.delete(`/songs/${id}/`);
       navigate(`/profile/${currentUser.profile_id}`);
     } catch (err) {
       console.log(err);
+      setDeleteLoading(false);
     }
   };
 
@@ -225,8 +228,12 @@ function EditSong() {
         <Button variant="secondary" onClick={() => setShowModal(false)}>
           Cancel
         </Button>
-        <Button variant="danger" onClick={handleDelete}>
-          Delete
+        <Button 
+          variant="danger" 
+          disabled={deleteLoading}
+          onClick={deleteLoading ? null : handleDelete}
+        >
+          {deleteLoading ? 'Deleting...' : 'Delete'}
         </Button>
       </Modal.Footer>
     </Modal>
