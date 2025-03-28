@@ -30,6 +30,7 @@ function EditSong() {
   })
   const {title, link_to_song, artist_name, audio_file} = songData;
   const [errors, setErrors] = useState({})
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -60,6 +61,7 @@ function EditSong() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsSubmitting(true);
     const formData = new FormData();
 
     formData.append("title", title);
@@ -77,6 +79,7 @@ function EditSong() {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
+      setIsSubmitting(false);
     }
   };
 
@@ -107,7 +110,6 @@ function EditSong() {
       setDeleteLoading(false);
     }
   };
-
 
   return (
     <Container className="flex-grow-1 d-flex flex-column">
@@ -186,9 +188,13 @@ function EditSong() {
               Upload a new WAV file only if you wish to replace the current song file.
             </Form.Text>
           </Form.Group>
-          <Button type="submit" className="w-100 mt-2">
-            Save Changes
-          </Button>
+          <Button 
+              type="submit" 
+              className='w-100 mt-2'
+              disabled={isSubmitting}
+            >
+              { isSubmitting ? 'Submitting...' : 'Submit'}
+            </Button>
           {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
                 {message}
@@ -200,6 +206,7 @@ function EditSong() {
           variant="danger"
           className="w-100 mt-1"
           onClick={() => setShowModal(true)} // Open the modal
+          disabled={isSubmitting}
         >
           Delete Song
         </Button>

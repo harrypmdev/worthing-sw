@@ -7,7 +7,7 @@ import { axiosReq } from '../api/axiosDefaults';
 import Song from './Song';
 import Vote from './Vote';
 
-const Post = ({post, link=true, songDetails=false, useAvatar=true}) => {
+const Post = ({post, link=true, songDetails=false, useAvatar=true, editable=false}) => {
   const [song, setSong] = useState('');
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -29,7 +29,7 @@ const Post = ({post, link=true, songDetails=false, useAvatar=true}) => {
 
   return (
     <Row>
-      <Card className='bg-light m-2'>
+      <Card className={`bg-light me-2 mt-2  ${post.is_user && 'rounded-bottom-0 border-bottom-0'}`}>
         <Card.Body>
           <Col>
             <Row className='align-items-center'>
@@ -91,6 +91,14 @@ const Post = ({post, link=true, songDetails=false, useAvatar=true}) => {
           </Col>
         </Card.Body>
       </Card>
+      { post.is_user && editable && (
+              <Link
+                to={`/edit-post/${post.id}`}
+                className='btn btn-warning w-100 rounded-top-0 text-center mb-3'>
+                Edit&ensp;
+                <i className="fa-solid fa-pen-to-square"></i>
+              </Link>
+        )}
     </Row>
   )
 }

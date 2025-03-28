@@ -28,6 +28,7 @@ function CreateSong() {
   })
   const {title, link_to_song, artist_name, audio_file} = songData;
   const [errors, setErrors] = useState({})
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -55,6 +56,7 @@ function CreateSong() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsSubmitting(true);
     const formData = new FormData();
 
     formData.append("title", title);
@@ -69,6 +71,7 @@ function CreateSong() {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
+      setIsSubmitting(false);
     }
   };
 
@@ -166,9 +169,13 @@ function CreateSong() {
               Please upload a short WAV file.
             </Form.Text>
           </Form.Group>
-          <Button type="submit" className='w-100 mt-2'>
-            Submit
-          </Button>
+          <Button 
+              type="submit" 
+              className='w-100 mt-2'
+              disabled={isSubmitting}
+            >
+              { isSubmitting ? 'Submitting...' : 'Submit'}
+            </Button>
           {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
                 {message}

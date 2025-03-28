@@ -38,6 +38,7 @@ const Profile = () => {
                 profile={profile} 
                 trailingText={`No more posts from ${profile?.user} yet.`}
                 useAvatars={false}
+                editable={true}
               />
           </Col>
         </Row>
