@@ -16,6 +16,7 @@ import EditSong from './pages/songs/EditSong';
 import CreatePost from './pages/posts/CreatePost';
 import EditPost from './pages/posts/EditPost';
 import EditProfile from './pages/EditProfile';
+import MyFeed from './pages/posts/MyFeed';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route exact path='/profile/:id' element={<Profile />}/>
           <Route exact path='/edit-profile/' element={<EditProfile />}/>
           <Route exact path='/general-feed/' element={<GeneralFeed />}/>
+          <Route exact path='/my-feed/' element={<MyFeed />}/>
           <Route exact path="/posts/:id" element ={<PostPage />} />
           <Route exact path='/create-song/' element={<CreateSong />} /> 
           <Route exact path='/edit-song/:id/' element={<EditSong />} />
