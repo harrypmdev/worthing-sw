@@ -36,7 +36,7 @@ const PostPage = () => {
   return (
     <Container className="flex-grow-1 d-flex flex-column">
       { hasLoaded ? (<>
-          <Post post={post} link={false} songDetails/>
+          <Post post={post} link={false} songDetails followButton={true}/>
       </>) : (<>
         <FullPageSpinner />
       </>)}

@@ -4,7 +4,7 @@ import { axiosReq } from '../api/axiosDefaults';
 import Post from './Post';
 import FullPageSpinner from './FullPageSpinner';
 
-const Feed = ({profile=null, limit=10, trailingText='No more posts.', useAvatars=true, editable=false}) => {
+const Feed = ({profile=null, limit=10, trailingText='No more posts.', useAvatars=true, editable=false, followButtons=false}) => {
   const [posts, setPosts] = useState({ results: []});
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -29,7 +29,7 @@ const Feed = ({profile=null, limit=10, trailingText='No more posts.', useAvatars
     <Container className="flex-grow-1 d-flex flex-column">
       { hasLoaded ? (<>
         { posts.results.slice(0, limit).map((post) => (
-          <Post useAvatar={useAvatars} post={post} key={post.id} editable={editable}/>
+          <Post useAvatar={useAvatars} post={post} key={post.id} editable={editable} followButton={followButtons}/>
         ))}
         <div className='text-center my-3 fst-italic'>
           {posts.results.length ? trailingText : `No posts from ${profile.user} yet.`}

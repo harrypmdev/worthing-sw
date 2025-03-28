@@ -6,13 +6,18 @@ import { Link } from 'react-router-dom';
 import { axiosReq } from '../api/axiosDefaults';
 import Song from './Song';
 import Vote from './Vote';
+import Follow from './Follow';
 
-const Post = ({post, link=true, songDetails=false, useAvatar=true, editable=false}) => {
+const Post = ({
+  post, link=true, 
+  songDetails=false, useAvatar=true, 
+  editable=false, followButton=false 
+  }) => {
   const [song, setSong] = useState('');
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchSongs = async () => {
       try {
         const {data} = await axiosReq.get(`/songs/${post.song}/`);
         setHasLoaded(true);
@@ -23,7 +28,7 @@ const Post = ({post, link=true, songDetails=false, useAvatar=true, editable=fals
     }
     setHasLoaded(false);
     if (post.song) {
-      fetchPosts();
+      fetchSongs();
     }
   }, [post.song]);
 
@@ -33,32 +38,33 @@ const Post = ({post, link=true, songDetails=false, useAvatar=true, editable=fals
         <Card.Body>
           <Col>
             <Row className='align-items-center'>
-                <Col>
-                  {link ? (<>
-                    <Link to={`/posts/${post.id}`} className='text-decoration-none text-dark'>
-                      <h2 className='h4'>{post.title}</h2>
-                    </Link> 
-                  </>) : (<>
-                    <span>
-                      <h2 className='h4'>{post.title}</h2>
-                    </span> 
-                  </>)}
+              <Col>
+                {link ? (<>
+                  <Link to={`/posts/${post.id}`} className='text-decoration-none text-dark'>
+                    <h2 className='h4'>{post.title}</h2>
+                  </Link> 
+                </>) : (<>
+                  <span>
+                    <h2 className='h4'>{post.title}</h2>
+                  </span> 
+                </>)}
+              </Col>
+              {useAvatar && (
+                <Col className='d-flex align-items-center justify-content-center flex-shrink-0 flex-grow-0'>
+                  {followButton && !post.is_user && <Follow id={post.profile_id}/>}
+                  <Avatar 
+                    src={post.user_image} 
+                    text={post.user}
+                    height='30'
+                    color='secondary-subtle'
+                    textColor='text-dark'
+                    to={`/profile/${post.profile_id}`}
+                  />
                 </Col>
-                <Col xs='auto'>
+              )}
+              <Col xs="auto" className="ms-auto">
                 <Vote post={post} />
-                </Col>
-                {useAvatar && (
-                  <Col className='d-none d-lg-inline flex-shrink-0 flex-grow-0'>
-                    <Avatar 
-                      src={post.user_image} 
-                      text={post.user}
-                      height='30'
-                      color='secondary'
-                      to={`/profile/${post.profile_id}`}
-                    />
-                  </Col>  
-                )}
-
+              </Col>
             </Row>
             <hr />
             <Row>

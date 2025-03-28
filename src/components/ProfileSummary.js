@@ -1,9 +1,10 @@
 import React from 'react';
-import { Button, Col, Container, Image, Row } from 'react-bootstrap';
+import { Button, Col, Container, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import SongList from './SongList';
 import styles from '../styles/ProfileSummary.module.css';
+import Follow from './Follow';
 
 
 const ProfileSummary = ({profile, basic=false}) => {
@@ -16,7 +17,10 @@ const ProfileSummary = ({profile, basic=false}) => {
                           w-50 text-center ${styles.profileSummaryPicture}`}
               src={profile?.image}
             />
-            <h1 className='h3 my-3 text-center'>{profile?.user}</h1>
+            <Col className='d-flex align-items-center justify-content-center'>
+              <h1 className={`h3 my-3 text-center ${!profile?.is_user && 'me-3'}`}>{profile?.user}</h1>
+              {!profile?.is_user && <Follow profile={profile}/>}
+            </Col>
             { profile?.bio && <p className='text-center text-break'>{profile.bio}</p>}
             {!basic && (
               <p>
