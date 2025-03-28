@@ -7,6 +7,7 @@ import { axiosReq } from '../api/axiosDefaults';
 const Vote = ({song=null, post=null}) => {
   const item = song || post;
   const endpoint = song ? '/song_votes/' : '/post_votes/';
+  const bgColor = song ? 'light' : 'secondary-subtle';
   const foreignKey = song ? 'song' : 'post'; // The foreign key that should be set for new votes
   const [loading, setLoading] = useState(false);
 
@@ -111,9 +112,9 @@ const Vote = ({song=null, post=null}) => {
 
 
   return (
-    <div className='d-flex align-items-center justify-content-center rounded p-1 bg-light '>
+    <div className={`d-flex align-items-center justify-content-center rounded p-1 bg-${bgColor}`}>
       <Button 
-        variant="light" 
+        variant={bgColor}
         onClick={handleDownvote}
         disabled={loading} 
         className={`border-0 p-0 ${userDownvoted && 'opacity-25'}`}
@@ -122,7 +123,7 @@ const Vote = ({song=null, post=null}) => {
       </Button>
       <div className="text-center fw-bold mx-2">{netVotes}</div>
       <Button 
-        variant="light" 
+        variant={bgColor}
         onClick={handleUpvote}
         disabled={loading} 
         className={`border-0 p-0 ${userUpvoted && 'opacity-25'}`}

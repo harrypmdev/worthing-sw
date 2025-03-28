@@ -13,6 +13,7 @@ import PostPage from './pages/posts/PostPage';
 import styles from './styles/App.module.css'
 import CreateSong from './pages/songs/CreateSong';
 import EditSong from './pages/songs/EditSong';
+import CreatePost from './pages/posts/CreatePost';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/posts/:id" element ={<PostPage />} />
           <Route exact path='/create-song/' element={<CreateSong />} /> 
           <Route exact path='/edit-song/:id/' element={<EditSong />} />
+          <Route exact path='/create-post/' element={<CreatePost />} />
         </Routes>
       </Container>
     </div>

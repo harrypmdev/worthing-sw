@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { axiosReq } from '../api/axiosDefaults';
-import { Button, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Song from './Song';
 import FullPageSpinner from './FullPageSpinner';
-import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 const SongList = ({profile}) => {
   const [songList, setSongList] = useState('');
@@ -12,7 +11,6 @@ const SongList = ({profile}) => {
   useEffect(() => {
     const fetchSongList = async () => {
       try {
-        console.log(`request: /songs/?ordering=-net_votes&user=${profile.id}`);
         const {data} = await axiosReq.get(`/songs/?ordering=-net_votes&user=${profile.id}`);
         setHasLoaded(true);
         setSongList(data);

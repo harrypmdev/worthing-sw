@@ -47,7 +47,7 @@ function NavBar() {
   </>
 
   const loggedIn = <>
-    <NavLink to="/new-post/" className={getRelevantClasses}>New Post</NavLink>
+    <NavLink to="/create-post/" className={getRelevantClasses}>New Post</NavLink>
     <NavLink to="/my-feed/" className={getRelevantClasses}>My Feed</NavLink>
     <NavLink to="/general-feed/" className={getRelevantClasses}>General Feed</NavLink>
     <NavLink to="/" className={styles.NavLink} onClick={handleSignOut}>
