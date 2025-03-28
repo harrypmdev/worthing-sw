@@ -1,0 +1,31 @@
+.profileImageWrapper {
+  position: relative; /* Establishes a reference point for absolute positioning */
+  display: inline-block; /* Keeps the image and icon within the same context */
+}
+
+.profileImage {
+  transition: filter 0.6s ease-in-out;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+  max-width: 600px;
+}
+
+.uploadIcon {
+  position: absolute;
+  top: 50%; /* Vertical center */
+  left: 50%; /* Horizontal center */
+  transform: translate(-50%, -50%); /* Adjust the icon to be exactly centered */
+  font-size: 3rem; /* Adjust size of the icon */
+  color: #ffffff; /* Icon color */
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.6s ease-in-out; /* Smooth transition for opacity */
+  pointer-events: none; /* Prevent icon from blocking clicks on the image */
+}
+
+.profileImage:hover {
+  filter: brightness(0.5); /* Apply brightness filter on hover */
+}
+
+.profileImage:hover + .uploadIcon {
+  opacity: 1; /* Show icon on hover */
+}

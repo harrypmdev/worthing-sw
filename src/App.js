@@ -15,6 +15,7 @@ import CreateSong from './pages/songs/CreateSong';
 import EditSong from './pages/songs/EditSong';
 import CreatePost from './pages/posts/CreatePost';
 import EditPost from './pages/posts/EditPost';
+import EditProfile from './pages/EditProfile';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route exact path="/register/" element={<Register />}/>
           <Route exact path='/profile/' element={<Profile />}/>
           <Route exact path='/profile/:id' element={<Profile />}/>
+          <Route exact path='/edit-profile/' element={<EditProfile />}/>
           <Route exact path='/general-feed/' element={<GeneralFeed />}/>
           <Route exact path="/posts/:id" element ={<PostPage />} />
           <Route exact path='/create-song/' element={<CreateSong />} /> 
