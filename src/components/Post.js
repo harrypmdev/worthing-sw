@@ -29,7 +29,7 @@ const Post = ({post, link=true, songDetails=false, useAvatar=true, editable=fals
 
   return (
     <Row>
-      <Card className={`bg-light me-2 mt-2  ${post.is_user && 'rounded-bottom-0 border-bottom-0'}`}>
+      <Card className={`bg-light me-2 mt-2  ${post.is_user && editable && 'rounded-bottom-0 border-bottom-0'}`}>
         <Card.Body>
           <Col>
             <Row className='align-items-center'>

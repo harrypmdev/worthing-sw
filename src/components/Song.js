@@ -5,7 +5,7 @@ import Vote from './Vote'
 
 const Song = ({song, includeDetails=false, editable=false, number=false}) => {
   return (<>
-    <div className={`border rounded p-2 bg-secondary-subtle bg-gradient ${song.is_user && 'rounded-bottom-0'}`}>
+    <div className={`border rounded p-2 bg-secondary-subtle bg-gradient ${song.is_user && editable &&  'rounded-bottom-0'}`}>
       { includeDetails ? (<>
         <Row className='d-flex m-2 align-items-center flex-nowrap'>
           {number && (
