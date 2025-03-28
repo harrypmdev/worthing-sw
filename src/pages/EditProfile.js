@@ -18,6 +18,7 @@ const EditProfile = () => {
     image: ''
   });
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({})
   const imageFile = useRef();
 
@@ -40,6 +41,7 @@ const EditProfile = () => {
 
   const handleSubmit = async event => {
     event.preventDefault();
+    setIsSubmitting(true);
     const formData = new FormData();
     formData.append('bio', profile.bio);
 
@@ -57,6 +59,8 @@ const EditProfile = () => {
     } catch (err) {
       console.log(err);
       setErrors(err.response?.data);
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -128,8 +132,13 @@ const EditProfile = () => {
             </Col>
           </Row>
           <Col xs='12' className='text-center mt-2'>
-            <Button variant="primary" type="submit" className="w-25">
-              Submit
+            <Button 
+              variant="primary" 
+              type="submit" 
+              className="w-25"
+              disabled={isSubmitting}
+            >
+              { isSubmitting ? 'Submitting...' : 'Submit'}
             </Button>
           </Col>
         </Form>

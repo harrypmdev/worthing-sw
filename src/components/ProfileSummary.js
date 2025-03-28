@@ -17,7 +17,7 @@ const ProfileSummary = ({profile, basic=false}) => {
               src={profile?.image}
             />
             <h1 className='h3 my-3 text-center'>{profile?.user}</h1>
-            { profile?.bio && <p className='text-center'>{profile.bio}</p>}
+            { profile?.bio && <p className='text-center text-break'>{profile.bio}</p>}
             {!basic && (
               <p>
                 Followers: {profile?.followers_count}&nbsp;
