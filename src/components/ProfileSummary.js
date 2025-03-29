@@ -23,7 +23,12 @@ const ProfileSummary = ({profile, songData}) => {
           />
           <Col className='d-flex align-items-center justify-content-center'>
             <h1 className={`h3 my-3 text-center ${!profile?.is_user && 'me-3'}`}>{profile?.user}</h1>
-            {!profile?.is_user && currentUser && <Follow profile={profile}/>}
+            {!profile?.is_user && currentUser && 
+              <Follow
+                currentFollower={profile.following_id}
+                userToFollow={profile.user_id}
+              />
+            }
           </Col>
           { profile?.bio && <p className='text-center text-break'>{profile.bio}</p>}
           <p>

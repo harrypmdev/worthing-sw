@@ -53,7 +53,12 @@ const Post = ({
               </Col>
               {useAvatar && (
                 <Col className='d-flex align-items-center justify-content-center flex-shrink-0 flex-grow-0'>
-                  {followButton && !post.is_user && currentUser && <Follow id={post.profile_id}/>}
+                  {followButton && !post.is_user && currentUser && 
+                    <Follow
+                      currentFollower={post.following_id}
+                      userToFollow={post.user_id}
+                    />
+                  }
                   <Avatar 
                     src={post.user_image} 
                     text={post.user}

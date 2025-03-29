@@ -48,7 +48,13 @@ const Feed = (props) => {
     <Container className="flex-grow-1 d-flex flex-column">
       { hasLoaded ? (<>
         { posts.results.slice(0, limit).map((post) => (
-          <Post useAvatar={useAvatars} post={post} key={post.id} editable={editable} followButton={followButtons}/>
+          <Post
+            useAvatar={useAvatars}
+            post={post}
+            key={post.id}
+            editable={editable}
+            followButton={followButtons}
+          />
         ))}
         <div className='text-center my-3 fst-italic'>
           {posts.results.length ? trailingText : `No posts from ${profile.user} yet.`}
