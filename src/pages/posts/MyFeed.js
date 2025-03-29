@@ -5,27 +5,17 @@ import FullPageSpinner from '../../components/FullPageSpinner';
 
 const MyFeed = () => {
   const currentUser = useCurrentUser();
-  const [profileForFeed, setProfileForFeed] = useState(null);
 
-  useEffect(() => {
-    setProfileForFeed({
-      id: currentUser?.profile_id,
-      user: currentUser?.username,
-    });
-  }, [currentUser])
-
-  return (
-    <>
-    { profileForFeed?.id ? (
-      <Feed 
-        profile={profileForFeed} 
+  return <>
+    { currentUser?.pk ? (
+      <Feed
+        filterByFollowingId={currentUser.pk}
         followButtons={true}
-        filter={`?user__followed__user=${profileForFeed?.id}`}
       />
     ) : (
       <FullPageSpinner />
     )}
-  </>)
+  </>
 }
 
 export default MyFeed

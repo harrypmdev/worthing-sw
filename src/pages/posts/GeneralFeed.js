@@ -3,7 +3,7 @@ import Feed from '../../components/Feed';
 
 const GeneralFeed = () => {
   return (
-    <Feed profile={false} followButtons={true}/>
+    <Feed followButtons={true}/>
   )
 }
 

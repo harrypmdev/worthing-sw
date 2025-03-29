@@ -33,15 +33,14 @@ const Profile = () => {
 
   return (
     <Container fluid className="flex-grow-1 d-flex flex-column mt-2">
-      {hasLoaded && profile && songData ? (
+      {hasLoaded ? (
         <Row>
           <Col xs='12' lg='4'>
             <ProfileSummary profile={profile} songData={songData}/>
           </Col>
           <Col className='d-flex flex-column' xs='12' lg='8'>
               <Feed
-                profile={profile} 
-                trailingText={`No more posts from ${profile?.user} yet.`}
+                filterByOwnershipId={profile.user_id} 
                 useAvatars={false}
                 editable={true}
               />
