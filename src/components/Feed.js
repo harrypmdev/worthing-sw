@@ -33,6 +33,10 @@ const Feed = (props) => {
     throw new Error('Props conflict: filter by ownership and filter by id cannot be used together.');
   }
 
+  /**
+   * Fetch posts, using the filters provided by props if given.
+   * Updates the 'posts' state and toggles the loading spinner once fetched.
+   */
   useEffect(() => {
     const fetchPosts = async () => {
       setHasLoaded(false);

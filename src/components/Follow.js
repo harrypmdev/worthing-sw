@@ -1,14 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Button } from 'react-bootstrap'
 
 import { axiosReq } from '../api/axiosDefaults';
 
-
-const Follow = ({ currentFollower, userToFollow }) => {
+/**
+ * Render a follow or unfollow button depending on whether the user is following a given user.
+ * @param {number} userToFollow The user ID to be followed or unfollowed.
+ * @param {number} [currentFollower=null] The database ID of the follower instance, if already following.
+ * @returns {ReactNode} An element displaying either a follow or unfollow button.
+ */
+const Follow = ({ userToFollow, currentFollower=null }) => {
   const [buttonLoaded, setButtonLoaded] = useState(true);
-  const [currentFollowerState, setCurrentFollowerState] = useState(currentFollower);
-  const [following, setFollowing] = useState(!!currentFollower);
+  const [currentFollowerState, setCurrentFollowerState] = useState(currentFollower); // ID of the current follower
+  const [following, setFollowing] = useState(!!currentFollower); // Boolean of whether the user is following
 
+  /**
+   * Handles the 'Unfollow' button click.
+   * Sends a DELETE request to delete the existing database follower instance.
+   * Updates local state based on API success or failure.
+   *
+   * @param {Event} event - The event triggered by the button click.
+   */
   const handleUnfollow = async event => {
     event.preventDefault();
     setButtonLoaded(false);
@@ -24,6 +36,13 @@ const Follow = ({ currentFollower, userToFollow }) => {
     }
   }
 
+  /**
+   * Handles the 'Follow' button click.
+   * Sends a POST request to add a new instance to the follower database.
+   * Updates local state based on API success or failure.
+   *
+   * @param {Event} event - The event triggered by the button click.
+   */
   const handleFollow = async event => {
     event.preventDefault();
     setButtonLoaded(false);
@@ -31,7 +50,6 @@ const Follow = ({ currentFollower, userToFollow }) => {
       setFollowing(true);
       const {data} = await axiosReq.post("/followers/", {followed: userToFollow});
       setCurrentFollowerState(data.id);
-      console.log(data.id);
     } catch (err) {
       console.log(err);
       setFollowing(false);
