@@ -12,6 +12,7 @@ import Avatar from './Avatar';
 import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
 import { removeTokenTimestamp } from '../utils/utils';
 
+
 /**
  * Render the site's navigation bar, conditionally displaying links based on user login state.
  * 

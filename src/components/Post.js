@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Col, Row, Spinner } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 
 import Avatar from './Avatar';
-import { Link } from 'react-router-dom';
 import { axiosReq } from '../api/axiosDefaults';
 import Song from './Song';
 import Vote from './Vote';
 import Follow from './Follow';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
+
 
 /**
  * Render a post, displaying its title, contents, poster and attached song if applicable.

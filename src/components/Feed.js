@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap';
 import { axiosReq } from '../api/axiosDefaults';
+
 import Post from './Post';
 import FullPageSpinner from './FullPageSpinner';
+
 
 /**
  * Render a feed of posts.
@@ -14,7 +16,7 @@ import FullPageSpinner from './FullPageSpinner';
  * @param {boolean} [useAvatars=true] Whether profile avatars should appear on posts if the screen is large enough.
  * @param {boolean} [editable=false] Whether posts belonging to the user should be editable.
  * @param {boolean} [followButtons=false] Whether follow buttons should appear on posts other than the user's.
- * @returns {ReactNode} A feed of post components.
+ * @returns {ReactNode} An element containing a feed of post components.
  */
 const Feed = (props) => {
   const {

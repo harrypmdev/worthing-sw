@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap'
 
 import { axiosReq } from '../api/axiosDefaults';
 
+
 /**
  * Render a follow or unfollow button depending on whether the user is following a given user.
  * @param {number} userToFollow The user ID to be followed or unfollowed.

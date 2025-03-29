@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 
 import styles from '../styles/Avatar.module.css'
-import Follow from './Follow';
+
 
 /**
  * Render a user avatar which functions as a link to their profile page

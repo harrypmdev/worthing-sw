@@ -7,6 +7,7 @@ import styles from '../styles/ProfileSummary.module.css';
 import Follow from './Follow';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
+
 /**
  * Render a summary of a profile, including the profile image, followers,
  * songs and profile editing options if it belongs to the current user.

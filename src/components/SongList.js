@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { axiosReq } from '../api/axiosDefaults';
+import React from 'react'
 import { Container } from 'react-bootstrap';
+
 import Song from './Song';
-import FullPageSpinner from './FullPageSpinner';
+
 
 const SongList = ({profile, songData}) => {
 

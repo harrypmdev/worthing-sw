@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Feed from '../../components/Feed';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import FullPageSpinner from '../../components/FullPageSpinner';

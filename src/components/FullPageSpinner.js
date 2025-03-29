@@ -1,8 +1,9 @@
 import React from 'react'
 import { Container, Spinner } from 'react-bootstrap'
 
+
 /**
- * Renders a loading spinner that will fill the whole page.
+ * Render a loading spinner that will fill the whole page.
  * 
  * @returns {ReactNode} An element displaying a full screen loading spinner.
  */
