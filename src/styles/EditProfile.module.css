@@ -8,6 +8,7 @@
   aspect-ratio: 1 / 1;
   cursor: pointer;
   max-width: 600px;
+  max-height: 50vh;
 }
 
 .uploadIcon {

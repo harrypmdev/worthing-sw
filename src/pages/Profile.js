@@ -10,31 +10,36 @@ import FullPageSpinner from '../components/FullPageSpinner';
 const Profile = () => {
   const {id} = useParams();
   const [profile, setProfile] = useState(null);
+  const [songData, setSongData] = useState(null);
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     const fetchProfile = async() => {
         try {
-            const {data} = await axiosReq.get(`/profiles/${id}`);
-            setProfile(data);
+            const [{data: profile}, {data: songs}] = await Promise.all([
+                axiosReq.get(`/profiles/${id}`),
+                axiosReq.get(`/songs/?ordering=-net_votes&user=${id}`)
+            ])
+            setProfile(profile);
+            setSongData(songs.results);
             setHasLoaded(true);
         } catch(err){
             console.log(err)
         }
     }
-    setHasLoaded(false);
+
     fetchProfile();
   }, [id])
 
   return (
     <Container fluid className="flex-grow-1 d-flex flex-column mt-2">
-      {hasLoaded && profile ? (
+      {hasLoaded && profile && songData ? (
         <Row>
           <Col xs='12' lg='4'>
-            <ProfileSummary profile={profile}/>
+            <ProfileSummary profile={profile} songData={songData}/>
           </Col>
           <Col className='d-flex flex-column' xs='12' lg='8'>
-              <Feed 
+              <Feed
                 profile={profile} 
                 trailingText={`No more posts from ${profile?.user} yet.`}
                 useAvatars={false}

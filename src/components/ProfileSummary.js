@@ -8,8 +8,9 @@ import Follow from './Follow';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 
-const ProfileSummary = ({profile, basic=false}) => {
+const ProfileSummary = ({profile, songData}) => {
   const currentUser = useCurrentUser();
+  const showCreateSongsButton = profile.is_user && (profile.songs_count < 3);
 
   return (
     <Container className="mt-2">
@@ -25,13 +26,10 @@ const ProfileSummary = ({profile, basic=false}) => {
             {!profile?.is_user && currentUser && <Follow profile={profile}/>}
           </Col>
           { profile?.bio && <p className='text-center text-break'>{profile.bio}</p>}
-          {!basic && (
-            <p>
-              Followers: {profile?.followers_count}&nbsp;
-              Following: {profile?.following_count}
-            </p>
-          )}
-          {!basic && (
+          <p>
+            Followers: {profile?.followers_count}&nbsp;
+            Following: {profile?.following_count}
+          </p>
           <Col>
             {profile.is_user && (
               <Link to='/edit-profile/'>
@@ -40,7 +38,7 @@ const ProfileSummary = ({profile, basic=false}) => {
                 </Button>
               </Link>
             )}
-            {profile.is_user && (profile.songs_count < 3) && (
+            {showCreateSongsButton && (
               <Link to='/create-song/'>
                 <Button variant='outline-primary' className='mb-3 ms-1'>
                   Add Song <i className="fa-solid fa-plus ms-1"></i>
@@ -48,13 +46,10 @@ const ProfileSummary = ({profile, basic=false}) => {
               </Link>
             )}
           </Col>
-          )}
         </Col>
-        {!basic && (
-          <Col xs='12'>
-            <SongList profile={profile}/>
-          </Col>
-        )}
+        <Col xs='12'>
+          <SongList profile={profile} songData={songData}/>
+        </Col>
     </Container>
   )
 }
