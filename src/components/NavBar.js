@@ -54,10 +54,11 @@ function NavBar() {
       Logout
     </NavLink>
     <Avatar 
-      src={currentUser?.profile_image} 
-      text={currentUser?.username} 
-      height={40}
-      to={`/profile/${currentUser?.profile_id}`}
+      image={currentUser?.profile_image} 
+      username={currentUser?.username} 
+      id={currentUser?.profile_id}
+      dimensions={40}
+      dark={true}
     />
   </>
 

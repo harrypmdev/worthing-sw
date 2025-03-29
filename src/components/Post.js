@@ -59,13 +59,11 @@ const Post = ({
                       userToFollow={post.user_id}
                     />
                   }
-                  <Avatar 
-                    src={post.user_image} 
-                    text={post.user}
-                    height='30'
-                    color='secondary-subtle'
-                    textColor='text-dark'
-                    to={`/profile/${post.profile_id}`}
+                  <Avatar
+                    image={post.user_image} 
+                    username={post.user}
+                    id={post.profile_id}
+                    dimensions={30}
                   />
                 </Col>
               )}
@@ -98,7 +96,8 @@ const Post = ({
                   <div className='d-flex justify-content-center'>
                     <Spinner />
                   </div>
-                ) : null}
+                  ) : null
+                }
               </Col>
             </Row>
           </Col>
@@ -111,7 +110,7 @@ const Post = ({
                 Edit&ensp;
                 <i className="fa-solid fa-pen-to-square"></i>
               </Link>
-        )}
+      )}
     </Row>
   )
 }
