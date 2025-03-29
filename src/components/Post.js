@@ -58,6 +58,21 @@ const Post = (props) => {
     }
   }, [post.song]);
 
+  const avatarAndFollow = <>
+    {followButton && !post.is_user && currentUser &&
+      <Follow
+        currentFollower={post.following_id}
+        userToFollow={post.user_id}
+      />
+    }
+    <Avatar
+      image={post.user_image} 
+      username={post.user}
+      id={post.profile_id}
+      dimensions={30}
+    />
+  </>
+
   return (
     <Row>
       <Card className={`bg-light me-2 mt-2  ${post.is_user && editable && 'rounded-bottom-0 border-bottom-0'}`}>
@@ -76,19 +91,8 @@ const Post = (props) => {
                 </>)}
               </Col>
               {useAvatar && (
-                <Col className='d-flex align-items-center justify-content-center flex-shrink-0 flex-grow-0'>
-                  {followButton && !post.is_user && currentUser && 
-                    <Follow
-                      currentFollower={post.following_id}
-                      userToFollow={post.user_id}
-                    />
-                  }
-                  <Avatar
-                    image={post.user_image} 
-                    username={post.user}
-                    id={post.profile_id}
-                    dimensions={30}
-                  />
+                <Col className='d-none d-md-flex align-items-center justify-content-center flex-shrink-0 flex-grow-0'>
+                  {avatarAndFollow}
                 </Col>
               )}
               <Col xs="auto" className="ms-auto">
@@ -107,10 +111,10 @@ const Post = (props) => {
                     <p>{post.content}</p>
                   </span> 
                 </>)}
-                { useAvatar && (
-                <p className='text-info fst-italic d-lg-none'>
-                  by {post.user}
-                </p>
+                {useAvatar && (
+                  <Col className='d-flex d-md-none align-items-center justify-content-end flex-shrink-0 flex-grow-0'>
+                    {avatarAndFollow}
+                  </Col>
                 )}
               </Col>
               <Col lg='4' className='d-none d-lg-inline'>
