@@ -3,6 +3,7 @@ import { Container } from 'react-bootstrap';
 
 import Song from './Song';
 
+
 /**
  * Render a list of songs ranked from 1-3 by vote popularity.
  * 
@@ -13,7 +14,7 @@ import Song from './Song';
 const SongList = ({profile, songData}) => {
   return (
     <Container className="flex-grow-1 d-flex flex-column">
-      { songData.length && (
+      { songData.length > 0 && (
         <h2 className='h6 text-center fw-bold'>Songs ({profile.songs_count}/3)</h2>
       )}
       { songData.map((song, index) => (

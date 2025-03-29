@@ -26,9 +26,8 @@ function EditSong() {
     title: '',
     link_to_song: '',
     artist_name: currentUser?.username,
-    audio_file: null,
   })
-  const {title, link_to_song, artist_name, audio_file} = songData;
+  const {title, link_to_song, artist_name} = songData;
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -47,7 +46,6 @@ function EditSong() {
           title: data.title,
           link_to_song: data.link_to_song,
           artist_name: data.artist_name,
-          audio_file: null, // File fields can't be pre-filled; it needs to be replaced if edited
         });
         setHasLoaded(true);
       } catch (err) {
@@ -57,47 +55,32 @@ function EditSong() {
     
     setHasLoaded(false);
     fetchSong();
-  }, [id, currentUser?.username, currentUser.profile_id, navigate]);
+  }, [id, currentUser, navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
-    const formData = new FormData();
 
+    const formData = new FormData();
     formData.append("title", title);
     formData.append("artist_name", artist_name);
     if (link_to_song) formData.append("link_to_song", link_to_song);
-    if (audio_file) formData.append("audio_file", audio_file);
+  
     try {
       await axiosReq.put(`/songs/${id}`, formData);
       navigate(`/profile/${currentUser.profile_id}`);
     } catch (err) {
       console.log(err);
-      if (err.response?.status === 404 || err.response?.status === 403) {
-        navigate(`/profile/${currentUser.profile_id}`); // Redirect to profile if song is not found or unauthorized
-      }
-      if (err.response?.status !== 401) {
-        setErrors(err.response?.data);
-      }
+      setErrors(err.data);
       setIsSubmitting(false);
     }
   };
-
 
   const handleChange = event => {
     setSongData({
       ...songData,
       [event.target.name]: event.target.value,
     })
-  }
-
-  const handleSongChange = event => {
-    if (event.target.files.length) {
-      setSongData({
-      ...songData,
-      audio_file: event.target.files[0],
-      });
-    }
   }
 
   const handleDelete = async () => {
@@ -107,6 +90,7 @@ function EditSong() {
       navigate(`/profile/${currentUser.profile_id}`);
     } catch (err) {
       console.log(err);
+      setErrors(err.data);
       setDeleteLoading(false);
     }
   };
@@ -130,7 +114,7 @@ function EditSong() {
               placeholder="Artist's Name*"
               name="artist_name"
               className='mt-3 mb-1'
-              value={artist_name}
+              value={artist_name || ''}
               onChange={handleChange}
             />
           </Form.Group>
@@ -162,7 +146,7 @@ function EditSong() {
               placeholder="Link To Full Song (Optional)"
               name="link_to_song"
               className='mt-2 mb-1'
-              value={link_to_song}
+              value={link_to_song || ''}
               onChange={handleChange}
             />
             <Form.Text className="text-muted">
@@ -175,19 +159,6 @@ function EditSong() {
                 {message}
               </Alert>
           ))}
-          <Form.Group>
-            <Form.Label className="d-none">Upload WAV File</Form.Label>
-            <Form.Control
-              type="file"
-              name="audio_file"
-              accept=".wav"
-              className="mt-2"
-              onChange={handleSongChange}
-            />
-            <Form.Text className="text-muted">
-              Upload a new WAV file only if you wish to replace the current song file.
-            </Form.Text>
-          </Form.Group>
           <Button 
               type="submit" 
               className='w-100 mt-2'

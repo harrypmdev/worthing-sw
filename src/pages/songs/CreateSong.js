@@ -13,6 +13,7 @@ import styles from '../../styles/RegisterLogin.module.css';
 import { useRedirect } from '../../hooks/useRedirect';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import { trimAudio } from '../../utils/utils';
 
 
 function CreateSong() {
@@ -35,18 +36,18 @@ function CreateSong() {
       try {
         const { data } = await axiosReq.get(`/profiles/${currentUser.profile_id}/`);
         if (data.songs_count >= 3) {
-          navigate(`/profile/${currentUser?.profile_id}`); // Redirect if songs_count >= 3
+          navigate(`/profile/${currentUser.profile_id}`); // Redirect if songs_count >= 3
         }
       } catch (err) {
         console.log(err);
       }
     };
 
-    if (currentUser?.profile_id) {
+    if (currentUser.profile_id) {
       fetchProfile();
     }
 
-    if (currentUser?.username) {
+    if (currentUser.username) {
       setSongData((prevState) => ({
         ...prevState,
         artist_name: currentUser.username,
@@ -75,7 +76,6 @@ function CreateSong() {
     }
   };
 
-
   const handleChange = event => {
     setSongData({
       ...songData,
@@ -83,13 +83,18 @@ function CreateSong() {
     })
   }
 
-  const handleSongChange = event => {
-    if (event.target.files.length) {
-      setSongData({
-      ...songData,
-      audio_file: event.target.files[0],
-      });
+  const handleSongChange = async event => {
+    let audioToSave;
+    try {
+      audioToSave = await trimAudio(event.target.files[0], 15);
+    } catch (err) {
+      console.log("Error attempting to trim given audio file: " + err);
+      audioToSave = event.target.files[0];
     }
+    setSongData({
+    ...songData,
+    audio_file: audioToSave,
+    });
   }
 
   return (
@@ -111,7 +116,7 @@ function CreateSong() {
               placeholder="Artist's Name*"
               name="artist_name"
               className='mt-3 mb-1'
-              value={artist_name}
+              value={artist_name || ''}
               onChange={handleChange}
             />
           </Form.Group>
@@ -143,7 +148,7 @@ function CreateSong() {
               placeholder="Link To Full Song (Optional)"
               name="link_to_song"
               className='mt-2 mb-1'
-              value={link_to_song}
+              value={link_to_song || ''}
               onChange={handleChange}
             />
             <Form.Text className="text-muted">
