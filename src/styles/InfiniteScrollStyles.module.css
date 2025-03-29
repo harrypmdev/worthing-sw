@@ -1,0 +1,6 @@
+.scroller {
+  width: 100%; /* Ensures full width of the parent container */
+  margin: 0 auto; /* Centers the content */
+  padding: 0; /* No extra padding */
+  overflow: visible; /* Prevent clipping or creating a scrollable area */
+}

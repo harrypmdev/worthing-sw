@@ -73,8 +73,7 @@ const Post = (props) => {
     />
   </>
 
-  return (
-    <Row>
+  return <>
       <Card className={`bg-light me-2 mt-2  ${post.is_user && editable && 'rounded-bottom-0 border-bottom-0'}`}>
         <Card.Body>
           <Col>
@@ -139,8 +138,7 @@ const Post = (props) => {
                 <i className="fa-solid fa-pen-to-square"></i>
               </Link>
       )}
-    </Row>
-  )
+  </>
 }
 
 export default Post

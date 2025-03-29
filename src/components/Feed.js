@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Form } from 'react-bootstrap';
+import { Col, Container, Form, Row, Spinner } from 'react-bootstrap';
 import { axiosReq } from '../api/axiosDefaults';
 
 import Post from './Post';
 import FullPageSpinner from './FullPageSpinner';
 import styles from '../styles/Search.module.css';
+import infiniteScrollStyles from '../styles/InfiniteScrollStyles.module.css';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { fetchMoreData } from '../utils/utils';
 
 /**
  * Render a feed of posts.
@@ -12,7 +15,6 @@ import styles from '../styles/Search.module.css';
  * @param {number} [filterByOwnershipId=null] A user id to filter posts by - returns only posts owned by this user.
  * @param {number} [filterByFollowingId=null] A user id to filter posts by - returns only posts from users 
  *                                            the given user follows.
- * @param {number} [limit=10] The maximum number of posts the feed should return.
  * @param {boolean} [useAvatars=true] Whether profile avatars should appear on posts if the screen is large enough.
  * @param {boolean} [editable=false] Whether posts belonging to the user should be editable.
  * @param {boolean} [followButtons=false] Whether follow buttons should appear on posts other than the user's.
@@ -22,7 +24,6 @@ const Feed = (props) => {
   const {
     filterByOwnershipId=null,
     filterByFollowingId=null,
-    limit=10,
     useAvatars=true, 
     editable=false, 
     followButtons=false,
@@ -64,7 +65,7 @@ const Feed = (props) => {
   }, [filterByOwnershipId, filterByFollowingId, searchQuery]);
 
   return (
-    <Container className="flex-grow-1 d-flex flex-column">
+    <Container id='page' className='flex-grow-1 d-flex flex-column mb-3'>
       <i className={`fas fa-search mt-3 ${styles.SearchIcon}`}></i>
       <Form
         className={styles.SearchBar}
@@ -79,18 +80,24 @@ const Feed = (props) => {
         />
       </Form>
       { hasLoaded ? (<>
-        { posts.results.slice(0, limit).map((post) => (
-          <Post
-            useAvatar={useAvatars}
-            post={post}
-            key={post.id}
-            editable={editable}
-            followButton={followButtons}
-          />
-        ))}
-        <div className='text-center my-3 fst-italic'>
-          {posts.results.length ? 'No more posts.' : 'No posts yet.'}
-        </div>        
+        <InfiniteScroll 
+          children=
+            {posts.results.map((post) => (
+              <Post
+                useAvatar={useAvatars}
+                post={post}
+                key={post.id}
+                editable={editable}
+                followButton={followButtons}
+              />
+            ))}
+            className={infiniteScrollStyles.scroller}
+            dataLength={posts.results.length}
+            loader={<FullPageSpinner/>}
+            hasMore={!!posts.next}
+            next={() => fetchMoreData(posts, setPosts)}
+            scrollThreshold={0.93}
+        />
       </>) : (<>
         <FullPageSpinner />
       </>)}
