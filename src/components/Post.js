@@ -21,7 +21,7 @@ import { useCurrentUser } from '../contexts/CurrentUserContext';
  * @param {boolean} [editable=false] Whether the post should be editable if it belongs to the current user.
  * @param {boolean} [followButton=false] Whether a follow button should appear if the post does not
  *                                       belong to the current user.
- * @returns {ReactNode} - An element displaying the information of a post.
+ * @returns {ReactNode} - An element displaying the details of a post as returned from the '/posts' endpoint.
  */
 const Post = (props) => {
   const {
@@ -38,7 +38,7 @@ const Post = (props) => {
 
   /**
    * Fetch a song from the server if the post has a song attached.
-   * Updates the 'song' state with the song details and sets a
+   * Sets the 'song' state with the API response data and sets a
    * loading state until the API call is finished.
    */
   useEffect(() => {
