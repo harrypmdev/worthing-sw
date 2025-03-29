@@ -15,8 +15,8 @@ import { removeTokenTimestamp } from '../utils/utils';
 /**
  * Render the site's navigation bar, conditionally displaying links based on user login state.
  * 
- * @returns {ReactNode} - A responsive navigation bar containing site links and authentication-specific options.
- *                        If the user is logged in, their profile avatar and a logout button are shown.
+ * @returns {ReactNode} - Am element displaying a responsive navigation bar containing site links and 
+ *                        authentication-specific options.
  */
 function NavBar() {
   const currentUser = useCurrentUser();

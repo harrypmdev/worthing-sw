@@ -9,15 +9,38 @@ import Vote from './Vote';
 import Follow from './Follow';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
-const Post = ({
-  post, link=true, 
-  songDetails=false, useAvatar=true, 
-  editable=false, followButton=false 
-  }) => {
+/**
+ * Render a post, displaying its title, contents, poster and attached song if applicable.
+ * 
+ * @param {Object} post An object containing post details as retrieved from the '/posts' endpoint.
+ * @param {boolean} [link=true] Whether the post should function as a link to a separate post page.
+ * @param {boolean} [songDetails=false] Whether song details should be shown for the attached song (true), 
+ *                              or only the audio player (false).
+ * @param {boolean} [useAvatar=true] Whether a profile avatar should appear on the post if the
+ *                                   screen is large enough.
+ * @param {boolean} [editable=false] Whether the post should be editable if it belongs to the current user.
+ * @param {boolean} [followButton=false] Whether a follow button should appear if the post does not
+ *                                       belong to the current user.
+ * @returns {ReactNode} - Am element displaying the information of a post.
+ */
+const Post = (props) => {
+  const {
+    post,
+    link=true, 
+    songDetails=false, 
+    useAvatar=true, 
+    editable=false, 
+    followButton=false 
+    } = props;
   const [song, setSong] = useState('');
   const [hasLoaded, setHasLoaded] = useState(false);
   const currentUser = useCurrentUser();
 
+  /**
+   * Fetch a song from the server if the post has a song attached.
+   * Updates the 'song' state with the song details and sets a
+   * loading state until the API call is finished.
+   */
   useEffect(() => {
     const fetchSongs = async () => {
       try {
@@ -28,7 +51,7 @@ const Post = ({
         console.log(err);
       }
     }
-    setHasLoaded(false);
+
     if (post.song) {
       fetchSongs();
     }
