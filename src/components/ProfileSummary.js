@@ -7,7 +7,14 @@ import styles from '../styles/ProfileSummary.module.css';
 import Follow from './Follow';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
-
+/**
+ * Render a summary of a profile, including the profile image, followers,
+ * songs and profile editing options if it belongs to the current user.
+ * 
+ * @param {Object} profile An object containing profile details as retrieved from the '/profiles' endpoint.
+ * @param {Object} songData An object containing a list of 'song' objects as retrieved from the '/songs' endpoint.
+ * @returns {ReactNode} - An element displaying a summary of a user's profile.
+ */
 const ProfileSummary = ({profile, songData}) => {
   const currentUser = useCurrentUser();
   const showCreateSongsButton = profile.is_user && (profile.songs_count < 3);

@@ -21,7 +21,7 @@ import { useCurrentUser } from '../contexts/CurrentUserContext';
  * @param {boolean} [editable=false] Whether the post should be editable if it belongs to the current user.
  * @param {boolean} [followButton=false] Whether a follow button should appear if the post does not
  *                                       belong to the current user.
- * @returns {ReactNode} - Am element displaying the information of a post.
+ * @returns {ReactNode} - An element displaying the information of a post.
  */
 const Post = (props) => {
   const {
