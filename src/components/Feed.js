@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Container } from 'react-bootstrap';
+import { Container, Form } from 'react-bootstrap';
 import { axiosReq } from '../api/axiosDefaults';
 
 import Post from './Post';
 import FullPageSpinner from './FullPageSpinner';
-
+import styles from '../styles/Search.module.css';
 
 /**
  * Render a feed of posts.
@@ -30,6 +30,7 @@ const Feed = (props) => {
 
   const [posts, setPosts] = useState({ results: []});
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   if (filterByFollowingId && filterByOwnershipId) {
     throw new Error('Props conflict: filter by ownership and filter by id cannot be used together.');
@@ -45,7 +46,8 @@ const Feed = (props) => {
       try {
         let userFilter = filterByOwnershipId ? `user=${filterByOwnershipId}` : '';
         let followingFilter = filterByFollowingId ? `user__followed__user=${filterByFollowingId}` : '';
-        const { data: posts } = await axiosReq.get(`/posts/?${userFilter}&${followingFilter}`);
+        let search = searchQuery ? `&search=${searchQuery}` : '';
+        const { data: posts } = await axiosReq.get(`/posts/?${userFilter}&${followingFilter}${search}`);
         setPosts(posts);
         setHasLoaded(true);
       } catch (err) {
@@ -53,11 +55,29 @@ const Feed = (props) => {
       }
     };
 
-    fetchPosts();
-  }, [filterByOwnershipId, filterByFollowingId]);
+    setHasLoaded(false);
+    const timer = setTimeout(() => {
+      fetchPosts();
+    }, 1000);
+    
+    return () => clearTimeout(timer);
+  }, [filterByOwnershipId, filterByFollowingId, searchQuery]);
 
   return (
     <Container className="flex-grow-1 d-flex flex-column">
+      <i className={`fas fa-search mt-3 ${styles.SearchIcon}`}></i>
+      <Form
+        className={styles.SearchBar}
+        onSubmit={event => event.preventDefault()}
+      >
+        <Form.Control
+          value={searchQuery}
+          onChange={event => setSearchQuery(event.target.value)}
+          type='text'
+          className='mr-sm-2 mt-3'
+          placeholder='Search posts'
+        />
+      </Form>
       { hasLoaded ? (<>
         { posts.results.slice(0, limit).map((post) => (
           <Post
