@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -12,18 +12,26 @@ import Avatar from './Avatar';
 import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
 import { removeTokenTimestamp } from '../utils/utils';
 
-
+/**
+ * Render the site's navigation bar, conditionally displaying links based on user login state.
+ * 
+ * @returns {ReactNode} - A responsive navigation bar containing site links and authentication-specific options.
+ *                        If the user is logged in, their profile avatar and a logout button are shown.
+ */
 function NavBar() {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const {navExpanded, setNavExpanded, ref} = useClickOutsideToggle();
 
-  function toggleNav(expanded) {
-    setNavExpanded(expanded);
-  }
+  const toggleNav = expanded => setNavExpanded(expanded);
 
+  /**
+   * Handle the 'Sign Out' button click.
+   * Sends a POST request to log out the user, sets the 'currentUser' context
+   * to null.
+   * Removes the token timestamp from local storage.
+   */
   const handleSignOut = async () => {
-    console.log("function triggers at all");
     try {
       await axios.post('/dj-rest-auth/logout/');
       setCurrentUser(null);
@@ -33,11 +41,18 @@ function NavBar() {
     }
   };
 
+  /**
+   * Return the appropriate NavLink styling for the screen size and active state.
+   * 
+   * @param {boolean} isActive Whether the NavLink is currently active.
+   * @returns {string} The relevant CSS styles.
+   */
   const getRelevantClasses = ({isActive}) => (
-    `${styles.NavLink} ${isActive ? getActive() : ''}`
+    `${styles.NavLink} ${isActive 
+      ? (navExpanded ? 'fw-bold' : styles.active)
+      : ''
+    }`
   );
-
-  const getActive = () => navExpanded ? 'fw-bold' : styles.active;
 
   const loggedOut = <>
     <NavLink to="/" className={getRelevantClasses}>Home</NavLink>

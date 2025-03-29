@@ -15,7 +15,7 @@ const Follow = ({ userToFollow, currentFollower=null }) => {
   const [following, setFollowing] = useState(!!currentFollower); // Boolean of whether the user is following
 
   /**
-   * Handles the 'Unfollow' button click.
+   * Handle the 'Unfollow' button click.
    * Sends a DELETE request to delete the existing database follower instance.
    * Updates local state based on API success or failure.
    *
@@ -37,7 +37,7 @@ const Follow = ({ userToFollow, currentFollower=null }) => {
   }
 
   /**
-   * Handles the 'Follow' button click.
+   * Handle the 'Follow' button click.
    * Sends a POST request to add a new instance to the follower database.
    * Updates local state based on API success or failure.
    *
