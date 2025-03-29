@@ -8,10 +8,7 @@ const MyFeed = () => {
 
   return <>
     { currentUser?.pk ? (
-      <Feed
-        filterByFollowingId={currentUser.pk}
-        followButtons={true}
-      />
+      <Feed filterByFollowingId={currentUser.pk} />
     ) : (
       <FullPageSpinner />
     )}
