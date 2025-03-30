@@ -15,6 +15,9 @@ import { useRedirect } from '../../hooks/useRedirect';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import FullPageSpinner from '../../components/FullPageSpinner';
+import ErrorAlert from '../../components/ErrorAlert';
+import DeleteModal from '../../components/delete/DeleteModal';
+import DeleteButton from '../../components/delete/DeleteButton';
 
 
 function EditPost() {
@@ -32,7 +35,6 @@ function EditPost() {
   const [isLoading, setIsLoading] = useState(false);
   const [fetchedSongs, setFetchedSongs] = useState([]);
   const [selectedSong, setSelectedSong] = useState('');
-  const [deleteLoading, setDeleteLoading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState({});
@@ -48,22 +50,16 @@ function EditPost() {
         const songs = songsResponse.data.results;
         const post = postResponse.data;
         if (!post.is_user) {
-          navigate(`/profile/${currentUser.profile_id}`);
+          navigate(`/general-feed/}`);
           return;
         }
         setFetchedSongs(songs);
-        setPostData({
-          title: post.title,
-          content: post.content,
-          song: post.song,
-        });
+        const {title, content, song} = post;
+        setPostData({title, content, song});
         const matchingSong = songs.find(song => song.id === post.song);
         setSelectedSong(matchingSong ? matchingSong.id : '');
       } catch (error) {
         console.error('Error fetching data:', error);
-        if (error.response?.status === 404 || error.response?.status === 403) { 
-          navigate(`/profile/${currentUser.profile_id}`);
-        }
       } finally {
         setIsLoading(false);
       }
@@ -85,12 +81,7 @@ function EditPost() {
       navigate(`/profile/${currentUser.profile_id}`);
     } catch (err) {
       console.log(err);
-      if (err.response?.status === 404 || err.response?.status === 403) { 
-        navigate(`/profile/${currentUser.profile_id}`);
-      } 
-      if (err.response?.status !== 401) {
-        setErrors(err.response?.data);
-      }
+      setErrors(err.response?.data);
       setIsSubmitting(false);
     }
   };
@@ -102,17 +93,6 @@ function EditPost() {
     })
   }
 
-  const handleDelete = async () => {
-    setDeleteLoading(true);
-    try {
-      await axiosReq.delete(`/posts/${id}/`);
-      navigate(`/profile/${currentUser.profile_id}`);
-    } catch (err) {
-      console.log(err);
-      setDeleteLoading(false);
-    }
-  };
-
   return (
     <Container className="flex-grow-1 d-flex flex-column">
     { isLoading ? ( 
@@ -123,7 +103,7 @@ function EditPost() {
         xs="12" 
         md="5"
         className="bg-light p-3 text-center rounded shadow-sm mt-2"
-        > {/* Col for all actual form box content */}
+        >
           <h1 className="h2 mb-3">Edit Post</h1>
           <hr />
           <Form onSubmit={handleSubmit}>
@@ -133,16 +113,12 @@ function EditPost() {
                 type="text"
                 placeholder="Title*"
                 name="title"
-                className='mt-3 mb-1'
+                className='mt-3'
                 value={title}
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors.title?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                  {message}
-                </Alert>
-            ))}
+            <ErrorAlert messages={errors?.title} />
             <Form.Group>
               <Form.Label className='d-none'>Content</Form.Label>
               <Form.Control 
@@ -155,16 +131,12 @@ function EditPost() {
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors.content?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                  {message}
-                </Alert>
-            ))}
+            <ErrorAlert messages={errors?.content} />
             <Form.Group>
               <Form.Label className='d-none'>Song</Form.Label>
               <Form.Control 
                 as='select'
-                className='mt-2 mb-1'
+                className='mt-2'
                 value={selectedSong}
                 onChange={e => setSelectedSong(e.target.value)}
               >
@@ -182,11 +154,7 @@ function EditPost() {
                 new songs, visit your profile page.
               </Form.Text>
             </Form.Group>
-            {errors.song?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                  {message}
-                </Alert>
-            ))}
+            <ErrorAlert messages={errors?.song} />
             <Button 
               type="submit" 
               className='w-100 mt-2'
@@ -194,21 +162,14 @@ function EditPost() {
             >
               { isSubmitting ? 'Submitting...' : 'Submit'}
             </Button>
-            {errors.non_field_errors?.map((message, idx) => (
-                <Alert key={idx} variant="warning" className="mt-3">
-                  {message}
-                </Alert>
-            ))}
+            <ErrorAlert messages={errors?.non_field_errors} />
           </Form>
           <hr />
-          <Button
-            variant="danger"
-            className="w-100 mt-1"
-            onClick={() => setShowModal(true)} // Open the modal
-            disabled={isSubmitting}
-          >
-            Delete Post
-          </Button>
+          <DeleteButton 
+            text='post' 
+            disabled={isSubmitting} 
+            setShowModal={setShowModal}
+          />
           <small className={`form-text mx-auto my-2 ${styles.dangerHelper}`}>This cannot be undone.</small>
         </Col>
         <Col
@@ -221,26 +182,13 @@ function EditPost() {
         </Col>
       </Row>
     )}
-    <Modal show={showModal} onHide={() => setShowModal(false)} centered>
-      <Modal.Header closeButton>
-        <Modal.Title>Confirm Deletion</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        Are you sure you want to delete this post? This action cannot be undone.
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={() => setShowModal(false)}>
-          Cancel
-        </Button>
-        <Button 
-          variant="danger" 
-          disabled={deleteLoading}
-          onClick={deleteLoading ? null : handleDelete}
-        >
-          {deleteLoading ? 'Deleting...' : 'Delete'}
-        </Button>
-      </Modal.Footer>
-    </Modal>
+    <DeleteModal 
+      showModal={showModal}
+      setShowModal={setShowModal}
+      text='post'
+      deleteEndpoint={`/posts/${id}/`}
+      navigateAfterDelete={`/profile/${currentUser?.profile_id}`}
+    />
     </Container>
   );
 }

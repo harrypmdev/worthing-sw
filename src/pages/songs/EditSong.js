@@ -15,6 +15,8 @@ import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import FullPageSpinner from '../../components/FullPageSpinner';
 import ErrorAlert from '../../components/ErrorAlert';
+import DeleteModal from '../../components/delete/DeleteModal';
+import DeleteButton from '../../components/delete/DeleteButton';
 
 
 function EditSong() {
@@ -32,7 +34,6 @@ function EditSong() {
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
-  const [deleteLoading, setDeleteLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -80,18 +81,6 @@ function EditSong() {
       [event.target.name]: event.target.value,
     })
   }
-
-  const handleDelete = async () => {
-    setDeleteLoading(true);
-    try {
-      await axiosReq.delete(`/songs/${id}/`);
-      navigate(`/profile/${currentUser.profile_id}`);
-    } catch (err) {
-      console.log(err);
-      setErrors(err.response?.data);
-      setDeleteLoading(false);
-    }
-  };
 
   return (
     <Container className="flex-grow-1 d-flex flex-column">
@@ -155,14 +144,11 @@ function EditSong() {
           <ErrorAlert messages={errors?.non_field_errors} />
         </Form>
         <hr />
-        <Button
-          variant="danger"
-          className="w-100 mt-1"
-          onClick={() => setShowModal(true)} // Open the modal
-          disabled={isSubmitting}
-        >
-          Delete Song
-        </Button>
+        <DeleteButton
+          text='song' 
+          disabled={isSubmitting} 
+          setShowModal={setShowModal}
+        />
         <small className={`form-text mx-auto my-2 ${styles.dangerHelper}`}>This cannot be undone.</small>
       </Col>
       <Col
@@ -177,26 +163,13 @@ function EditSong() {
     ) : (
       <FullPageSpinner />
     )}
-    <Modal show={showModal} onHide={() => setShowModal(false)} centered>
-      <Modal.Header closeButton>
-        <Modal.Title>Confirm Deletion</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        Are you sure you want to delete this song? This action cannot be undone.
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={() => setShowModal(false)}>
-          Cancel
-        </Button>
-        <Button 
-          variant="danger" 
-          disabled={deleteLoading}
-          onClick={deleteLoading ? null : handleDelete}
-        >
-          {deleteLoading ? 'Deleting...' : 'Delete'}
-        </Button>
-      </Modal.Footer>
-    </Modal>
+    <DeleteModal
+      showModal={showModal}
+      setShowModal={setShowModal}
+      text='song'
+      deleteEndpoint={`/songs/${id}/`}
+      navigateAfterDelete={`/profile/${currentUser?.profile_id}`}
+    />
     </Container>
   );
 }
