@@ -8,7 +8,7 @@ import Home from './pages/Home';
 import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 import Profile from './pages/Profile';
-import GeneralFeed from './pages/posts/GeneralFeed';
+import Feed from '../src/components/Feed';
 import PostPage from './pages/posts/PostPage';
 import styles from './styles/App.module.css'
 import CreateSong from './pages/songs/CreateSong';
@@ -31,7 +31,7 @@ function App() {
           <Route exact path='/profile/' element={<Profile />}/>
           <Route exact path='/profile/:id' element={<Profile />}/>
           <Route exact path='/edit-profile/' element={<EditProfile />}/>
-          <Route exact path='/general-feed/' element={<GeneralFeed />}/>
+          <Route exact path='/general-feed/' element={<Feed />}/>
           <Route exact path='/my-feed/' element={<MyFeed />}/>
           <Route exact path="/posts/:id" element ={<PostPage />} />
           <Route exact path='/create-song/' element={<CreateSong />} /> 

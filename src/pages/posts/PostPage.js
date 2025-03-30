@@ -57,6 +57,7 @@ const PostPage = () => {
           {comments.results.length ? (
             comments.results.map(comment => 
               <Comment 
+                key={comment.id}
                 {...comment}
                 setComments={setComments}
               />
