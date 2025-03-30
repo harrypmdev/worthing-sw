@@ -43,6 +43,7 @@ const PostPage = () => {
     <Container className="flex-grow-1 d-flex flex-column">
       { hasLoaded ? (<>
           <Post post={post} link={false} songDetails followButton={true} />
+          <hr />
           {currentUser ? (
           <CreateComment
             profileId={currentUser.profile_id}

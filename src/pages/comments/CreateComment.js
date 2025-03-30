@@ -35,7 +35,7 @@ function CommentCreateForm(props) {
   };
 
   return (
-    <Form className="mt-3 border border-secondary-subtle rounded bg-light" onSubmit={handleSubmit}>
+    <Form className="mt-2 border border-secondary-subtle rounded bg-light" onSubmit={handleSubmit}>
       <Form.Group>
         <InputGroup className='mt-2'>
           <div className="ps-2">
@@ -48,7 +48,7 @@ function CommentCreateForm(props) {
           </div>
           <Form.Control
             className={`${styles.Form} bg-light`}
-            placeholder="my comment..."
+            placeholder="Write your comment..."
             as="textarea"
             value={content}
             onChange={handleChange}
