@@ -22,7 +22,7 @@ import styles from '../styles/Song.module.css'
 const Song = ({song, includeDetails=false, editable=false, number=false}) => {
 
   const handleLinkClick = event => {
-    if (!confirm(
+    if (!window.confirm(
       `This link will open an outside page:\n${song.link_to_song}
       \nDo you wish to proceed?`
     )) {

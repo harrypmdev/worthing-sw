@@ -14,6 +14,7 @@ import { useRedirect } from '../../hooks/useRedirect';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import FullPageSpinner from '../../components/FullPageSpinner';
+import ErrorAlert from '../../components/ErrorAlert';
 
 
 function EditSong() {
@@ -25,7 +26,7 @@ function EditSong() {
   const [songData, setSongData] = useState({
     title: '',
     link_to_song: '',
-    artist_name: currentUser?.username,
+    artist_name: '',
   })
   const {title, link_to_song, artist_name} = songData;
   const [errors, setErrors] = useState({})
@@ -39,14 +40,11 @@ function EditSong() {
       try {
         const { data } = await axiosReq.get(`/songs/${id}/`);
         if (!data.is_user) {
-          navigate(`/profile/${currentUser.profile_id}`); // Redirect unauthorized users
+          navigate('/general-feed/'); // Redirect unauthorized users
           return;
         }
-        setSongData({
-          title: data.title,
-          link_to_song: data.link_to_song,
-          artist_name: data.artist_name,
-        });
+        const {title, link_to_song, artist_name} = data;
+        setSongData({title, link_to_song, artist_name});
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -55,7 +53,7 @@ function EditSong() {
     
     setHasLoaded(false);
     fetchSong();
-  }, [id, currentUser, navigate]);
+  }, [id, navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -64,14 +62,14 @@ function EditSong() {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("artist_name", artist_name);
-    if (link_to_song) formData.append("link_to_song", link_to_song);
+    formData.append("link_to_song", link_to_song);
   
     try {
       await axiosReq.put(`/songs/${id}`, formData);
       navigate(`/profile/${currentUser.profile_id}`);
     } catch (err) {
-      console.log(err);
-      setErrors(err.data);
+      console.log(err)
+      setErrors(err.response?.data);
       setIsSubmitting(false);
     }
   };
@@ -90,7 +88,7 @@ function EditSong() {
       navigate(`/profile/${currentUser.profile_id}`);
     } catch (err) {
       console.log(err);
-      setErrors(err.data);
+      setErrors(err.response?.data);
       setDeleteLoading(false);
     }
   };
@@ -103,7 +101,7 @@ function EditSong() {
       xs="12" 
       lg="5"
       className="bg-light p-3 text-center rounded shadow-sm"
-      > {/* Col for all actual form box content */}
+      >
         <h1 className="h2 mb-3">Edit Song</h1>
         <hr />
         <Form onSubmit={handleSubmit}>
@@ -113,52 +111,40 @@ function EditSong() {
               type="text"
               placeholder="Artist's Name*"
               name="artist_name"
-              className='mt-3 mb-1'
+              className='mt-3'
               value={artist_name || ''}
               onChange={handleChange}
             />
           </Form.Group>
-          {errors.link_to_song?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-          ))}
+          <ErrorAlert messages={errors?.artist_name} />
           <Form.Group>
             <Form.Label className='d-none'>Song Title</Form.Label>
             <Form.Control 
               type="text"
               placeholder="Song Title*"
               name="title"
-              className='mt-2'
+              className='mt-3'
               value={title}
               onChange={handleChange}
             />
           </Form.Group>
-          {errors.title?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-          ))}
+          <ErrorAlert messages={errors?.title} />
           <Form.Group>
             <Form.Label className='d-none'>Link To Full Song</Form.Label>
             <Form.Control 
               type="url"
               placeholder="Link To Full Song (Optional)"
               name="link_to_song"
-              className='mt-2 mb-1'
-              value={link_to_song || ''}
+              className='mt-3 mb-1'
+              value={link_to_song}
               onChange={handleChange}
             />
-            <Form.Text className="text-muted">
-              You can only upload song clips of about 15 seconds. This option gives you a chance
+            <Form.Text className='text-muted'>
+              Your audio clips will only be 15 seconds or less. This option gives you a chance
               to give a link to the full version of your song.
             </Form.Text>
           </Form.Group>
-          {errors.link_to_song?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-          ))}
+          <ErrorAlert messages={errors?.link_to_song} />
           <Button 
               type="submit" 
               className='w-100 mt-2'
@@ -166,11 +152,7 @@ function EditSong() {
             >
               { isSubmitting ? 'Submitting...' : 'Submit'}
             </Button>
-          {errors.non_field_errors?.map((message, idx) => (
-              <Alert key={idx} variant="warning" className="mt-3">
-                {message}
-              </Alert>
-          ))}
+          <ErrorAlert messages={errors?.non_field_errors} />
         </Form>
         <hr />
         <Button
