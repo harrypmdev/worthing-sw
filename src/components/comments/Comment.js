@@ -58,7 +58,7 @@ const Comment = (props) => {
             dimensions={30}
           />
           <span className='ms-2 fst-italic'>
-            {created_at}{(created_at != updated_at) && ` (updated ${updated_at})`}
+            {created_at}{(created_at !== updated_at) && ` (updated ${updated_at})`}
           </span>
           { is_user && <div className='ms-auto'>
             <Button 

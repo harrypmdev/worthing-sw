@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Container, Form, Row, Spinner } from 'react-bootstrap';
+import { Container, Form} from 'react-bootstrap';
 import { axiosReq } from '../api/axiosDefaults';
 
 import Post from './Post';

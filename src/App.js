@@ -9,14 +9,14 @@ import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 import Profile from './pages/Profile';
 import Feed from '../src/components/Feed';
-import PostPage from './pages/posts/PostPage';
+import PostPage from './pages/postPages/PostPage';
 import styles from './styles/App.module.css'
-import CreateSong from './pages/songs/CreateSong';
-import EditSong from './pages/songs/EditSong';
-import CreatePost from './pages/posts/CreatePost';
-import EditPost from './pages/posts/EditPost';
+import CreateSong from './pages/songPages/CreateSong';
+import EditSong from './pages/songPages/EditSong';
+import CreatePost from './pages/postPages/CreatePost';
+import EditPost from './pages/postPages/EditPost';
 import EditProfile from './pages/EditProfile';
-import MyFeed from './pages/posts/MyFeed';
+import MyFeed from './pages/postPages/MyFeed';
 
 
 function App() {

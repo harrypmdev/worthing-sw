@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -11,8 +10,6 @@ import { Button } from "react-bootstrap";
 
 function EditComment(props) {
   const { 
-    post, 
-    setPost, 
     id, 
     setComments, 
     profileImage, 
@@ -33,7 +30,7 @@ function EditComment(props) {
     if (saveButtonLoading) return;
     try {
       setSaveButtonLoading(true);
-      const { data } = await axiosRes.put(`/comments/${id}`, {
+      await axiosRes.put(`/comments/${id}`, {
         content: formContent.trim(),
       });
       setComments((prevComments) => ({

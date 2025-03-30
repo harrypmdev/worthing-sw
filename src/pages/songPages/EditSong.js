@@ -6,7 +6,6 @@ import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Alert, Modal } from 'react-bootstrap';
 
 import createSongImage from '../../assets/create_song_image.webp';
 import styles from '../../styles/RegisterLogin.module.css';
