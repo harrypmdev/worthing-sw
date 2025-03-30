@@ -7,7 +7,11 @@ import Post from '../../components/Post';
 import CreateComment from '../comments/CreateComment';
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import FullPageSpinner from '../../components/FullPageSpinner';
+import infiniteScrollStyles from '../../styles/InfiniteScrollStyles.module.css';
 import Comment from '../comments/Comment';
+import { fetchMoreData } from '../../utils/utils';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import Asset from '../../components/Asset';
 
 const PostPage = () => {
   const {id} = useParams();
@@ -55,13 +59,22 @@ const PostPage = () => {
           />
           ) : null}
           {comments.results.length ? (
-            comments.results.map(comment => 
-              <Comment 
-                key={comment.id}
-                {...comment}
-                setComments={setComments}
-              />
-            )
+            <InfiniteScroll
+              children=
+                {comments.results.map(comment => 
+                  <Comment 
+                    key={comment.id}
+                    {...comment}
+                    setComments={setComments}
+                  />
+                )}
+                className={infiniteScrollStyles.scroller}
+                dataLength={comments.results.length}
+                loader={<Asset spinner/>}
+                hasMore={!!comments.next}
+                next={() => fetchMoreData(comments, setComments)}
+                scrollThreshold={0.93}
+            />
           ) : currentUser ? (
             <span>No comments yet - why not be the first?</span>
           ) : (

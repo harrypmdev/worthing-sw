@@ -131,13 +131,23 @@ const Post = (props) => {
       </Card.Body>
     </Card>
     { post.is_user && editable && (
-            <Link
-              to={`/edit-post/${post.id}`}
-              className='btn btn-warning w-100 rounded-top-0 text-center mb-3'>
-              Edit&ensp;
-              <i className="fa-solid fa-pen-to-square"></i>
-            </Link>
+      <Link
+        to={`/edit-post/${post.id}`}
+        className='btn btn-warning w-100 rounded-top-0 text-center mb-3'>
+        Edit&ensp;
+        <i className="fa-solid fa-pen-to-square"></i>
+      </Link>
     )}
+    <div className={`${songDetails && 'd-lg-none mt-2'}`}>
+    {post.song && hasLoaded && songDetails ? (
+        <Song song={song} includeDetails={songDetails}/>
+      ) : post.song && !hasLoaded && songDetails? (
+        <div className='d-flex justify-content-center'>
+          <Spinner />
+        </div>
+        ) : null
+    }
+    </div>
   </>
 }
 

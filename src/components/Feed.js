@@ -8,6 +8,7 @@ import styles from '../styles/Search.module.css';
 import infiniteScrollStyles from '../styles/InfiniteScrollStyles.module.css';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchMoreData } from '../utils/utils';
+import Asset from './Asset';
 
 /**
  * Render a feed of posts.
@@ -93,7 +94,7 @@ const Feed = (props) => {
             ))}
             className={infiniteScrollStyles.scroller}
             dataLength={posts.results.length}
-            loader={<FullPageSpinner/>}
+            loader={<Asset spinner/>}
             hasMore={!!posts.next}
             next={() => fetchMoreData(posts, setPosts)}
             scrollThreshold={0.93}

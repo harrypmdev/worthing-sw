@@ -1,8 +1,9 @@
 import React from 'react'
-import { Col, Row } from 'react-bootstrap'
+import { Button, Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import Vote from './Vote'
+import styles from '../styles/Song.module.css'
 
 
 /**
@@ -19,8 +20,23 @@ import Vote from './Vote'
  * @returns {ReactNode} - An element displaying the details of a song as returned from the '/songs' endpoint.
  */
 const Song = ({song, includeDetails=false, editable=false, number=false}) => {
+
+  const handleLinkClick = event => {
+    if (!confirm(
+      `This link will open an outside page:\n${song.link_to_song}
+      \nDo you wish to proceed?`
+    )) {
+      event.preventDefault();
+    }
+  }
+
   return <>
-    <div className={`border rounded p-2 bg-secondary-subtle bg-gradient ${song.is_user && editable &&  'rounded-bottom-0'}`}>
+    <div 
+      className={
+        `border rounded p-2 bg-secondary-subtle bg-gradient 
+        ${((song.is_user && editable) || (includeDetails && song.link_to_song)) && 'rounded-bottom-0'}`
+      }
+    >
       { includeDetails ? (<>
         <Row className='d-flex m-2 align-items-center flex-nowrap'>
           {number && (
@@ -45,14 +61,39 @@ const Song = ({song, includeDetails=false, editable=false, number=false}) => {
         </audio>
       </Row>
     </div>
-    { song.is_user && editable && (
-      <Link
-        to={`/edit-song/${song.id}`}
-        className='btn btn-warning w-100 rounded-top-0 text-center mb-3'>
-        Edit&ensp;
-        <i className="fa-solid fa-pen-to-square"></i>
-      </Link>
-    )}
+    <Row className='p2'>
+      { includeDetails && song.link_to_song && (
+        <Col 
+          xs={(song.is_user && editable) ? '6' : '12'} 
+          className={`${(song.is_user && editable) && 'pe-0'}`}>
+          <Link
+            target='_blank'
+            to={song.link_to_song}
+            onClick={handleLinkClick}
+            className={
+              `btn btn-primary w-100 rounded-top-0 text-center
+              ${(song.is_user && editable) && 'rounded-end-0'}`
+            }>
+            Full&ensp;
+            <i className="fa-solid fa-up-right-from-square"></i>
+          </Link>
+        </Col>
+      )}
+      <Col className={`${(song.link_to_song && includeDetails) && 'ps-0'}`}>
+        { song.is_user && editable && (
+          <Link
+            to={`/edit-song/${song.id}`}
+            className={
+              `btn btn-warning w-100 rounded-top-0 text-center mb-3
+              ${(song.link_to_song && includeDetails) && 'rounded-start-0'}`
+            }
+          >
+            Edit&ensp;
+            <i className="fa-solid fa-pen-to-square"></i>
+          </Link>
+        )}
+      </Col>
+    </Row>
   </>
 }
 
