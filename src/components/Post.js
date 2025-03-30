@@ -74,70 +74,70 @@ const Post = (props) => {
   </>
 
   return <>
-      <Card className={`bg-light me-2 mt-2  ${post.is_user && editable && 'rounded-bottom-0 border-bottom-0'}`}>
-        <Card.Body>
-          <Col>
-            <Row className='align-items-center'>
-              <Col>
-                {link ? (<>
-                  <Link to={`/posts/${post.id}`} className='text-decoration-none text-dark'>
-                    <h2 className='h4'>{post.title}</h2>
-                  </Link> 
-                </>) : (<>
-                  <span>
-                    <h2 className='h4'>{post.title}</h2>
-                  </span> 
-                </>)}
+    <Card className={`bg-light mt-2  ${post.is_user && editable && 'rounded-bottom-0 border-bottom-0'}`}>
+      <Card.Body>
+        <Col>
+          <Row className='align-items-center'>
+            <Col>
+              {link ? (<>
+                <Link to={`/posts/${post.id}`} className='text-decoration-none text-dark'>
+                  <h2 className='h4'>{post.title}</h2>
+                </Link> 
+              </>) : (<>
+                <span>
+                  <h2 className='h4'>{post.title}</h2>
+                </span> 
+              </>)}
+            </Col>
+            {useAvatar && (
+              <Col className='d-none d-md-flex align-items-center justify-content-center flex-shrink-0 flex-grow-0'>
+                {avatarAndFollow}
               </Col>
+            )}
+            <Col xs="auto" className="ms-auto">
+              <Vote post={post} />
+            </Col>
+          </Row>
+          <hr />
+          <Row>
+            <Col lg='8'>
+              {link ? (<>
+                <Link to={`/posts/${post.id}`} className='text-decoration-none text-dark'>
+                  <p>{post.content}</p>
+                </Link> 
+              </>) : (<>
+                <span>
+                  <p>{post.content}</p>
+                </span> 
+              </>)}
               {useAvatar && (
-                <Col className='d-none d-md-flex align-items-center justify-content-center flex-shrink-0 flex-grow-0'>
+                <Col className='d-flex d-md-none align-items-center justify-content-end flex-shrink-0 flex-grow-0'>
                   {avatarAndFollow}
                 </Col>
               )}
-              <Col xs="auto" className="ms-auto">
-                <Vote post={post} />
-              </Col>
-            </Row>
-            <hr />
-            <Row>
-              <Col lg='8'>
-                {link ? (<>
-                  <Link to={`/posts/${post.id}`} className='text-decoration-none text-dark'>
-                    <p>{post.content}</p>
-                  </Link> 
-                </>) : (<>
-                  <span>
-                    <p>{post.content}</p>
-                  </span> 
-                </>)}
-                {useAvatar && (
-                  <Col className='d-flex d-md-none align-items-center justify-content-end flex-shrink-0 flex-grow-0'>
-                    {avatarAndFollow}
-                  </Col>
-                )}
-              </Col>
-              <Col lg='4' className='d-none d-lg-inline'>
-                {post.song && hasLoaded ? (
-                  <Song song={song} includeDetails={songDetails}/>
-                ) : post.song && !hasLoaded ? (
-                  <div className='d-flex justify-content-center'>
-                    <Spinner />
-                  </div>
-                  ) : null
-                }
-              </Col>
-            </Row>
-          </Col>
-        </Card.Body>
-      </Card>
-      { post.is_user && editable && (
-              <Link
-                to={`/edit-post/${post.id}`}
-                className='btn btn-warning w-100 rounded-top-0 text-center mb-3'>
-                Edit&ensp;
-                <i className="fa-solid fa-pen-to-square"></i>
-              </Link>
-      )}
+            </Col>
+            <Col lg='4' className='d-none d-lg-inline'>
+              {post.song && hasLoaded ? (
+                <Song song={song} includeDetails={songDetails}/>
+              ) : post.song && !hasLoaded ? (
+                <div className='d-flex justify-content-center'>
+                  <Spinner />
+                </div>
+                ) : null
+              }
+            </Col>
+          </Row>
+        </Col>
+      </Card.Body>
+    </Card>
+    { post.is_user && editable && (
+            <Link
+              to={`/edit-post/${post.id}`}
+              className='btn btn-warning w-100 rounded-top-0 text-center mb-3'>
+              Edit&ensp;
+              <i className="fa-solid fa-pen-to-square"></i>
+            </Link>
+    )}
   </>
 }
 

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import Post from '../../components/Post';
-import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { axiosReq } from '../../api/axiosDefaults';
 import { Container } from 'react-bootstrap';
+
+import Post from '../../components/Post';
+import CreateComment from '../comments/CreateComment';
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import FullPageSpinner from '../../components/FullPageSpinner';
+import Comment from '../comments/Comment';
 
 const PostPage = () => {
   const {id} = useParams();
@@ -12,7 +15,6 @@ const PostPage = () => {
   const [post, setPost] = useState({});
 
   const currentUser = useCurrentUser();
-  const profile_image = currentUser?.profile_image;
   const [comments, setComments] = useState({results: []});
 
   useEffect(() => {
@@ -32,11 +34,32 @@ const PostPage = () => {
     setHasLoaded(false);
     fetchPost();
   }, [id])
-
+  console.log(comments.count)
+  for (let comment of comments.results) {
+    console.log(comment);
+  }
+  
   return (
     <Container className="flex-grow-1 d-flex flex-column">
       { hasLoaded ? (<>
-          <Post post={post} link={false} songDetails followButton={true}/>
+          <Post post={post} link={false} songDetails followButton={true} />
+          {currentUser ? (
+          <CreateComment
+            profileId={currentUser.profile_id}
+            profileImage={currentUser.profile_image}
+            username={currentUser.username}
+            post={id}
+            setPost={setPost}
+            setComments={setComments}
+          />
+          ) : null}
+          {comments.results.length ? (
+            comments.results.map(comment => <Comment {...comment} />)
+          ) : currentUser ? (
+            <span>No comments yet - why not be the first?</span>
+          ) : (
+            <span>No comments yet. Log in to write the first.</span>
+          )}
       </>) : (<>
         <FullPageSpinner />
       </>)}
