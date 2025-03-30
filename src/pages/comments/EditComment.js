@@ -9,33 +9,49 @@ import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { Button } from "react-bootstrap";
 
-function CommentCreate(props) {
-  const { post, setPost, setComments, profileImage, profileId, username} = props;
-  const [postButtonLoading, setPostButtonLoading] = useState(false);
-  const [content, setContent] = useState("");
+function EditComment(props) {
+  const { 
+    post, 
+    setPost, 
+    id, 
+    setComments, 
+    profileImage, 
+    profileId, 
+    username, 
+    content,
+    setShowEdit} = props;
+
+  const [saveButtonLoading, setSaveButtonLoading] = useState(false);
+  const [formContent, setFormContent] = useState(content);
 
   const handleChange = (event) => {
-    setContent(event.target.value);
+    setFormContent(event.target.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (postButtonLoading) return;
+    if (saveButtonLoading) return;
     try {
-      setPostButtonLoading(true);
-      const { data } = await axiosRes.post("/comments/", {
-        content,
-        post,
+      setSaveButtonLoading(true);
+      const { data } = await axiosRes.put(`/comments/${id}`, {
+        content: formContent.trim(),
       });
       setComments((prevComments) => ({
         ...prevComments,
-        results: [data, ...prevComments.results],
+        results: prevComments.results.map((comment => {
+          return comment.id === id
+          ? {
+            ...comment,
+            content: formContent.trim(),
+            updated_at: 'now',
+          }
+          : comment;
+        }))
       }));
-      setContent("");
+      setSaveButtonLoading(false);
+      setShowEdit(false);
     } catch (err) {
       console.log(err);
-    } finally {
-      setPostButtonLoading(false);
     }
   };
 
@@ -53,9 +69,9 @@ function CommentCreate(props) {
           </div>
           <Form.Control
             className={`${styles.Form} bg-light`}
-            placeholder="Write your comment..."
+            placeholder="Edit your comment..."
             as="textarea"
-            value={content}
+            value={formContent}
             onChange={handleChange}
             rows={4}
           />
@@ -63,15 +79,15 @@ function CommentCreate(props) {
       </Form.Group>
       <div className="text-end my-2 me-2">
         <Button
-          disabled={postButtonLoading}
-          variant="primary" 
+          disabled={saveButtonLoading}
+          variant="warning" 
           type="submit" 
         >
-        Post
+        Save Changes
         </Button>
       </div>
     </Form>
   );
 }
 
-export default CommentCreate;
+export default EditComment;

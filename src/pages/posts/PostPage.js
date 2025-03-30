@@ -55,7 +55,12 @@ const PostPage = () => {
           />
           ) : null}
           {comments.results.length ? (
-            comments.results.map(comment => <Comment {...comment} />)
+            comments.results.map(comment => 
+              <Comment 
+                {...comment}
+                setComments={setComments}
+              />
+            )
           ) : currentUser ? (
             <span>No comments yet - why not be the first?</span>
           ) : (
