@@ -6,6 +6,7 @@ import { axiosReq } from '../api/axiosDefaults';
 import FullPageSpinner from '../components/FullPageSpinner';
 import styles from '../styles/EditProfile.module.css';
 import { useNavigate } from 'react-router-dom';
+import ErrorAlert from '../components/ErrorAlert';
 
 
 const EditProfile = () => {
@@ -116,6 +117,11 @@ const EditProfile = () => {
             <Form.Text className="text-muted my-2">
                 Click or tap your profile image to change it.
             </Form.Text>
+            <div className='d-flex justify-content-center'>
+              <div className='w-50'>
+                <ErrorAlert messages={errors?.image} />
+              </div>
+            </div>
             <Col xs='12' className='d-flex flex-column'>
             <Form.Group className="mb-4 d-flex flex-column flex-grow-1">
               <Form.Label className='fw-bold'>Bio</Form.Label>
