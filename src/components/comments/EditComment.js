@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
 import styles from "../../styles/CommentCreateEditForm.module.css";
-import Avatar from "../../components/Avatar";
+import Avatar from "../Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { Button } from "react-bootstrap";
 

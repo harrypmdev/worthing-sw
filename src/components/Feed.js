@@ -3,12 +3,12 @@ import { Col, Container, Form, Row, Spinner } from 'react-bootstrap';
 import { axiosReq } from '../api/axiosDefaults';
 
 import Post from './Post';
-import FullPageSpinner from './FullPageSpinner';
+import FullPageSpinner from './spinner/FullPageSpinner';
 import styles from '../styles/Search.module.css';
 import infiniteScrollStyles from '../styles/InfiniteScrollStyles.module.css';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchMoreData } from '../utils/utils';
-import Asset from './Asset';
+import Asset from './spinner/Asset';
 
 /**
  * Render a feed of posts.

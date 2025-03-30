@@ -13,7 +13,7 @@ import styles from '../../styles/RegisterLogin.module.css';
 import { useRedirect } from '../../hooks/useRedirect';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import FullPageSpinner from '../../components/FullPageSpinner';
+import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 import ErrorAlert from '../../components/ErrorAlert';
 import DeleteModal from '../../components/delete/DeleteModal';
 import DeleteButton from '../../components/delete/DeleteButton';

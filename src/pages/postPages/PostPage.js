@@ -4,14 +4,14 @@ import { axiosReq } from '../../api/axiosDefaults';
 import { Container } from 'react-bootstrap';
 
 import Post from '../../components/Post';
-import CreateComment from '../comments/CreateComment';
+import CreateComment from '../../components/comments/CreateComment';
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import FullPageSpinner from '../../components/FullPageSpinner';
+import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 import infiniteScrollStyles from '../../styles/InfiniteScrollStyles.module.css';
-import Comment from '../comments/Comment';
+import Comment from '../../components/comments/Comment';
 import { fetchMoreData } from '../../utils/utils';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import Asset from '../../components/Asset';
+import Asset from '../../components/spinner/Asset';
 
 const PostPage = () => {
   const {id} = useParams();

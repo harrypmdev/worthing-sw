@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Alert, Modal } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 
 import createPostImage from '../../assets/add-post.webp';
 import styles from '../../styles/RegisterLogin.module.css';
@@ -14,74 +14,59 @@ import postStyles from '../../styles/CreateEditPost.module.css';
 import { useRedirect } from '../../hooks/useRedirect';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import FullPageSpinner from '../../components/FullPageSpinner';
-import ErrorAlert from '../../components/ErrorAlert';
-import DeleteModal from '../../components/delete/DeleteModal';
-import DeleteButton from '../../components/delete/DeleteButton';
+import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 
 
-function EditPost() {
+function CreatePost() {
   useRedirect('loggedOut')
-  const {id} = useParams();
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
 
   const [postData, setPostData] = useState({
     title: '',
     content: '',
-    song: '',
   })
   const {title, content} = postData;
   const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [fetchedSongs, setFetchedSongs] = useState([]);
   const [selectedSong, setSelectedSong] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
+    const fetchSongs = async () => {
       try {
-        const [songsResponse, postResponse] = await Promise.all([
-          axiosReq.get(`/songs/?ordering=-net_votes&user=${currentUser?.pk}`),
-          axiosReq.get(`/posts/${id}`),
-        ]);
-        const songs = songsResponse.data.results;
-        const post = postResponse.data;
-        if (!post.is_user) {
-          navigate(`/general-feed/}`);
-          return;
-        }
-        setFetchedSongs(songs);
-        const {title, content, song} = post;
-        setPostData({title, content, song});
-        const matchingSong = songs.find(song => song.id === post.song);
-        setSelectedSong(matchingSong ? matchingSong.id : '');
+        const { data } = await axiosReq.get(`/songs/?ordering=-net_votes&user=${currentUser?.pk}`);
+        setFetchedSongs(data.results);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching songs:', error);
       } finally {
         setIsLoading(false);
       }
     };
     if (currentUser) {
-      fetchData();
+      setIsLoading(true);
+      fetchSongs();
     }
-  }, [currentUser, id, navigate]);
+  }, [currentUser, setFetchedSongs, setIsLoading]);
+
 
   const handleSubmit = async (event) => {
-    setIsSubmitting(true);
     event.preventDefault();
+    setIsSubmitting(true);
     try {
-      await axiosReq.put(`/posts/${id}`, {
+      await axiosReq.post("/posts/", {
         title,
         content,
+        user: currentUser.pk,
         song: selectedSong,
       });
       navigate(`/profile/${currentUser.profile_id}`);
     } catch (err) {
       console.log(err);
-      setErrors(err.response?.data);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
       setIsSubmitting(false);
     }
   };
@@ -103,8 +88,9 @@ function EditPost() {
         xs="12" 
         md="5"
         className="bg-light p-3 text-center rounded shadow-sm mt-2"
-        >
-          <h1 className="h2 mb-3">Edit Post</h1>
+        > {/* Col for all actual form box content */}
+          <h1 className="h2 mb-3">Create Post</h1>
+          <p>Create a new post for all to see.</p>
           <hr />
           <Form onSubmit={handleSubmit}>
             <Form.Group>
@@ -113,12 +99,16 @@ function EditPost() {
                 type="text"
                 placeholder="Title*"
                 name="title"
-                className='mt-3'
+                className='mt-3 mb-1'
                 value={title}
                 onChange={handleChange}
               />
             </Form.Group>
-            <ErrorAlert messages={errors?.title} />
+            {errors.title?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+            ))}
             <Form.Group>
               <Form.Label className='d-none'>Content</Form.Label>
               <Form.Control 
@@ -131,12 +121,16 @@ function EditPost() {
                 onChange={handleChange}
               />
             </Form.Group>
-            <ErrorAlert messages={errors?.content} />
+            {errors.content?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+            ))}
             <Form.Group>
               <Form.Label className='d-none'>Song</Form.Label>
               <Form.Control 
                 as='select'
-                className='mt-2'
+                className='mt-2 mb-1'
                 value={selectedSong}
                 onChange={e => setSelectedSong(e.target.value)}
               >
@@ -154,7 +148,11 @@ function EditPost() {
                 new songs, visit your profile page.
               </Form.Text>
             </Form.Group>
-            <ErrorAlert messages={errors?.song} />
+            {errors.song?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+            ))}
             <Button 
               type="submit" 
               className='w-100 mt-2'
@@ -162,15 +160,12 @@ function EditPost() {
             >
               { isSubmitting ? 'Submitting...' : 'Submit'}
             </Button>
-            <ErrorAlert messages={errors?.non_field_errors} />
+            {errors.non_field_errors?.map((message, idx) => (
+                <Alert key={idx} variant="warning" className="mt-3">
+                  {message}
+                </Alert>
+            ))}
           </Form>
-          <hr />
-          <DeleteButton 
-            text='post' 
-            disabled={isSubmitting} 
-            setShowModal={setShowModal}
-          />
-          <small className={`form-text mx-auto my-2 ${styles.dangerHelper}`}>This cannot be undone.</small>
         </Col>
         <Col
             xs='12'
@@ -182,15 +177,9 @@ function EditPost() {
         </Col>
       </Row>
     )}
-    <DeleteModal 
-      showModal={showModal}
-      setShowModal={setShowModal}
-      text='post'
-      deleteEndpoint={`/posts/${id}/`}
-      navigateAfterDelete={`/profile/${currentUser?.profile_id}`}
-    />
+
     </Container>
   );
 }
 
-export default EditPost
+export default CreatePost

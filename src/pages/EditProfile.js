@@ -3,7 +3,7 @@ import { Button, Col, Container, Form, Image, Row } from 'react-bootstrap';
 
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext'
 import { axiosReq } from '../api/axiosDefaults';
-import FullPageSpinner from '../components/FullPageSpinner';
+import FullPageSpinner from '../components/spinner/FullPageSpinner';
 import styles from '../styles/EditProfile.module.css';
 import { useNavigate } from 'react-router-dom';
 import ErrorAlert from '../components/ErrorAlert';
