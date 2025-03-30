@@ -11,6 +11,7 @@ import { Button } from "react-bootstrap";
 
 function CommentCreateForm(props) {
   const { post, setPost, setComments, profileImage, profileId, username} = props;
+  const [postButtonLoading, setPostButtonLoading] = useState(false);
   const [content, setContent] = useState("");
 
   const handleChange = (event) => {
@@ -19,7 +20,9 @@ function CommentCreateForm(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (postButtonLoading) return;
     try {
+      setPostButtonLoading(true);
       const { data } = await axiosRes.post("/comments/", {
         content,
         post,
@@ -31,6 +34,8 @@ function CommentCreateForm(props) {
       setContent("");
     } catch (err) {
       console.log(err);
+    } finally {
+      setPostButtonLoading(false);
     }
   };
 
@@ -58,6 +63,7 @@ function CommentCreateForm(props) {
       </Form.Group>
       <div className="text-end my-2 me-2">
         <Button
+          disabled={postButtonLoading}
           variant="primary" 
           type="submit" 
         >
