@@ -15,6 +15,7 @@ import { useRedirect } from '../../hooks/useRedirect';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import FullPageSpinner from '../../components/spinner/FullPageSpinner';
+import ErrorAlert from '../../components/ErrorAlert';
 
 
 function CreatePost() {
@@ -99,16 +100,12 @@ function CreatePost() {
                 type="text"
                 placeholder="Title*"
                 name="title"
-                className='mt-3 mb-1'
+                className='mt-3'
                 value={title}
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors.title?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                  {message}
-                </Alert>
-            ))}
+            <ErrorAlert messages={errors?.title} />
             <Form.Group>
               <Form.Label className='d-none'>Content</Form.Label>
               <Form.Control 
@@ -116,16 +113,12 @@ function CreatePost() {
                 rows={4}
                 placeholder="Content*"
                 name="content"
-                className={`mt-2 ${postStyles.noResize}`}  
+                className={`mt-3 ${postStyles.noResize}`}  
                 value={content}
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors.content?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                  {message}
-                </Alert>
-            ))}
+            <ErrorAlert messages={errors?.content} />
             <Form.Group>
               <Form.Label className='d-none'>Song</Form.Label>
               <Form.Control 
@@ -148,11 +141,7 @@ function CreatePost() {
                 new songs, visit your profile page.
               </Form.Text>
             </Form.Group>
-            {errors.song?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                  {message}
-                </Alert>
-            ))}
+            <ErrorAlert messages={errors?.song} />
             <Button 
               type="submit" 
               className='w-100 mt-2'
@@ -160,11 +149,7 @@ function CreatePost() {
             >
               { isSubmitting ? 'Submitting...' : 'Submit'}
             </Button>
-            {errors.non_field_errors?.map((message, idx) => (
-                <Alert key={idx} variant="warning" className="mt-3">
-                  {message}
-                </Alert>
-            ))}
+            <ErrorAlert messages={errors?.non_field_errors} />
           </Form>
         </Col>
         <Col
