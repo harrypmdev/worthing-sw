@@ -30,7 +30,7 @@ const Feed = (props) => {
     followButtons=false,
   } = props;
 
-  const [posts, setPosts] = useState({ results: []});
+  const [posts, setPosts] = useState({results: []});
   const [hasLoaded, setHasLoaded] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 

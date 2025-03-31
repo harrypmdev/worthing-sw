@@ -14,7 +14,7 @@ const Profile = () => {
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
-    const fetchProfile = async() => {
+    const fetchProfileAndSongData = async() => {
         try {
             const [{data: profile}, {data: songs}] = await Promise.all([
                 axiosReq.get(`/profiles/${id}`),
@@ -28,7 +28,7 @@ const Profile = () => {
         }
     }
 
-    fetchProfile();
+    fetchProfileAndSongData();
   }, [id])
 
   return (
