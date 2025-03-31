@@ -91,8 +91,7 @@ function NavBar() {
             <img 
               alt="Worthing Sound Wave" 
               src={logo}
-              width="220"
-              height="42"
+              className={styles.navbarLogo}
             />
         </Navbar.Brand>
         <Navbar.Toggle ref={ref} aria-controls="basic-navbar-nav" />
