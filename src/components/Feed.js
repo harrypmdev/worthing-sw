@@ -66,7 +66,7 @@ const Feed = (props) => {
   }, [filterByOwnershipId, filterByFollowingId, searchQuery]);
 
   return (
-    <Container id='page' className='flex-grow-1 d-flex flex-column'>
+    <Container id='page' className='flex-grow-1 d-flex flex-column mb-3'>
       <i className={`fas fa-search mt-3 ${styles.SearchIcon}`}></i>
       <Form
         className={styles.SearchBar}
