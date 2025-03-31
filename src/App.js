@@ -28,7 +28,6 @@ function App() {
           <Route exact path="/" element={<Home />}/>
           <Route exact path="/login/" element={<Login />}/>
           <Route exact path="/register/" element={<Register />}/>
-          <Route exact path='/profile/' element={<Profile />}/>
           <Route exact path='/profile/:id' element={<Profile />}/>
           <Route exact path='/edit-profile/' element={<EditProfile />}/>
           <Route exact path='/general-feed/' element={<GeneralFeed />}/>
