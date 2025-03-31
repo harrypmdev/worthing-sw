@@ -14,16 +14,20 @@ import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 import { setTokenTimestamp } from '../../utils/utils';
 import { useRedirect } from '../../hooks/useRedirect';
 import ErrorAlert from '../../components/ErrorAlert';
+import useFormDataHandler from '../../hooks/useFormDataHandler';
 
-
+/**
+ * Render the login page, including a login form for user authentication.
+ * 
+ * @returns {ReactNode} - An element displaying the full login page.
+ */
 function Login() {
   useRedirect('loggedIn')
   const setCurrentUser = useSetCurrentUser();
   const navigate = useNavigate();
 
-  const [loginData, setLoginData] = useState({
-    username: '',
-    password: '',
+  const [loginData, handleChange] = useFormDataHandler({
+    username: '', password: ''
   })
   const {username, password} = loginData;
   const [errors, setErrors] = useState({})
@@ -34,17 +38,10 @@ function Login() {
       const {data} = await axios.post('/dj-rest-auth/login/', loginData)
       setCurrentUser(data.user);
       setTokenTimestamp(data);
-      navigate('/');
+      navigate('/general-feed/');
     } catch (err) {
       setErrors(err.response?.data)
     }
-  }
-
-  const handleChange = event => {
-    setLoginData({
-      ...loginData,
-      [event.target.name]: event.target.value,
-    })
   }
 
   return (

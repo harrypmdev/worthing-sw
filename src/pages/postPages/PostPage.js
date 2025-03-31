@@ -38,11 +38,7 @@ const PostPage = () => {
     setHasLoaded(false);
     fetchPost();
   }, [id])
-  console.log(comments.count)
-  for (let comment of comments.results) {
-    console.log(comment);
-  }
-  
+
   return (
     <Container className="flex-grow-1 d-flex flex-column">
       { hasLoaded ? (<>
@@ -76,9 +72,9 @@ const PostPage = () => {
                 scrollThreshold={0.93}
             />
           ) : currentUser ? (
-            <span>No comments yet - why not be the first?</span>
+            <span className='mt-2'>No comments yet - why not be the first?</span>
           ) : (
-            <span>No comments yet. Log in to write the first.</span>
+            <span className='mt-2'>No comments yet. Log in to write the first.</span>
           )}
       </>) : (<>
         <FullPageSpinner />
