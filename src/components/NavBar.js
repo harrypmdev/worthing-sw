@@ -90,9 +90,9 @@ function NavBar() {
         <Navbar.Brand href="/">
             <img 
               alt="Worthing Sound Wave" 
-              src={logo} 
-              width="265"
-              height="50"
+              src={logo}
+              width="220"
+              height="42"
             />
         </Navbar.Brand>
         <Navbar.Toggle ref={ref} aria-controls="basic-navbar-nav" />
