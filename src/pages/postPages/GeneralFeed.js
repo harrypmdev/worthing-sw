@@ -5,25 +5,14 @@ import SongList from '../../components/SongList';
 import Feed from '../../components/Feed';
 import { axiosReq } from '../../api/axiosDefaults';
 import Asset from '../../components/spinner/Asset';
+import useFetchSong from '../../hooks/useFetchSong';
 
 
 const GeneralFeed = () => {
   const [songData, setSongData] = useState({});
-  const [hasLoaded, setHasLoaded] = useState(false);
-
-  useEffect(() => {
-    const fetchSongs = async() => {
-        try {
-            const {data} = await axiosReq.get('/songs/?ordering=-net_votes')
-            setSongData(data.results.slice(0, 10));
-            setHasLoaded(true);
-        } catch(err){
-            console.log(err)
-        }
-    }
-
-    fetchSongs();
-  }, [])
+  const hasLoaded = useFetchSong(
+    {setSongData, filter: 'ordering=-net_votes'}
+  )
 
   return (
     <Row>
@@ -34,7 +23,7 @@ const GeneralFeed = () => {
         <h2 className='h4 text-center me-2 fw-bold'>Top Songs Right Now</h2>
         <hr />
         { hasLoaded ? (
-          <SongList songData={songData}/>
+          <SongList songData={songData.results.slice(0, 10)}/>
         ) : (
           <Asset spinner/>
         )}

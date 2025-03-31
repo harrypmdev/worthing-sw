@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
@@ -17,6 +17,7 @@ import ErrorAlert from '../../components/ErrorAlert';
 import DeleteModal from '../../components/delete/DeleteModal';
 import DeleteButton from '../../components/delete/DeleteButton';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
+import useFetchSong from '../../hooks/useFetchSong';
 
 
 function EditSong() {
@@ -25,36 +26,17 @@ function EditSong() {
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
 
+  const [errors, setErrors] = useState({})
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   const [songData, handleChange, setSongData] = useFormDataHandler({
     title: '',
     link_to_song: '',
     artist_name: '',
   })
   const {title, link_to_song, artist_name} = songData;
-  const [errors, setErrors] = useState({})
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
-    const fetchSong = async () => {
-      try {
-        const { data } = await axiosReq.get(`/songs/${id}/`);
-        if (!data.is_user) {
-          navigate('/general-feed/'); // Redirect unauthorized users
-          return;
-        }
-        const {title, link_to_song, artist_name} = data;
-        setSongData({title, link_to_song, artist_name});
-        setHasLoaded(true);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    
-    setHasLoaded(false);
-    fetchSong();
-  }, [id, navigate, setSongData]);
+  const hasLoaded = useFetchSong({id, setSongData, redirectUnauthorized: true});
 
   const handleSubmit = async (event) => {
     event.preventDefault();

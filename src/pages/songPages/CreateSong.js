@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
@@ -15,10 +15,13 @@ import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { trimAudio } from '../../utils/utils';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
+import useRedirectOnSongLimit from '../../hooks/useRedirectOnSongLimit';
+import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 
 
 function CreateSong() {
   useRedirect('loggedOut')
+  const isLoading = useRedirectOnSongLimit();
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
 
@@ -32,29 +35,6 @@ function CreateSong() {
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const { data } = await axiosReq.get(`/profiles/${currentUser.profile_id}/`);
-        if (data.songs_count >= 3) {
-          navigate(`/profile/${currentUser.profile_id}`); // Redirect if songs_count >= 3
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    if (currentUser.profile_id) {
-      fetchProfile();
-    }
-
-    if (currentUser.username) {
-      setSongData((prevState) => ({
-        ...prevState,
-        artist_name: currentUser.username,
-      }));
-    }
-  }, [currentUser, navigate, setSongData]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -92,107 +72,110 @@ function CreateSong() {
   }
 
   return (
-    <Container className="flex-grow-1 d-flex flex-column">
-    <Row className="d-flex flex-grow-1 align-items-center pb-6">
-      <Col
-      xs="12" 
-      md="5"
-      className="bg-light p-3 text-center rounded shadow-sm"
-      > {/* Col for all actual form box content */}
-        <h1 className="h2 mb-3">Create Song</h1>
-        <p>Add a new song to your profile. You can have up to three.</p>
-        <hr />
-        <Form onSubmit={handleSubmit}>
-          <Form.Group>
-            <Form.Label className='d-none'>Artist Name</Form.Label>
-            <Form.Control 
-              type="text"
-              placeholder="Artist's Name*"
-              name="artist_name"
-              className='mt-3 mb-1'
-              value={artist_name || ''}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          {errors.link_to_song?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-          ))}
-          <Form.Group>
-            <Form.Label className='d-none'>Song Title</Form.Label>
-            <Form.Control 
-              type="text"
-              placeholder="Song Title*"
-              name="title"
-              className='mt-2'
-              value={title}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          {errors.title?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-          ))}
-          <Form.Group>
-            <Form.Label className='d-none'>Link To Full Song</Form.Label>
-            <Form.Control 
-              type="url"
-              placeholder="Link To Full Song (Optional)"
-              name="link_to_song"
-              className='mt-2 mb-1'
-              value={link_to_song || ''}
-              onChange={handleChange}
-            />
-            <Form.Text className="text-muted">
-              You can only upload song clips of about 15 seconds. This option gives you a chance
-              to give a link to the full version of your song.
-            </Form.Text>
-          </Form.Group>
-          {errors.link_to_song?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-          ))}
-          <Form.Group>
-            <Form.Label className='d-none'>Upload WAV File</Form.Label>
-            <Form.Control
-              type="file"
-              name="audio_file"
-              accept=".wav"
-              className="mt-2"
-              onChange={handleSongChange}
-            />
-            <Form.Text className="text-muted">
-              Please upload a short WAV file.
-            </Form.Text>
-          </Form.Group>
-          <Button 
-              type="submit" 
-              className='w-100 mt-2'
-              disabled={isSubmitting}
-            >
-              { isSubmitting ? 'Submitting...' : 'Submit'}
-            </Button>
-          {errors.non_field_errors?.map((message, idx) => (
-              <Alert key={idx} variant="warning" className="mt-3">
-                {message}
-              </Alert>
-          ))}
-        </Form>
-      </Col>
-      <Col
-          xs='12'
-          md='1'
-          className='d-none d-md-block'
-        /> {/* Col purely for layout formatting */}
-      <Col xs="12" md="6" className="text-center d-none d-md-block">
-        <Image fluid rounded src={createSongImage} className={styles.registerImage} />
-      </Col>
-    </Row>
-    </Container>
-  );
+    isLoading ? ( 
+      <FullPageSpinner /> 
+    ) : ( 
+      <Container className="flex-grow-1 d-flex flex-column">
+      <Row className="d-flex flex-grow-1 align-items-center pb-6">
+        <Col
+        xs="12" 
+        md="5"
+        className="bg-light p-3 text-center rounded shadow-sm"
+        > {/* Col for all actual form box content */}
+          <h1 className="h2 mb-3">Create Song</h1>
+          <p>Add a new song to your profile. You can have up to three.</p>
+          <hr />
+          <Form onSubmit={handleSubmit}>
+            <Form.Group>
+              <Form.Label className='d-none'>Artist Name</Form.Label>
+              <Form.Control 
+                type="text"
+                placeholder="Artist's Name*"
+                name="artist_name"
+                className='mt-3 mb-1'
+                value={artist_name || ''}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            {errors.link_to_song?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+            ))}
+            <Form.Group>
+              <Form.Label className='d-none'>Song Title</Form.Label>
+              <Form.Control 
+                type="text"
+                placeholder="Song Title*"
+                name="title"
+                className='mt-2'
+                value={title}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            {errors.title?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+            ))}
+            <Form.Group>
+              <Form.Label className='d-none'>Link To Full Song</Form.Label>
+              <Form.Control 
+                type="url"
+                placeholder="Link To Full Song (Optional)"
+                name="link_to_song"
+                className='mt-2 mb-1'
+                value={link_to_song || ''}
+                onChange={handleChange}
+              />
+              <Form.Text className="text-muted">
+                You can only upload song clips of about 15 seconds. This option gives you a chance
+                to give a link to the full version of your song.
+              </Form.Text>
+            </Form.Group>
+            {errors.link_to_song?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+            ))}
+            <Form.Group>
+              <Form.Label className='d-none'>Upload WAV File</Form.Label>
+              <Form.Control
+                type="file"
+                name="audio_file"
+                accept=".wav"
+                className="mt-2"
+                onChange={handleSongChange}
+              />
+              <Form.Text className="text-muted">
+                Please upload a short WAV file.
+              </Form.Text>
+            </Form.Group>
+            <Button 
+                type="submit" 
+                className='w-100 mt-2'
+                disabled={isSubmitting}
+              >
+                { isSubmitting ? 'Submitting...' : 'Submit'}
+              </Button>
+            {errors.non_field_errors?.map((message, idx) => (
+                <Alert key={idx} variant="warning" className="mt-3">
+                  {message}
+                </Alert>
+            ))}
+          </Form>
+        </Col>
+        <Col
+            xs='12'
+            md='1'
+            className='d-none d-md-block'
+          /> {/* Col purely for layout formatting */}
+        <Col xs="12" md="6" className="text-center d-none d-md-block">
+          <Image fluid rounded src={createSongImage} className={styles.registerImage} />
+        </Col>
+      </Row>
+      </Container>
+    ));
 }
 
 export default CreateSong
