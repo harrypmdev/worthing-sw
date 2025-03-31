@@ -6,7 +6,6 @@ import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Alert } from 'react-bootstrap';
 
 import createPostImage from '../../assets/add-post.webp';
 import styles from '../../styles/RegisterLogin.module.css';
@@ -16,6 +15,7 @@ import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 import ErrorAlert from '../../components/ErrorAlert';
+import useFormDataHandler from '../../hooks/useFormDataHandler';
 
 
 function CreatePost() {
@@ -23,11 +23,12 @@ function CreatePost() {
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
 
-  const [postData, setPostData] = useState({
+  const [postData, handleChange] = useFormDataHandler({
     title: '',
     content: '',
   })
   const {title, content} = postData;
+
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fetchedSongs, setFetchedSongs] = useState([]);
@@ -71,13 +72,6 @@ function CreatePost() {
       setIsSubmitting(false);
     }
   };
-
-  const handleChange = event => {
-    setPostData({
-      ...postData,
-      [event.target.name]: event.target.value,
-    })
-  }
 
   return (
     <Container className="flex-grow-1 d-flex flex-column">

@@ -16,6 +16,7 @@ import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 import ErrorAlert from '../../components/ErrorAlert';
 import DeleteModal from '../../components/delete/DeleteModal';
 import DeleteButton from '../../components/delete/DeleteButton';
+import useFormDataHandler from '../../hooks/useFormDataHandler';
 
 
 function EditSong() {
@@ -24,7 +25,7 @@ function EditSong() {
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
 
-  const [songData, setSongData] = useState({
+  const [songData, handleChange, setSongData] = useFormDataHandler({
     title: '',
     link_to_song: '',
     artist_name: '',
@@ -53,7 +54,7 @@ function EditSong() {
     
     setHasLoaded(false);
     fetchSong();
-  }, [id, navigate]);
+  }, [id, navigate, setSongData]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -73,13 +74,6 @@ function EditSong() {
       setIsSubmitting(false);
     }
   };
-
-  const handleChange = event => {
-    setSongData({
-      ...songData,
-      [event.target.name]: event.target.value,
-    })
-  }
 
   return (
     <Container className="flex-grow-1 d-flex flex-column">

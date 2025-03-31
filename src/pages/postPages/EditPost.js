@@ -17,6 +17,7 @@ import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 import ErrorAlert from '../../components/ErrorAlert';
 import DeleteModal from '../../components/delete/DeleteModal';
 import DeleteButton from '../../components/delete/DeleteButton';
+import useFormDataHandler from '../../hooks/useFormDataHandler';
 
 
 function EditPost() {
@@ -25,12 +26,13 @@ function EditPost() {
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
 
-  const [postData, setPostData] = useState({
+  const [postData, handleChange, setPostData] = useFormDataHandler({
     title: '',
     content: '',
     song: '',
   })
   const {title, content} = postData;
+
   const [isLoading, setIsLoading] = useState(false);
   const [fetchedSongs, setFetchedSongs] = useState([]);
   const [selectedSong, setSelectedSong] = useState('');
@@ -66,7 +68,7 @@ function EditPost() {
     if (currentUser) {
       fetchData();
     }
-  }, [currentUser, id, navigate]);
+  }, [currentUser, id, navigate, setPostData]);
 
   const handleSubmit = async (event) => {
     setIsSubmitting(true);
@@ -84,13 +86,6 @@ function EditPost() {
       setIsSubmitting(false);
     }
   };
-
-  const handleChange = event => {
-    setPostData({
-      ...postData,
-      [event.target.name]: event.target.value,
-    })
-  }
 
   return (
     <Container className="flex-grow-1 d-flex flex-column">

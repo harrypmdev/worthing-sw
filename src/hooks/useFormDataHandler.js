@@ -2,13 +2,17 @@ import { useState } from "react";
 
 /**
  * Custom hook for managing form data state. Helps prevent otherwise frequent
- * reuse of the handleChange function to update form data.
+ * reuse of the handleChange function below to update form data.
  * 
  * @param {Object} initialState The data with which to initialise formData.
- * @returns {[Object, Function]} An array containing the state in the form of
- *                               an object, and secondly the function to handle 
- *                               the updating of the state so it can be used 
- *                               for forms' 'onChange' events.
+ * @returns {[Object, Function, Function]} An array containing:
+ *                               1) The state in the form of an object. 
+ *                               2) The function to handle the updating
+ *                               of the state so it can be used for forms' 
+ *                               "onChange" events.
+ *                               3) Optionally, the setter function for the
+ *                               state, in case additional custom functionality
+ *                               is also required.
  */
 const useFormDataHandler = (initialState) => {
   const [formData, setFormData] = useState(initialState);
@@ -26,7 +30,7 @@ const useFormDataHandler = (initialState) => {
     });
   }
 
-  return [formData, handleChange];
+  return [formData, handleChange, setFormData];
 }
 
 export default useFormDataHandler

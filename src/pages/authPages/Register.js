@@ -12,13 +12,14 @@ import { Alert } from 'react-bootstrap';
 
 import registerImage from '../../assets/register-image.webp';
 import styles from '../../styles/RegisterLogin.module.css';
+import useFormDataHandler from '../../hooks/useFormDataHandler';
 
 
 function Register() {
   useRedirect('loggedIn')
   const navigate = useNavigate();
 
-  const [registerData, setRegisterData] = useState({
+  const [registerData, handleChange] = useFormDataHandler({
     username: '',
     email: '',
     password1: '',
@@ -36,13 +37,6 @@ function Register() {
     } catch (err) {
       setErrors(err.response?.data)
     }
-  }
-
-  const handleChange = event => {
-    setRegisterData({
-      ...registerData,
-      [event.target.name]: event.target.value,
-    })
   }
 
   return (

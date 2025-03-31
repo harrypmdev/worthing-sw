@@ -14,6 +14,7 @@ import { useRedirect } from '../../hooks/useRedirect';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { trimAudio } from '../../utils/utils';
+import useFormDataHandler from '../../hooks/useFormDataHandler';
 
 
 function CreateSong() {
@@ -21,7 +22,7 @@ function CreateSong() {
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
 
-  const [songData, setSongData] = useState({
+  const [songData, handleChange, setSongData] = useFormDataHandler({
     title: '',
     link_to_song: '',
     artist_name: currentUser?.username,
@@ -53,7 +54,7 @@ function CreateSong() {
         artist_name: currentUser.username,
       }));
     }
-  }, [currentUser, navigate]);
+  }, [currentUser, navigate, setSongData]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -75,13 +76,6 @@ function CreateSong() {
       setIsSubmitting(false);
     }
   };
-
-  const handleChange = event => {
-    setSongData({
-      ...songData,
-      [event.target.name]: event.target.value,
-    })
-  }
 
   const handleSongChange = async event => {
     let audioToSave;

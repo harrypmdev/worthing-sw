@@ -7,6 +7,7 @@ import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 import styles from '../../styles/EditProfile.module.css';
 import { useNavigate } from 'react-router-dom';
 import ErrorAlert from '../../components/ErrorAlert';
+import useFormDataHandler from '../../hooks/useFormDataHandler';
 
 
 const EditProfile = () => {
@@ -14,7 +15,7 @@ const EditProfile = () => {
   const setCurrentUser = useSetCurrentUser();
   const navigate = useNavigate();
 
-  const [profile, setProfile] = useState({
+  const [profile, handleChange, setProfile] = useFormDataHandler({
     bio: '',
     image: ''
   });
@@ -38,7 +39,7 @@ const EditProfile = () => {
       setHasLoaded(false);
       fetchProfile();
     }
-  }, [currentUser])
+  }, [currentUser, setProfile])
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -63,13 +64,6 @@ const EditProfile = () => {
     } finally {
       setIsSubmitting(false);
     }
-  }
-
-  const handleChange = event => {
-    setProfile({
-      ...profile,
-      [event.target.name]: event.target.value,
-    })
   }
 
   const handleImageChange = event => {
