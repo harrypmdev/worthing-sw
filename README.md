@@ -14,6 +14,176 @@ upload songs, vote on content, personalise your profile and comment on others' p
 
 # UX Planning
 
+A positive user experience was the end goal of all page design. Wireframing was done ahead of page creation for each page to guide development.
+A mobile-first approach was taken for the responsive design of the website, and both mobile and desktop displays were wireframed to provide guidelines for this.
+
+Some differences between the wireframes and final page appearances can be seen - this is because the wireframes existed to guide design and ensure a positive overall
+user experience, rather than dictate specific details of the implementation.
+
+## Page Wireframes
+
+<details>
+<summary> Home Page Wireframe (Desktop)</summary>
+
+![Home Page Wireframe (Desktop)](/readme-assets/wireframes/home-desktop.webp)
+
+</details>
+<details>
+<summary> Home Page Wireframe (Mobile)</summary>
+
+![Home Page Wireframe (Mobile)](/readme-assets/wireframes/home-mobile.webp)
+
+</details> 
+
+### Authorisation Pages
+
+<details>
+<summary> Login Page Wireframe (Desktop)</summary>
+
+![Login Page Wireframe (Desktop)](/readme-assets/wireframes/login-desktop.webp)
+
+</details>
+<details>
+<summary> Login Page Wireframe (Mobile)</summary>
+
+![Login Page Wireframe (Mobile)](/readme-assets/wireframes/login-mobile.webp)
+
+</details> 
+<br>
+<details>
+<summary> Register Page Wireframe (Desktop)</summary>
+
+![Register Page Wireframe (Desktop)](/readme-assets/wireframes/register-desktop.webp)
+
+</details>
+<details>
+<summary> Register Page Wireframe (Mobile)</summary>
+
+![Register Page Wireframe (Mobile)](/readme-assets/wireframes/register-mobile.webp)
+
+</details> 
+
+### Post Pages
+
+The desktop General Feed and My Feed pages include a column to the left of the feed, 'Top 
+Profiles' and 'Last Online from your following' respectively. These were excluded in the final
+product as they were deemed unnecessary for the overrall user experience and the project scope.
+
+<details>
+<summary> Create Post Page Wireframe (Desktop)</summary>
+
+![Create Post Page Wireframe (Desktop)](/readme-assets/wireframes/create-post-desktop.webp)
+
+</details>
+<details>
+<summary> Create Post Page Wireframe (Mobile)</summary>
+
+![Create Post Page Wireframe (Mobile)](/readme-assets/wireframes/create-post-mobile.webp)
+
+</details> 
+<br>
+<details>
+<summary> Edit Post Page Wireframe (Desktop)</summary>
+
+![Edit Post Page Wireframe (Desktop)](/readme-assets/wireframes/edit-post-desktop.webp)
+
+</details>
+<details>
+<summary> Edit Post Page Wireframe (Mobile)</summary>
+
+![Edit Post Page Wireframe (Mobile)](/readme-assets/wireframes/edit-post-mobile.webp)
+
+</details> 
+<br>
+<details>
+<summary> General Feed Page Wireframe (Desktop)</summary>
+
+![General Feed Page Wireframe (Desktop)](/readme-assets/wireframes/general-feed-desktop.webp)
+
+</details>
+<details>
+<summary> My Feed Page Wireframe (Desktop)</summary>
+
+![My Feed Page Wireframe (Mobile)](/readme-assets/wireframes/my-feed-desktop.webp)
+
+</details> 
+<details>
+<summary> Feed Page Wireframe (Mobile)</summary>
+
+![Feed Page Wireframe (Mobile)](/readme-assets/wireframes/feed-mobile.webp)
+
+</details> 
+<br>
+<details>
+<summary> Post Page Wireframe (Desktop)</summary>
+
+![Post Page Wireframe (Mobile)](/readme-assets/wireframes/post-page-desktop.webp)
+
+</details> 
+<details>
+<summary> Post Page Wireframe (Mobile)</summary>
+
+![Post Page Wireframe (Mobile)](/readme-assets/wireframes/post-page-mobile.webp)
+
+</details> 
+
+### Profile Pages
+
+<details>
+<summary> Profile Page Wireframe (Desktop)</summary>
+
+![Profile Page Wireframe (Mobile)](/readme-assets/wireframes/profile-desktop.webp)
+
+</details> 
+<details>
+<summary> Profile Page Wireframe (Mobile)</summary>
+
+![Profile Page Wireframe (Mobile)](/readme-assets/wireframes/profile-mobile.webp)
+
+</details> 
+<br>
+<details>
+<summary> Edit Profile Page Wireframe (Desktop)</summary>
+
+![Edit Profile Page Wireframe (Mobile)](/readme-assets/wireframes/edit-profile-desktop.webp)
+
+</details> 
+<details>
+<summary> Edit Profile Page Wireframe (Mobile)</summary>
+
+![Edit Profile Page Wireframe (Mobile)](/readme-assets/wireframes/edit-profile-mobile.webp)
+
+</details>
+
+### Song Pages
+
+<details>
+<summary> Create Song Page Wireframe (Desktop)</summary>
+
+![Create Song Wireframe (Mobile)](/readme-assets/wireframes/create-song-desktop.webp)
+
+</details> 
+<details>
+<summary> Create Song Wireframe (Mobile)</summary>
+
+![Create Song Wireframe (Mobile)](/readme-assets/wireframes/create-song-mobile.webp)
+
+</details> 
+<br>
+<details>
+<summary> Edit Song Page Wireframe (Desktop)</summary>
+
+![ Edit Song Page Wireframe (Mobile)](/readme-assets/wireframes/edit-song-desktop.webp)
+
+</details> 
+<details>
+<summary> Edit Song Page Wireframe (Mobile)</summary>
+
+![Edit Song Page Wireframe (Mobile)](/readme-assets/wireframes/edit-song-mobile.webp)
+
+</details>
+<br />
+
 # Features
 
 # Features Yet To Be Implemented

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 
-import Feed from '../components/Feed';
-import ProfileSummary from '../components/ProfileSummary';
-import { axiosReq } from '../api/axiosDefaults';
+import Feed from '../../components/Feed';
+import ProfileSummary from '../../components/ProfileSummary';
+import { axiosReq } from '../../api/axiosDefaults';
 import { useParams } from 'react-router-dom';
-import FullPageSpinner from '../components/spinner/FullPageSpinner';
+import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 
 const Profile = () => {
   const {id} = useParams();

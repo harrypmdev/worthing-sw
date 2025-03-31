@@ -7,7 +7,7 @@ import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-import createSongImage from '../../assets/create_song_image.webp';
+import createSongImage from '../../assets/create-song-image.webp';
 import styles from '../../styles/RegisterLogin.module.css';
 import { useRedirect } from '../../hooks/useRedirect';
 import { axiosReq } from '../../api/axiosDefaults';

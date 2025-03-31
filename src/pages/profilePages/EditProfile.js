@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Button, Col, Container, Form, Image, Row } from 'react-bootstrap';
 
-import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext'
-import { axiosReq } from '../api/axiosDefaults';
-import FullPageSpinner from '../components/spinner/FullPageSpinner';
-import styles from '../styles/EditProfile.module.css';
+import { useCurrentUser, useSetCurrentUser } from '../../contexts/CurrentUserContext'
+import { axiosReq } from '../../api/axiosDefaults';
+import FullPageSpinner from '../../components/spinner/FullPageSpinner';
+import styles from '../../styles/EditProfile.module.css';
 import { useNavigate } from 'react-router-dom';
-import ErrorAlert from '../components/ErrorAlert';
+import ErrorAlert from '../../components/ErrorAlert';
 
 
 const EditProfile = () => {

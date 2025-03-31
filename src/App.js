@@ -3,18 +3,18 @@ import Container from 'react-bootstrap/Container';
 
 import './App.css';
 import './api/axiosDefaults';
+import styles from './styles/App.module.css'
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
-import Register from './pages/auth/Register';
-import Login from './pages/auth/Login';
-import Profile from './pages/Profile';
+import Register from './pages/authPages/Register';
+import Login from './pages/authPages/Login';
+import Profile from './pages/profilePages/Profile';
 import PostPage from './pages/postPages/PostPage';
-import styles from './styles/App.module.css'
 import CreateSong from './pages/songPages/CreateSong';
 import EditSong from './pages/songPages/EditSong';
 import CreatePost from './pages/postPages/CreatePost';
 import EditPost from './pages/postPages/EditPost';
-import EditProfile from './pages/EditProfile';
+import EditProfile from './pages/profilePages/EditProfile';
 import MyFeed from './pages/postPages/MyFeed';
 import GeneralFeed from './pages/postPages/GeneralFeed';
 
