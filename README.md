@@ -1,80 +1,49 @@
-### CREDITS
+# Worthing Sound Wave
 
-Home Page Guitar Image ('home-image.webp')
-https://www.freepik.com/free-photo/guitarist-blurred-pianst_1118716.htm#fromView=search&page=2&position=32&uuid=6771d36a-a799-47ec-9781-bcc146c486f6&query=music+band+live
-Register Page Image
-https://www.freepik.com/free-photo/rock-band-guitarist-performing-repetition-recording-studio_18042015.htm#fromView=search&page=1&position=29&uuid=7b6f4546-e684-4ae4-ac7d-a2f8307c783a&query=music+band+rock
-LogIn Page Image
-https://www.freepik.com/free-photo/close-up-artists-playing-instruments_19333207.htm#fromView=search&page=1&position=0&uuid=c9e52c7c-f610-433c-b3b6-a4667ca480dc&query=music+band+piano
+Live site: <a href="https://worthing-sw-c84ec9c15d42.herokuapp.com/">
+https://worthing-sw-c84ec9c15d42.herokuapp.com/</a>
 
+Worthing Sound Wave is a website that allows musicians based in Worthing to connect. You can make posts,
+upload songs, vote on content, personalise your profile and comment on others' posts.
 
-# Getting Started with Create React App
+![Responsive Mockup](/readme-assets/responsive.webp)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Agile Methodology
 
-## Available Scripts
+# Rationale for Chosen Libraries
 
-In the project directory, you can run:
+# UX Planning
 
-### `npm start`
+# Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Features Yet To Be Implemented
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Data Modelling & Schema
 
-### `npm test`
+# Validators
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Testing
 
-### `npm run build`
+## Lighthouse Testing
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Manual Testing
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Automated Testing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Bugs
 
-### `npm run eject`
+# Deployment
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Credits & References
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Media
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
++ Favicon (<code>static/images/favicon.ico</code>) and site icons from <a href='https://fontawesome.com/v4/license/'>Font Awesome by Dave Gandy</a>.
++ <code>src/assets/logo.webp</code> is an original logo designed by myself,
+Harry Peter Miles.
++ All site images provided by Freepik under free license. This includes all images in <code>src/assets/</code> except the favicon and logo:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   + <a href='https://www.freepik.com/free-photo/guitarist-blurred-pianst_1118716.htm#fromView=search&page=2&position=32&uuid=6771d36a-a799-47ec-9781-bcc146c486f6&query=music+band+live'><code>src/assets/home-image.webp</code></a>.
+   + <a href='https://www.freepik.com/free-photo/rock-band-guitarist-performing-repetition-recording-studio_18042015.htm#fromView=search&page=1&position=29&uuid=7b6f4546-e684-4ae4-ac7d-a2f8307c783a&query=music+band+rock'><code>src/assets/register-image.webp</code></a>.
+   + <a href='https://www.freepik.com/free-photo/close-up-artists-playing-instruments_19333207.htm#fromView=search&page=1&position=0&uuid=c9e52c7c-f610-433c-b3b6-a4667ca480dc&query=music+band+piano'><code>src/assets/login-image.webp</code></a>.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
