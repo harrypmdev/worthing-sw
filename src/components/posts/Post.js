@@ -2,26 +2,32 @@ import React, { useState } from 'react'
 import { Card, Col, Row, Spinner } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 
-import Avatar from './Avatar';
-import Song from './Song';
-import Vote from './Vote';
-import Follow from './Follow';
-import { useCurrentUser } from '../contexts/CurrentUserContext';
-import useFetchSong from '../hooks/useFetchSong';
+import Avatar from '../profile/Avatar';
+import Song from '../songs/Song';
+import Vote from '../Vote';
+import Follow from '../Follow';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import useFetchSong from '../../hooks/useFetchSong';
 
 
 /**
- * Render a post, displaying its title, contents, poster and attached song if applicable.
+ * Render a post, displaying its title, contents, poster and if applicable attached song.
  * 
  * @param {Object} post An object containing post details as retrieved from the '/posts' endpoint.
+ * 
  * @param {boolean} [link=true] Whether the post should function as a link to a separate post page.
+ * 
  * @param {boolean} [songDetails=false] Whether song details should be shown for the attached song (true), 
  *                              or only the audio player (false).
+ * 
  * @param {boolean} [useAvatar=true] Whether a profile avatar should appear on the post if the
  *                                   screen is large enough.
+ * 
  * @param {boolean} [editable=false] Whether the post should be editable if it belongs to the current user.
+ * 
  * @param {boolean} [followButton=false] Whether a follow button should appear if the post does not
  *                                       belong to the current user.
+ * 
  * @returns {ReactNode} - An element displaying the details of a post as returned from the '/posts' endpoint.
  */
 const Post = (props) => {

@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { Container, Form} from 'react-bootstrap';
 
 import Post from './Post';
-import styles from '../styles/Search.module.css';
-import infiniteScrollStyles from '../styles/InfiniteScrollStyles.module.css';
+import styles from '../../styles/Search.module.css';
+import infiniteScrollStyles from '../../styles/InfiniteScrollStyles.module.css';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { fetchMoreData } from '../utils/utils';
-import Asset from './spinner/Asset';
-import useFetchDetailedPostList from '../hooks/useFetchDetailedPostList';
+import { fetchMoreData } from '../../utils/utils';
+import Asset from '../spinner/Asset';
+import useFetchDetailedPostList from '../../hooks/useFetchDetailedPostList';
 
 /**
  * Render a feed of posts.

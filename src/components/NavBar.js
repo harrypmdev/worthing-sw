@@ -8,7 +8,7 @@ import axios from 'axios';
 import logo from '../assets/logo.webp'
 import styles from '../styles/NavBar.module.css'
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
-import Avatar from './Avatar';
+import Avatar from './profile/Avatar';
 import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
 import { removeTokenTimestamp } from '../utils/utils';
 

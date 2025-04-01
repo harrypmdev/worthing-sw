@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 
-import Feed from '../../components/Feed';
-import ProfileSummary from '../../components/ProfileSummary';
+import Feed from '../../components/posts/Feed';
+import ProfileSummary from '../../components/profile/ProfileSummary';
 import { useParams } from 'react-router-dom';
 import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 import useFetchProfileData from '../../hooks/useFetchProfileData';

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import Feed from '../../components/Feed';
 import { Col, Row } from 'react-bootstrap';
 
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { useRedirect } from '../../hooks/useRedirect';
-import SongList from '../../components/SongList';
+import SongList from '../../components/songs/SongList';
+import Feed from '../../components/posts/Feed';
 import Asset from '../../components/spinner/Asset';
 import useFetchSong from '../../hooks/useFetchSong';
 

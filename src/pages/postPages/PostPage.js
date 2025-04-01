@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 
-import Post from '../../components/Post';
+import Post from '../../components/posts/Post';
 import CreateComment from '../../components/comments/CreateComment';
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import FullPageSpinner from '../../components/spinner/FullPageSpinner';

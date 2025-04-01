@@ -2,10 +2,10 @@ import React from 'react';
 import { Button, Col, Container, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import SongList from './SongList';
-import styles from '../styles/ProfileSummary.module.css';
-import Follow from './Follow';
-import { useCurrentUser } from '../contexts/CurrentUserContext';
+import SongList from '../songs/SongList';
+import styles from '../../styles/ProfileSummary.module.css';
+import Follow from '../Follow';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 
 /**

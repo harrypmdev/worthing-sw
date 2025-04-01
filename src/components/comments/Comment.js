@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Card, Col, Row } from 'react-bootstrap'
 
-import Avatar from '../Avatar'
+import Avatar from '../profile/Avatar'
 import { axiosRes } from '../../api/axiosDefaults';
 import EditComment from './EditComment';
 
