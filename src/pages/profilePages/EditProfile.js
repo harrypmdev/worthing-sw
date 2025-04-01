@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Button, Col, Container, Form, Image, Row } from 'react-bootstrap';
 
 import { useCurrentUser, useSetCurrentUser } from '../../contexts/CurrentUserContext'
@@ -8,6 +8,7 @@ import styles from '../../styles/EditProfile.module.css';
 import { useNavigate } from 'react-router-dom';
 import ErrorAlert from '../../components/ErrorAlert';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
+import useFetchProfileData from '../../hooks/useFetchProfileData';
 
 
 const EditProfile = () => {
@@ -19,27 +20,13 @@ const EditProfile = () => {
     bio: '',
     image: ''
   });
-  const [hasLoaded, setHasLoaded] = useState(false);
+  const hasLoaded = useFetchProfileData({
+    id: currentUser?.profile_id,
+    setProfile,
+  })
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({})
   const imageFile = useRef();
-
-  useEffect(() => {
-    const fetchProfile = async() => {
-        try {
-            const {data} = await axiosReq.get(`/profiles/${currentUser?.profile_id}`);
-            const { bio, image } = data;
-            setProfile({ bio, image });
-            setHasLoaded(true);
-        } catch(err){
-            console.log(err)
-        }
-    }
-    if (currentUser) {
-      setHasLoaded(false);
-      fetchProfile();
-    }
-  }, [currentUser, setProfile])
 
   const handleSubmit = async event => {
     event.preventDefault();

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { axiosReq } from '../../api/axiosDefaults';
 import { Container } from 'react-bootstrap';
 
 import Post from '../../components/Post';
@@ -12,32 +11,15 @@ import Comment from '../../components/comments/Comment';
 import { fetchMoreData } from '../../utils/utils';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Asset from '../../components/spinner/Asset';
+import useFetchPostData from '../../hooks/useFetchPostData';
 
 const PostPage = () => {
   const {id} = useParams();
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const [post, setPost] = useState({});
-
   const currentUser = useCurrentUser();
-  const [comments, setComments] = useState({results: []});
 
-  useEffect(() => {
-    const fetchPost = async() => {
-        try {
-            const [{data: post}, {data: comments}] = await Promise.all([
-                axiosReq.get(`/posts/${id}`),
-                axiosReq.get(`/comments/?post=${id}`)
-            ])
-            setPost(post)
-            setComments(comments)
-            setHasLoaded(true);
-        } catch(err){
-            console.log(err)
-        }
-    }
-    setHasLoaded(false);
-    fetchPost();
-  }, [id])
+  const [post, setPost] = useState({});
+  const [comments, setComments] = useState({results: []});
+  const hasLoaded = useFetchPostData({id, setPost, setComments});
 
   return (
     <Container className="flex-grow-1 d-flex flex-column">

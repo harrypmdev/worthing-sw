@@ -13,10 +13,10 @@ const MyFeed = () => {
   useRedirect('loggedOut')
   const currentUser = useCurrentUser();
   const [songData, setSongData] = useState({});
-  const hasLoaded = useFetchSong({
-    setSongData, 
-    filter: `/songs/?ordering=-net_votes&user__followed__user=${currentUser?.pk}`
-  });
+  const filter = currentUser?.pk
+  ? `/songs/?ordering=-net_votes&user__followed__user=${currentUser?.pk}`
+  : null;
+  const hasLoaded = useFetchSong({setSongData, filter});
 
   return (
       <Row>

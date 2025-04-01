@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import { axiosReq } from '../api/axiosDefaults';
+
 
 const useFetchSong = (props) => {
   const { 
-    setSongData, 
+    setSongData,
     id=null, 
     filter='',
     redirectUnauthorized=false,
@@ -29,9 +31,8 @@ const useFetchSong = (props) => {
         console.log(err);
       }
     };
-    
     setHasLoaded(false);
-    fetchSong();
+    if (id || filter ) fetchSong();
   }, [id, navigate, setSongData, filter, redirectUnauthorized]);
 
   return hasLoaded;

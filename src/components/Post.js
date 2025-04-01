@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Card, Col, Row, Spinner } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 
 import Avatar from './Avatar';
-import { axiosReq } from '../api/axiosDefaults';
 import Song from './Song';
 import Vote from './Vote';
 import Follow from './Follow';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
+import useFetchSong from '../hooks/useFetchSong';
 
 
 /**
@@ -33,30 +33,9 @@ const Post = (props) => {
     editable=false, 
     followButton=false 
     } = props;
-  const [song, setSong] = useState('');
-  const [hasLoaded, setHasLoaded] = useState(false);
+  const [songData, setSongData] = useState('');
   const currentUser = useCurrentUser();
-
-  /**
-   * Fetch a song from the server if the post has a song attached.
-   * Sets the 'song' state with the API response data and sets a
-   * loading state until the API call is finished.
-   */
-  useEffect(() => {
-    const fetchSongs = async () => {
-      try {
-        const {data} = await axiosReq.get(`/songs/${post.song}/`);
-        setHasLoaded(true);
-        setSong(data);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-
-    if (post.song) {
-      fetchSongs();
-    }
-  }, [post.song]);
+  const hasLoaded = useFetchSong({setSongData, id: post.song});
 
   const avatarAndFollow = <>
     {followButton && !post.is_user && currentUser &&
@@ -118,7 +97,7 @@ const Post = (props) => {
             </Col>
             <Col lg='4' className='d-none d-lg-inline'>
               {post.song && hasLoaded ? (
-                <Song song={song} includeDetails={songDetails}/>
+                <Song song={songData} includeDetails={songDetails}/>
               ) : post.song && !hasLoaded ? (
                 <div className='d-flex justify-content-center'>
                   <Spinner />
@@ -140,7 +119,7 @@ const Post = (props) => {
     )}
     <div className={`${songDetails && 'd-lg-none mt-2'}`}>
     {post.song && hasLoaded && songDetails ? (
-        <Song song={song} includeDetails={songDetails}/>
+        <Song song={songData} includeDetails={songDetails}/>
       ) : post.song && !hasLoaded && songDetails? (
         <div className='d-flex justify-content-center'>
           <Spinner />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
@@ -16,6 +16,7 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 import ErrorAlert from '../../components/ErrorAlert';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
+import useFetchSong from '../../hooks/useFetchSong';
 
 
 function CreatePost() {
@@ -29,29 +30,15 @@ function CreatePost() {
   })
   const {title, content} = postData;
 
-  const [isLoading, setIsLoading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [fetchedSongs, setFetchedSongs] = useState([]);
+  const [songData, setSongData] = useState([]);
   const [selectedSong, setSelectedSong] = useState('');
   const [errors, setErrors] = useState({});
 
-  useEffect(() => {
-    const fetchSongs = async () => {
-      try {
-        const { data } = await axiosReq.get(`/songs/?ordering=-net_votes&user=${currentUser?.pk}`);
-        setFetchedSongs(data.results);
-      } catch (error) {
-        console.error('Error fetching songs:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    if (currentUser) {
-      setIsLoading(true);
-      fetchSongs();
-    }
-  }, [currentUser, setFetchedSongs, setIsLoading]);
-
+  const filter = currentUser?.pk 
+  ? `ordering=-net_votes&user=${currentUser?.pk}`
+  : false;
+  const isLoading = useFetchSong({setSongData, filter});
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -124,7 +111,7 @@ function CreatePost() {
                 <option value=''>
                   No Song
                 </option>
-                {fetchedSongs?.map(song => (
+                {songData?.map(song => (
                   <option key={song.id} value={song.id}>
                     {song.title}
                   </option>

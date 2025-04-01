@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 
 import SongList from '../../components/SongList';
 import Feed from '../../components/Feed';
-import { axiosReq } from '../../api/axiosDefaults';
 import Asset from '../../components/spinner/Asset';
 import useFetchSong from '../../hooks/useFetchSong';
 

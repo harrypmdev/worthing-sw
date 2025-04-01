@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { useNavigate } from 'react-router-dom';
+
 import { axiosReq } from '../api/axiosDefaults';
+
 
 /**
  * Custom hook to redirect the user if they (currentUser) already have 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
@@ -18,6 +18,8 @@ import ErrorAlert from '../../components/ErrorAlert';
 import DeleteModal from '../../components/delete/DeleteModal';
 import DeleteButton from '../../components/delete/DeleteButton';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
+import useFetchPostData from '../../hooks/useFetchPostData';
+import useFetchSong from '../../hooks/useFetchSong';
 
 
 function EditPost() {
@@ -26,49 +28,27 @@ function EditPost() {
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
 
-  const [postData, handleChange, setPostData] = useFormDataHandler({
+  const [post, handleChange, setPost] = useFormDataHandler({
     title: '',
     content: '',
     song: '',
   })
-  const {title, content} = postData;
+  const {title, content} = post;
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [fetchedSongs, setFetchedSongs] = useState([]);
+  const [songData, setSongData] = useState([]);
   const [selectedSong, setSelectedSong] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState({});
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const [songsResponse, postResponse] = await Promise.all([
-          axiosReq.get(`/songs/?ordering=-net_votes&user=${currentUser?.pk}`),
-          axiosReq.get(`/posts/${id}`),
-        ]);
-        const songs = songsResponse.data.results;
-        const post = postResponse.data;
-        if (!post.is_user) {
-          navigate(`/general-feed/}`);
-          return;
-        }
-        setFetchedSongs(songs);
-        const {title, content, song} = post;
-        setPostData({title, content, song});
-        const matchingSong = songs.find(song => song.id === post.song);
-        setSelectedSong(matchingSong ? matchingSong.id : '');
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    if (currentUser) {
-      fetchData();
-    }
-  }, [currentUser, id, navigate, setPostData]);
+  const postLoading = useFetchPostData({id, setPost});
+  const filter = currentUser?.pk 
+  ? `ordering=-net_votes&user=${currentUser?.pk}`
+  : null;
+  const songsLoading = useFetchSong({setSongData, filter})
+  const matchingSong = songData.find(song => song.id === post.song);
+  setSelectedSong(matchingSong ? matchingSong.id : '');
+  const isLoading = postLoading || songsLoading
 
   const handleSubmit = async (event) => {
     setIsSubmitting(true);
@@ -137,7 +117,7 @@ function EditPost() {
                 <option value=''>
                   No Song
                 </option>
-                {fetchedSongs?.map(song => (
+                {songData?.map(song => (
                   <option key={song.id} value={song.id}>
                     {song.title}
                   </option>
