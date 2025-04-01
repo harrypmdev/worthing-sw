@@ -3,7 +3,26 @@ import { Button, Modal } from 'react-bootstrap';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useNavigate } from 'react-router-dom';
 
-
+/**
+ * Render a delete modal which shows conditionally dependant on the showModal prop.
+ * Primarily for use alongside the 'DeleteButton' component.
+ * 
+ * @param {boolean} showModal A boolean that determines when the modal should show.
+ * 
+ * @param {Function} setShowModal The setter function for the modal screen. Should be the
+ *                                same setter function passed to 'DeleteButton' if the
+ *                                components are being used together.
+ * 
+ * @param {string} text A string describing what is being deleted.
+ * 
+ * @param {string} deleteEndpoint The backend endpoint that the DELETE request should be
+ *                                sent to - e.g `/posts/1/`.
+ * 
+ * @param {string} navigateAfterDelete The URL route the app should navigate to after the
+ *                                     deletion has finished.
+ * 
+ * @returns {ReactNode} - An element that conditionally displays a delete modal.
+ */
 const DeleteModal = (props) => {
   const {
     showModal, 
@@ -16,6 +35,11 @@ const DeleteModal = (props) => {
   const navigate = useNavigate();
   const [deleteLoading, setDeleteLoading] = useState(false);
 
+  /**
+   * Handle deletion using the 'deleteEndpoint' prop provided.
+   * Redirects to 'navigateAfterDelete' URL route after deletion.
+   * Sets 'deleteLoading' to true for duration of deletion.
+   */
   const handleDelete = async () => {
     setDeleteLoading(true);
     try {

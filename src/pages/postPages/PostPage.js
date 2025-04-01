@@ -27,14 +27,7 @@ const PostPage = () => {
           <Post post={post} link={false} songDetails followButton={true} />
           <hr />
           {currentUser ? (
-          <CreateComment
-            profileId={currentUser.profile_id}
-            profileImage={currentUser.profile_image}
-            username={currentUser.username}
-            post={id}
-            setPost={setPost}
-            setComments={setComments}
-          />
+          <CreateComment post={id} setComments={setComments}/>
           ) : null}
           {comments.results.length ? (
             <InfiniteScroll

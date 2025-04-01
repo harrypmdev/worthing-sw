@@ -13,11 +13,16 @@ import useFetchDetailedPostList from '../../hooks/useFetchDetailedPostList';
  * Render a feed of posts.
  * 
  * @param {number} [filterByOwnershipId=null] A user id to filter posts by - returns only posts owned by this user.
+ * 
  * @param {number} [filterByFollowingId=null] A user id to filter posts by - returns only posts from users 
  *                                            the given user follows.
+ * 
  * @param {boolean} [useAvatars=true] Whether profile avatars should appear on posts if the screen is large enough.
+ * 
  * @param {boolean} [editable=false] Whether posts belonging to the user should be editable.
+ * 
  * @param {boolean} [followButtons=false] Whether follow buttons should appear on posts other than the user's.
+ * 
  * @returns {ReactNode} An element containing a feed of post components.
  */
 const Feed = (props) => {

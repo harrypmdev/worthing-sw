@@ -2,7 +2,7 @@ import { useState } from "react";
 
 /**
  * Hook for managing form data state. Helps prevent otherwise frequent
- * reuse of the handleChange function below to update form data.
+ * reuse of identical handleChange functions.
  * 
  * @param {Object} initialState The data with which to initialise formData.
  * 

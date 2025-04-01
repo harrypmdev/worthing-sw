@@ -5,7 +5,35 @@ import Avatar from '../profile/Avatar'
 import { axiosRes } from '../../api/axiosDefaults';
 import EditComment from './EditComment';
 
+/**
+ * Render a comment, displaying a profile avatar for its poster, the comment contents 
+ * and when the comment was posted (with the last updated time also if applicable).
+ * Props in snake case for easy destructuring of the comment object returned from the
+ * backend.
+ * 
+ * @param {number} id The id for the comment to be rendered.
 
+ * @param {string} content The content of the comment.
+ * 
+ * @param {string} user The username of the user that posted the comment.
+ * 
+ * @param {string} profile_image The URL of the profile image for the user that posted
+ *                               the comment.
+ * 
+ * @param {number} profile_id The id of the profile of the user that posted the comment.
+ * 
+ * @param {string} created_at A string describing the date/time the comment was posted.
+ * 
+ * @param {string} updated_at A string describing the date/time the comment was last updated.
+ * 
+ * @param {boolean} is_user Whether or not the comment was posted by the current user.
+ * 
+ * @param {Function} setComments the setter function for the list of comments in the parent
+ *                               page so the page to be dynamically altered when comments 
+ *                               are deleted.
+ * 
+ * @returns {ReactNode} - An element displaying the details of a comment.
+ */
 const Comment = (props) => {
   const {
     id,
@@ -16,10 +44,16 @@ const Comment = (props) => {
     created_at, 
     updated_at,
     is_user,
-    setComments} = props;
+    setComments
+  } = props;
   const [buttonLoading, setButtonLoading] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   
+  /**
+   * Handle deletion of the current comment.
+   * Updates the parents comments list as to dynamically render the
+   * deletion.
+   */
   const handleDelete = async () => {
     if (buttonLoading) return;
     try {

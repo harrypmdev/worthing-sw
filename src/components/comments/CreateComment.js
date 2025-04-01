@@ -7,12 +7,29 @@ import styles from "../../styles/CommentCreateEditForm.module.css";
 import Avatar from "../profile/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { Button } from "react-bootstrap";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-function CommentCreate(props) {
-  const { post, setComments, profileImage, profileId, username} = props;
+/**
+ * Render a form for the creation of a new comment.
+ * 
+ * @param {number} post The id of the post this comment will be associated with.
+ * 
+ * @param {Function} setComments the setter function for the list of comments in the parent
+ *                               page so the page to be dynamically altered when comments 
+ *                               are added.
+ * 
+ * @returns {ReactNode} - An element displaying the create comment form.
+ */
+function CommentCreate({post, setComments}) {
+  const currentUser = useCurrentUser();
   const [postButtonLoading, setPostButtonLoading] = useState(false);
   const [content, setContent] = useState("");
 
+  /**
+   * Handle the changing of the content text.
+   * 
+   * @param {Event} event The event triggered by the changing of the content text.
+   */
   const handleChange = (event) => {
     setContent(event.target.value);
   };
@@ -44,9 +61,9 @@ function CommentCreate(props) {
         <InputGroup className='mt-2'>
           <div className="ps-2">
             <Avatar
-              image={profileImage}
-              username={username}
-              id={profileId}
+              image={currentUser?.profile_image}
+              username={currentUser?.username}
+              id={currentUser?.profile_id}
               dimensions={40}
             />
           </div>

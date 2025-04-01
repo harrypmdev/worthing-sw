@@ -7,24 +7,44 @@ import styles from "../../styles/CommentCreateEditForm.module.css";
 import Avatar from "../profile/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { Button } from "react-bootstrap";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-function EditComment(props) {
-  const { 
-    id, 
-    setComments, 
-    profileImage, 
-    profileId, 
-    username, 
-    content,
-    setShowEdit} = props;
+/**
+ * Render a form for the editing of an existing comment.
+ * 
+ * @param {number} id The id for the comment which is being edited.
+ * 
+ * @param {Function} setComments the setter function for the list of comments in the parent
+ *                               page so the page to be dynamically altered when comments 
+ *                               are edited.
+ * 
+ * @param {string} content The existing content of the comment prior to editing.
+ * 
+ * @param {Function} setShowEdit The setter function from the parent element to determine whether
+ *                               this component should be displayed or the regular Comment component.
+ * 
+ * @returns {ReactNode} - An element displaying the edit comment form.
+ */
+function EditComment({id, setComments, content, setShowEdit}) {
+  const currentUser = useCurrentUser();
 
   const [saveButtonLoading, setSaveButtonLoading] = useState(false);
   const [formContent, setFormContent] = useState(content);
 
-  const handleChange = (event) => {
-    setFormContent(event.target.value);
-  };
+  /**
+   * Handle the changing of the content text.
+   * 
+   * @param {Event} event The event triggered by the changing of the content text.
+   */
+  const handleChange = (event) => setFormContent(event.target.value);
 
+  /**
+   * Handle the submitting of the changed comment content.
+   * Sends a PUT request with new data to the backend for the comment in question.
+   * Sets 'saveButtonLoading' to 'true' for the duration of the updating process.
+   * 
+   * @param {Event} event The event triggered by the edited comment submission.
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (saveButtonLoading) return;
@@ -58,9 +78,9 @@ function EditComment(props) {
         <InputGroup className='mt-2'>
           <div className="ps-2">
             <Avatar
-              image={profileImage}
-              username={username}
-              id={profileId}
+              image={currentUser?.profile_image}
+              username={currentUser?.username}
+              id={currentUser?.profile_id}
               dimensions={40}
             />
           </div>
