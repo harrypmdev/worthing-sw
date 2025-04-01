@@ -52,6 +52,15 @@ function EditPost() {
     {id, setSongData, setSelectedSong, setPost}
   );
   
+  /**
+   * Handle the submitting of the edit post form data.
+   * Sends a PUT request to the '/posts/:id' endpoint to edit an existing post.
+   * Sets the submit button to a loading state for duration of process.
+   * Redirects to the profile page where the edited post is viewable.
+   * 
+   * @param {Event} event The event triggered by the clicking of the submit
+   *                      edit post form buttom.
+   */
   const handleSubmit = async (event) => {
     setIsSubmitting(true);
     event.preventDefault();

@@ -33,6 +33,14 @@ function Register() {
 
   const [errors, setErrors] = useState({})
 
+  /**
+   * Handle the submitting of the register form data.
+   * Sends a POST request to the dj-rest-auth registration endpoint.
+   * Redirects to login page.
+   * 
+   * @param {Event} event The event triggered by the clicking of the submit
+   *                      register form button.
+   */
   const handleSubmit = async event => {
     event.preventDefault();
     try { 

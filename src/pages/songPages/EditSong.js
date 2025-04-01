@@ -19,7 +19,12 @@ import DeleteButton from '../../components/delete/DeleteButton';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
 import useFetchSong from '../../hooks/useFetchSong';
 
-
+/**
+ * Render the Edit song page, including an editable form which auto-fills
+ * with the pre-existing data for the song in question.
+ * 
+ * @returns {ReactNode} - An element displaying the full edit song page.
+ */
 function EditSong() {
   useRedirect('loggedOut')
   const {id} = useParams();
@@ -42,6 +47,16 @@ function EditSong() {
   const {title, link_to_song, artist_name} = songData;
   const hasLoaded = useFetchSong({id, setSongData, redirectUnauthorized: true});
 
+  /**
+   * Handle the submitting of the edit song form.
+   * Sends a PUT request to the '/songs/:id' endpoint with the
+   * new song data, including the song file.
+   * Sets a loading state for the submit button whilst processing.
+   * Redirects to the profile page where the changes are viewable.
+   * 
+   * @param {Event} event The event triggered by the clicking of the submit
+   *                      edit song form button.
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);

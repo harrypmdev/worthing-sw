@@ -18,7 +18,12 @@ import useFormDataHandler from '../../hooks/useFormDataHandler';
 import useRedirectOnSongLimit from '../../hooks/useRedirectOnSongLimit';
 import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 
-
+/**
+ * Render the create song page, including a form in which to input the
+ * information for the new song.
+ * 
+ * @returns {ReactNode} - An element displaying the full create song page.
+ */
 function CreateSong() {
   useRedirect('loggedOut')
   const isLoading = useRedirectOnSongLimit();
@@ -39,7 +44,16 @@ function CreateSong() {
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-
+  /**
+   * Handle the submitting of the create song form.
+   * Sends a POST request to the '/songs' endpoint with the
+   * song data, including the song file.
+   * Sets a loading state for the submit button whilst processing.
+   * Redirects to the profile page where the changes are viewable.
+   * 
+   * @param {Event} event The event triggered by the clicking of the submit
+   *                      create song form button.
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
@@ -61,6 +75,14 @@ function CreateSong() {
     }
   };
 
+  /**
+   * Handle the changing of the song file form section.
+   * Trims the audio file to a maximum of 15 seconds and updates the 
+   * songData state with the trimmed file.
+   * 
+   * @param {Event} event The event triggered by the changing of the
+   *                      song file form section.
+   */
   const handleSongChange = async event => {
     let audioToSave;
     try {

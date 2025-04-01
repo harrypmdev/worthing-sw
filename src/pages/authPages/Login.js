@@ -32,6 +32,14 @@ function Login() {
   const {username, password} = loginData;
   const [errors, setErrors] = useState({})
 
+  /**
+   * Handle the submitting of the login form data.
+   * Sends a POST request to the dj-rest-auth login endpoint.
+   * Sets current user, token timestamp and redirects to general feed.
+   * 
+   * @param {Event} event The event triggered by the clicking of the
+   *                      submit login form button.
+   */
   const handleSubmit = async event => {
     event.preventDefault();
     try { 

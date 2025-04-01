@@ -6,7 +6,13 @@ import Feed from '../../components/posts/Feed';
 import useFetchSong from '../../hooks/useFetchSong';
 import ComponentSpinner from '../../components/spinner/ComponentSpinner';
 
-
+/**
+ * Render the General Feed page, which displays a feed of all posts on
+ * the site (most recent at the top) and the top songs from all users ranked
+ * 1 - 10.
+ * 
+ * @returns {ReactNode} - An element displaying the full general feed page.
+ */
 const GeneralFeed = () => {
   const [songData, setSongData] = useState({});
   const hasLoaded = useFetchSong(

@@ -10,7 +10,14 @@ import ErrorAlert from '../../components/ErrorAlert';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
 import useFetchProfileData from '../../hooks/useFetchProfileData';
 
-
+/**
+ * Render the Edit Profile page.
+ * Displays the user's current profile image; a new image can be uploaded upon clicking
+ * the current image. Also displays a form to update the bio which pre-fills with the
+ * existing bio.
+ * 
+ * @returns {ReactNode} - An element displaying the full edit profile page.
+ */
 const EditProfile = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
@@ -32,12 +39,22 @@ const EditProfile = () => {
   const [errors, setErrors] = useState({})
   const imageFile = useRef();
 
+  /**
+   * Handle the submitting of the edit profile form.
+   * Sends a PUT request to the '/profiles/:id' endpoint with the
+   * new data, including the new profile image if applicable.
+   * Sets a loading state for the submit button whilst processing.
+   * Redirects to the profile page where the changes are viewable.
+   * 
+   * @param {Event} event The event triggered by the clicking of the submit
+   *                      edit profile form button.
+   */
   const handleSubmit = async event => {
     event.preventDefault();
     setIsSubmitting(true);
+
     const formData = new FormData();
     formData.append('bio', profile.bio);
-
     if (imageFile?.current?.files[0]) {
       formData.append("image", imageFile?.current?.files[0]);
     }
@@ -57,6 +74,13 @@ const EditProfile = () => {
     }
   }
 
+  /**
+   * Handle the changing of the image form section.
+   * Updates the profile state if an image has been uploaded.
+   * 
+   * @param {Event} event The event triggered by the changing of the
+   *                      image form section.
+   */
   const handleImageChange = event => {
     if (event.target.files.length) {
       setProfile({

@@ -7,6 +7,13 @@ import { useParams } from 'react-router-dom';
 import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 import useFetchProfileData from '../../hooks/useFetchProfileData';
 
+/**
+ * Render the Profile page.
+ * Displays the user's current profile image, their songs, and a feed
+ * of their posts.
+ * 
+ * @returns {ReactNode} - An element displaying the full profile page.
+ */
 const Profile = () => {
   const {id} = useParams();
   const [profile, setProfile] = useState(null);

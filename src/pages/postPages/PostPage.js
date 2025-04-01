@@ -13,6 +13,14 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import useFetchPostData from '../../hooks/useFetchPostData';
 import ComponentSpinner from '../../components/spinner/ComponentSpinner';
 
+/**
+ * Render the Post page, which displays a single post in more detail than
+ * the feed pages provide.
+ * Displays the posts song (if applicable) which more detail, and all comments
+ * on the post with a form to add a comment.
+ * 
+ * @returns {ReactNode} - An element displaying the full post page.
+ */
 const PostPage = () => {
   const {id} = useParams();
   const currentUser = useCurrentUser();

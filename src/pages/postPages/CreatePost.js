@@ -45,6 +45,15 @@ function CreatePost() {
   : false;
   const hasLoaded = useFetchSong({setSongData, filter});
 
+  /**
+   * Handle the submitting of the create post form data.
+   * Sends a POST request to the '/posts' endpoint to create a new post.
+   * Sets the submit button to a loading state for duration of process.
+   * Redirects to the profile page where the new post is viewable.
+   * 
+   * @param {Event} event The event triggered by the clicking of the submit
+   *                      post form buttom.
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
@@ -58,9 +67,7 @@ function CreatePost() {
       navigate(`/profile/${currentUser.profile_id}`);
     } catch (err) {
       console.log(err);
-      if (err.response?.status !== 401) {
-        setErrors(err.response?.data);
-      }
+      setErrors(err.response?.data);
       setIsSubmitting(false);
     }
   };
