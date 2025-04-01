@@ -7,7 +7,7 @@ import infiniteScrollStyles from '../styles/InfiniteScrollStyles.module.css';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchMoreData } from '../utils/utils';
 import Asset from './spinner/Asset';
-import useFetchDetailedPostList from '../hooks/useFetchPostsFilteringDetailed';
+import useFetchDetailedPostList from '../hooks/useFetchDetailedPostList';
 
 /**
  * Render a feed of posts.
