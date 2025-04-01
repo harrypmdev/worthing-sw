@@ -18,10 +18,14 @@ import ErrorAlert from '../../components/ErrorAlert';
 import DeleteModal from '../../components/delete/DeleteModal';
 import DeleteButton from '../../components/delete/DeleteButton';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
-import useFetchPostData from '../../hooks/useFetchPostData';
-import useFetchSong from '../../hooks/useFetchSong';
+import useEditPostData from '../../hooks/useEditPostData';
 
-
+/**
+ * Render the Edit post page, including an editable form which auto-fills
+ * with the pre-existing data for the post in question.
+ * 
+ * @returns {ReactNode} - An element displaying the full edit post page.
+ */
 function EditPost() {
   useRedirect('loggedOut')
   const {id} = useParams();
@@ -35,21 +39,15 @@ function EditPost() {
   })
   const {title, content} = post;
 
-  const [songData, setSongData] = useState([]);
   const [selectedSong, setSelectedSong] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [songData, setSongData] = useState({});
   const [errors, setErrors] = useState({});
-
-  const postLoading = useFetchPostData({id, setPost});
-  const filter = currentUser?.pk 
-  ? `ordering=-net_votes&user=${currentUser?.pk}`
-  : null;
-  const songsLoading = useFetchSong({setSongData, filter})
-  const matchingSong = songData.find(song => song.id === post.song);
-  setSelectedSong(matchingSong ? matchingSong.id : '');
-  const isLoading = postLoading || songsLoading
-
+  const hasLoaded = useEditPostData(
+    {id, setSongData, setSelectedSong, setPost}
+  );
+  
   const handleSubmit = async (event) => {
     setIsSubmitting(true);
     event.preventDefault();
@@ -69,9 +67,7 @@ function EditPost() {
 
   return (
     <Container className="flex-grow-1 d-flex flex-column">
-    { isLoading ? ( 
-      <FullPageSpinner />
-    ) : (
+    { hasLoaded ? ( 
       <Row className="d-flex flex-grow-1 align-items-center pb-6">
         <Col
         xs="12" 
@@ -155,6 +151,8 @@ function EditPost() {
           <Image fluid rounded src={createPostImage} className={styles.registerImage} />
         </Col>
       </Row>
+    ) : (
+      <FullPageSpinner />
     )}
     <DeleteModal 
       showModal={showModal}

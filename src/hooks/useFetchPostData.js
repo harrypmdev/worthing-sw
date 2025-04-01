@@ -39,6 +39,7 @@ const useFetchPostData = ({id, setPost, setComments}) => {
           if (commentsFetch && commentsResponse) {
             setComments(commentsResponse.data)
           }
+          console.log("posts loaded");
           setHasLoaded(true);
         } catch(err){
             console.log(err)

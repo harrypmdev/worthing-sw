@@ -18,7 +18,12 @@ import ErrorAlert from '../../components/ErrorAlert';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
 import useFetchSong from '../../hooks/useFetchSong';
 
-
+/**
+ * Render the create post page, including a form in which to input the
+ * information for the new post.
+ * 
+ * @returns {ReactNode} - An element displaying the full create post page.
+ */
 function CreatePost() {
   useRedirect('loggedOut')
   const currentUser = useCurrentUser();
@@ -38,7 +43,7 @@ function CreatePost() {
   const filter = currentUser?.pk 
   ? `ordering=-net_votes&user=${currentUser?.pk}`
   : false;
-  const isLoading = useFetchSong({setSongData, filter});
+  const hasLoaded = useFetchSong({setSongData, filter});
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -62,9 +67,7 @@ function CreatePost() {
 
   return (
     <Container className="flex-grow-1 d-flex flex-column">
-    { isLoading ? ( 
-      <FullPageSpinner />
-    ) : (
+    { hasLoaded ? ( 
       <Row className="d-flex flex-grow-1 align-items-center pb-6">
         <Col
         xs="12" 
@@ -111,7 +114,7 @@ function CreatePost() {
                 <option value=''>
                   No Song
                 </option>
-                {songData?.map(song => (
+                {songData.results?.map(song => (
                   <option key={song.id} value={song.id}>
                     {song.title}
                   </option>
@@ -142,6 +145,8 @@ function CreatePost() {
           <Image fluid rounded src={createPostImage} className={styles.registerImage} />
         </Col>
       </Row>
+    ) : (
+      <FullPageSpinner />
     )}
 
     </Container>

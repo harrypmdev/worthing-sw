@@ -14,7 +14,11 @@ import registerImage from '../../assets/register-image.webp';
 import styles from '../../styles/RegisterLogin.module.css';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
 
-
+/**
+ * Render the register page, including a register form for user authentication.
+ * 
+ * @returns {ReactNode} - An element displaying the full register page.
+ */
 function Register() {
   useRedirect('loggedIn')
   const navigate = useNavigate();

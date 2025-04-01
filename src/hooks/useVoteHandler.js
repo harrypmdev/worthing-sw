@@ -175,14 +175,14 @@ const useVoteHandler = ({ item }) => {
     setLoading(false);
   };
 
-  return [
+  return {
     handleUpvote, 
     handleDownvote, 
     loading, 
     userUpvoted,
     userDownvoted,
     netVotes,
-  ];
+  };
 }
 
 export default useVoteHandler

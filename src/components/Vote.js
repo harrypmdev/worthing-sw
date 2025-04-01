@@ -4,19 +4,36 @@ import { Button } from 'react-bootstrap';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import useVoteHandler from '../hooks/useVoteHandler';
 
-
+/**
+ * Render the 'vote' segment which allows users to track votes,
+ * make upvotes or make downvotes.
+ * 
+ * @param {Object} [song=null] The song returned from '/songs/:id' that this vote segment
+ *                             should alter the votes for.
+ * 
+ * @param {Object} [post=null] The post returned from '/posts/:id' that this vote segment
+ *                             should alter the votes for. Mutually exclusive with the 'song'
+ *                             prop - an error will be thrown if both are provided.
+ * 
+ * @returns {ReactNode} An element displaying the net votes for a song or post alongside upvote
+ *                      and downvote buttons.
+ */
 const Vote = ({song=null, post=null}) => {
   const currentUser = useCurrentUser();
+
+  if (song && post) {
+    throw new Error('Props conflict: the vote component can be rendered for either a song or a post, not both.');
+  }
   const bgColor = song ? 'light' : 'secondary-subtle';
   const item = song || post;
-  const [
+  const {
     handleUpvote, 
     handleDownvote, 
     loading, 
     userUpvoted, 
     userDownvoted, 
     netVotes
-  ] = useVoteHandler({item});
+  } = useVoteHandler({item});
 
   return (
     <div className={`d-flex align-items-center justify-content-center rounded p-1 bg-${bgColor}`}>
