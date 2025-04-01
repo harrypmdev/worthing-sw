@@ -32,7 +32,11 @@ function EditPost() {
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
 
-  const [post, handleChange, setPost] = useFormDataHandler({
+  const {
+    formData: post, 
+    handleChange, 
+    setFormData: setPost
+  } = useFormDataHandler({
     title: '',
     content: '',
     song: '',

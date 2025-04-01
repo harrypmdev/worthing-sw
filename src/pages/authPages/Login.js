@@ -26,7 +26,7 @@ function Login() {
   const setCurrentUser = useSetCurrentUser();
   const navigate = useNavigate();
 
-  const [loginData, handleChange] = useFormDataHandler({
+  const {formData: loginData, handleChange} = useFormDataHandler({
     username: '', password: ''
   })
   const {username, password} = loginData;

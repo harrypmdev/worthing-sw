@@ -23,7 +23,7 @@ function Register() {
   useRedirect('loggedIn')
   const navigate = useNavigate();
 
-  const [registerData, handleChange] = useFormDataHandler({
+  const {formData: registerData, handleChange} = useFormDataHandler({
     username: '',
     email: '',
     password1: '',

@@ -30,7 +30,11 @@ function EditSong() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  const [songData, handleChange, setSongData] = useFormDataHandler({
+  const {
+    formData: songData, 
+    handleChange, 
+    setFormData: setSongData
+  } = useFormDataHandler({
     title: '',
     link_to_song: '',
     artist_name: '',

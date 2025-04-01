@@ -29,7 +29,7 @@ function CreatePost() {
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
 
-  const [postData, handleChange] = useFormDataHandler({
+  const {formData: postData, handleChange} = useFormDataHandler({
     title: '',
     content: '',
   })

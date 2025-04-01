@@ -31,7 +31,7 @@ const useFormDataHandler = (initialState) => {
     });
   }
 
-  return [formData, handleChange, setFormData];
+  return {formData, handleChange, setFormData};
 }
 
 export default useFormDataHandler

@@ -16,7 +16,11 @@ const EditProfile = () => {
   const setCurrentUser = useSetCurrentUser();
   const navigate = useNavigate();
 
-  const [profile, handleChange, setProfile] = useFormDataHandler({
+  const {
+    formData: profile, 
+    handleChange, 
+    setFormData: setProfile
+  } = useFormDataHandler({
     bio: '',
     image: ''
   });

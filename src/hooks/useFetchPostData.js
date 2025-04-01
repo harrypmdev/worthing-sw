@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 import { axiosReq } from '../api/axiosDefaults';
 
 /**
- * Fetch a particular post from the backend as an object and pass this 
- * into a given setter function.
+ * A hook to fetch a particular post from the backend as an object and 
+ * pass this into a given setter function.
  * Optionally also fetches the comments associated with that post if provided 
  * with a setter function for the comments data.
  * If multiple posts needs to be fetched including with detailed filter options,

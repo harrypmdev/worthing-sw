@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { axiosReq } from '../api/axiosDefaults';
 
 /**
- * Fetch a particular song or list of songs from the backend as an object
- * and pass this into a given setter function.
+ * Hook to fetch a particular song or list of songs from the backend
+ * as an object and pass this into a given setter function.
  * 
  * @param {Function} setSongData The setter which the data from the backend
  *                               should be passed into.
