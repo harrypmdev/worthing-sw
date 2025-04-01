@@ -5,8 +5,8 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { useRedirect } from '../../hooks/useRedirect';
 import SongList from '../../components/songs/SongList';
 import Feed from '../../components/posts/Feed';
-import Asset from '../../components/spinner/Asset';
 import useFetchSong from '../../hooks/useFetchSong';
+import ComponentSpinner from '../../components/spinner/ComponentSpinner';
 
 
 const MyFeed = () => {
@@ -23,7 +23,7 @@ const MyFeed = () => {
         <Col xs={12} lg={8}>
           { currentUser?.pk 
             ? <Feed filterByFollowingId={currentUser.pk} /> 
-            : <Asset spinner />
+            : <ComponentSpinner />
           }
         </Col>
         <Col lg={4} className='d-none d-lg-block mt-3'>
@@ -32,7 +32,7 @@ const MyFeed = () => {
           { hasLoaded ? (
             <SongList songData={songData.results.slice(0, 10)}/>
           ) : (
-            <Asset spinner/>
+            <ComponentSpinner />
           )}
         </Col>
       </Row>

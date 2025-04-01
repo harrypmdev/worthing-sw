@@ -3,8 +3,8 @@ import { Col, Row } from 'react-bootstrap'
 
 import SongList from '../../components/songs/SongList';
 import Feed from '../../components/posts/Feed';
-import Asset from '../../components/spinner/Asset';
 import useFetchSong from '../../hooks/useFetchSong';
+import ComponentSpinner from '../../components/spinner/ComponentSpinner';
 
 
 const GeneralFeed = () => {
@@ -24,7 +24,7 @@ const GeneralFeed = () => {
         { hasLoaded ? (
           <SongList songData={songData.results.slice(0, 10)}/>
         ) : (
-          <Asset spinner/>
+          <ComponentSpinner />
         )}
       </Col>
     </Row>

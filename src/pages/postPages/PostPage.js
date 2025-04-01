@@ -10,8 +10,8 @@ import infiniteScrollStyles from '../../styles/InfiniteScrollStyles.module.css';
 import Comment from '../../components/comments/Comment';
 import { fetchMoreData } from '../../utils/utils';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import Asset from '../../components/spinner/Asset';
 import useFetchPostData from '../../hooks/useFetchPostData';
+import ComponentSpinner from '../../components/spinner/ComponentSpinner';
 
 const PostPage = () => {
   const {id} = useParams();
@@ -41,7 +41,7 @@ const PostPage = () => {
                 )}
                 className={infiniteScrollStyles.scroller}
                 dataLength={comments.results.length}
-                loader={<Asset spinner/>}
+                loader={<ComponentSpinner />}
                 hasMore={!!comments.next}
                 next={() => fetchMoreData(comments, setComments)}
                 scrollThreshold={0.93}

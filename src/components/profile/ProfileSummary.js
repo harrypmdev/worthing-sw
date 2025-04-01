@@ -13,7 +13,9 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
  * songs and profile editing options if it belongs to the current user.
  * 
  * @param {Object} profile An object containing profile details as retrieved from the '/profiles' endpoint.
+ * 
  * @param {Object} songData An object containing a list of 'song' objects as retrieved from the '/songs' endpoint.
+ * 
  * @returns {ReactNode} - An element displaying a summary of a user's profile.
  */
 const ProfileSummary = ({profile, songData}) => {

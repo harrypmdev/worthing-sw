@@ -8,8 +8,10 @@ import Song from './Song';
  * Render a list of songs ranked from 1-3 by vote popularity.
  * 
  * @param {Object} songData An object containing a list of 'song' objects as retrieved from the '/songs' endpoint.
+ * 
  * @param {Object} [profile=null] An object containing profile details as retrieved from the '/profiles' endpoint.
  *                                If not passed, component simply does not show song count.
+ * 
  * @returns {ReactNode} - An element displaying a list of ranked songs as returned from the '/songs' endpoint. 
  */
 const SongList = ({songData, profile=null}) => {

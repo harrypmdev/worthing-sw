@@ -10,19 +10,30 @@ import Vote from '../Vote'
  * if appropriate.
  * 
  * @param {Object} song An object containing song details as retrieved from the '/songs' endpoint.
+ * 
  * @param {boolean} [includeDetails=false] Whether or not the song should include details such as the
  *                                         title, artist name and vote counter, rather than just the
  *                                         audio clip.
+ * 
  * @param {boolean} [editable=false] Whether or not the song should be be editable if it belongs to the
  *                                   current user.
+ * 
  * @param {number} [number=null] The font-awesome number that should display on this song as a 'ranking'.
+ * 
  * @returns {ReactNode} - An element displaying the details of a song as returned from the '/songs' endpoint.
  */
 const Song = ({song, includeDetails=false, editable=false, number=false}) => {
 
+  /**
+   * Handle the clicking of the link to the full song.
+   * Opens a confirmation screen that warns the user they are opening a link uploaded by a user 
+   * to an outside page. Opens the link in a new tab only if the user confirms.
+   * 
+   * @param {Event} event The event triggered by the clicking of the button that links to the full song.
+   */
   const handleLinkClick = event => {
     if (!window.confirm(
-      `This link will open an outside page:\n${song.link_to_song}
+      `This will open a link uploaded by a site user to an outside page:\n${song.link_to_song}
       \nDo you wish to proceed?`
     )) {
       event.preventDefault();

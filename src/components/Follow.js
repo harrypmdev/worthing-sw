@@ -6,8 +6,11 @@ import { axiosReq } from '../api/axiosDefaults';
 
 /**
  * Render a follow or unfollow button depending on whether the user is following a given user.
+ * 
  * @param {number} userToFollow The user ID to be followed or unfollowed.
+ * 
  * @param {number} [currentFollower=null] The database ID of the follower instance, if already following.
+ * 
  * @returns {ReactNode} An element displaying either a follow or unfollow button.
  */
 const Follow = ({ userToFollow, currentFollower=null }) => {

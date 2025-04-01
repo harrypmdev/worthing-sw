@@ -7,13 +7,13 @@ import { useState } from "react";
  * @param {Object} initialState The data with which to initialise formData.
  * 
  * @returns {[Object, Function, Function]} An array containing:
- *                               1) The state in the form of an object. 
- *                               2) The function to handle the updating
- *                               of the state so it can be used for forms' 
- *                               "onChange" events.
- *                               3) Optionally, the setter function for the
- *                               state, in case additional custom functionality
- *                               is also required.
+ *                                         1) The state in the form of an object. 
+ *                                         2) The function to handle the updating
+ *                                         of the state so it can be used for forms' 
+ *                                         "onChange" events.
+ *                                         3) Optionally, the setter function for the
+ *                                         state, in case additional custom functionality
+ *                                         is also required.
  */
 const useFormDataHandler = (initialState) => {
   const [formData, setFormData] = useState(initialState);

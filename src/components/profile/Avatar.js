@@ -9,10 +9,15 @@ import styles from '../../styles/Avatar.module.css'
  * and displays their profile image and username.
  * 
  * @param {string} image The source link for the profile image.
+ * 
  * @param {string} username The profile's username.
+ * 
  * @param {string} id The id of the profile in question.
+ * 
  * @param {number} [dimensions=45] The dimensions of the image in pixels for variable sizing.
+ * 
  * @param {boolean} [dark=false] A boolean to determine whether the avatar should be dark coloured.
+ * 
  * @returns {ReactNode} A clickable avatar element linking to the user's profile.
  */
 const Avatar = (props) => {
