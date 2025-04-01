@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Container, Form} from 'react-bootstrap';
 
 import Post from './Post';
-import FullPageSpinner from './spinner/FullPageSpinner';
 import styles from '../styles/Search.module.css';
 import infiniteScrollStyles from '../styles/InfiniteScrollStyles.module.css';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -71,7 +70,7 @@ const Feed = (props) => {
             scrollThreshold={0.93}
         />
       </>) : (<>
-        <FullPageSpinner />
+        <Asset spinner />
       </>)}
     </Container>
   )
