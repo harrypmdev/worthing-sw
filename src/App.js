@@ -18,6 +18,13 @@ import EditProfile from './pages/profilePages/EditProfile';
 import MyFeed from './pages/postPages/MyFeed';
 import GeneralFeed from './pages/postPages/GeneralFeed';
 
+/**
+ * The root component of the application.
+ * Includes the the NavBar and the current page as determined by
+ * the path.
+ * 
+ * @returns {JSX.Element} The rendered application.
+ */
 
 function App() {
   return (
