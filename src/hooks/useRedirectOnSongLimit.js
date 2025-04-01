@@ -6,7 +6,7 @@ import { axiosReq } from '../api/axiosDefaults';
 
 
 /**
- * Custom hook to redirect the user if they (currentUser) already have 
+ * Hook to redirect the user if they (currentUser) already have 
  * 3 songs attached to their account.
  * 
  * @returns {boolean} A boolean to indicate whether the process of checking the

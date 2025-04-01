@@ -2,6 +2,15 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
+/**
+ * Hook to redirect users if their authorisation status is improper
+ * for the given page.
+ * 
+ * @param {string} userAuthStatus The authorisation status which should trigger
+ *                                a redirect - 'loggedIn' if authorised users should
+ *                                be redirected, or 'loggedOut' if unauthorised users
+ *                                should be redirected.
+ */
 export const useRedirect = (userAuthStatus) => {
   const navigate = useNavigate();
 

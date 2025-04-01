@@ -9,6 +9,7 @@ import { axiosReq } from "../api/axiosDefaults";
  * 
  * @param {Object} resource - The paginated resource object, as retrieved from an endpoint
  *                            such as '/posts' or '/comments'.
+ * 
  * @param {Function} setResource - The setter function for the resource object; the function
  *                                 does not return a value, it uses the setter directly.
  */
@@ -59,8 +60,10 @@ export const removeTokenTimestamp = () => {
  * Trim an audio file down to a given maximum time frame in seconds.
  * 
  * @param {File} file The audio file that should be trimmed.
+ * 
  * @param {number} maxDurationInSeconds The maximum duration the audio file should run for.
- *                                 Files already under this duration will not be shortened.
+ *                                      Files already under this duration will not be shortened.
+ * 
  * @returns {Promise<Blob>} A promise that resolves to a WAV file trimmed to the given duration
  */
 export const trimAudio = async (file, maxDurationInSeconds) => {
@@ -96,6 +99,7 @@ export const trimAudio = async (file, maxDurationInSeconds) => {
  * Convert from AudioBuffer to WAV.
  * 
  * @param {*} audioBuffer The AudioBuffer to convert.
+ * 
  * @returns {Promise<Blob>} A promise that resolves to a WAV file.
  */
 const convertToWAV = async (audioBuffer) => {

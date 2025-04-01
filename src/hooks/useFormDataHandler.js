@@ -1,10 +1,11 @@
 import { useState } from "react";
 
 /**
- * Custom hook for managing form data state. Helps prevent otherwise frequent
+ * Hook for managing form data state. Helps prevent otherwise frequent
  * reuse of the handleChange function below to update form data.
  * 
  * @param {Object} initialState The data with which to initialise formData.
+ * 
  * @returns {[Object, Function, Function]} An array containing:
  *                               1) The state in the form of an object. 
  *                               2) The function to handle the updating
