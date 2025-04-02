@@ -10,6 +10,32 @@ upload songs, vote on content, personalise your profile and comment on others' p
 
 # Agile Methodology
 
+## Overview
+
+An agile methodology was used to develop this project, using iterations on a kanban board.
+GitHub projects was used to facilitate the agile development:
+<a href="https://github.com/users/harrypmdev/projects/9/" target="_blank">Worthing Sound Wave GitHub Agile Project</a>.
+
+
+## Specific Implementation
+
++ Overaraching themes for the project were identified.
++ These were split down into epics, then User Stories to guide development from the user's perspective.
++ The project development was split into four iterations.
++ A prioritised backlog for the User Stories was utilised to ensure continuous re-evaluation of the project priorities.
++ User Stories were divided into MoSCoW groups (Must Have, Should Have, Could Have and Won't Have) and reassigned between the
+groups throughout the project.
++ A kanban board was used to track each the progress of each iteration, using columns 'To Do', 'In Progress' and 'Done'.
++ During the implementation of a User Story, it was broken down into technical tasks to be completed. These were ticked off
+one-by-one before the User Story was moved into the 'Done' column. These tasks are viewable by clicking on the User Stories.
+
+<details>
+<summary> Breakdown of Themes, Epics, User Stories and Final State of Implementation </summary>
+
+![Agile Breakdown](/readme-assets/agile-breakdown.webp)
+
+</details>
+
 # Rationale for Chosen Libraries
 
 # UX Planning
