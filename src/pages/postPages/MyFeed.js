@@ -21,10 +21,9 @@ const MyFeed = () => {
   const currentUser = useCurrentUser();
   const [songData, setSongData] = useState({});
   const filter = currentUser?.pk
-  ? `/songs/?ordering=-net_votes&user__followed__user=${currentUser?.pk}`
+  ? `ordering=-net_votes&user__followed__user=${currentUser?.pk}`
   : null;
   const hasLoaded = useFetchSong({setSongData, filter});
-
   return (
       <Row>
         <Col xs={12} lg={8}>

@@ -36,7 +36,26 @@ one-by-one before the User Story was moved into the 'Done' column. These tasks a
 
 </details>
 
-# Rationale for Chosen Libraries
+<br />
+
+# Technologies Used
+
+## Languages
+
++ JavaScript - Used alongside a form of HTML caused JSX in the React framework.
++ HTML5 - Used alongside JS in React's JSX.
++ CSS3 - Utilised both indirectly through the Bootstrap framework and directly through modular custom CSS code.
+
+## Libraries and Frameworks
+
++ <a href='https://react.dev/'>React</a> - A front-end JS framework used for the Worthing Sound Wave front-end.
++ <a href='https://react-bootstrap.netlify.app/'>Bootstrap React</a> - Used for its simplification of CSS and easy implementation of widely understood UX 'language'. Bootstrap React is made specifically for better integration into the React framework.
++ <a href='https://fontawesome.com/'>Font Awesome</a> - Used for all site icons, based on HTML and CSS.
++ <a href='https://fonts.google.com/'>Google Fonts</a> - Utilised for the site's primary font, Roboto.
++ <a href='https://axios-http.com/'>Axios</a> - Node HTTP client for better network request functionality, including interceptors.
++ <a href='https://www.npmjs.com/package/wav-encoder'>wav-encoder</a> - An NPM package allowing for conversion from buffer to wav.
+
+<br />
 
 # UX Planning
 
@@ -211,6 +230,32 @@ product as they were deemed unnecessary for the overrall user experience and the
 <br />
 
 # Features
+
+### Navbar
+
+### Home
+
+### Feed
+
+### Search Bar
+
+### Login
+
+### Register
+
+### Profile
+
+### Edit Profile
+
+### Create Song
+
+### Create Song
+
+### Add Post
+
+### Edit Post
+
+
 
 # Features Yet To Be Implemented
 

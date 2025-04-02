@@ -20,7 +20,6 @@ import useVoteHandler from '../hooks/useVoteHandler';
  */
 const Vote = ({song=null, post=null}) => {
   const currentUser = useCurrentUser();
-
   if (song && post) {
     throw new Error('Props conflict: the vote component can be rendered for either a song or a post, not both.');
   }
