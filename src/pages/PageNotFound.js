@@ -9,9 +9,9 @@ import { Link } from 'react-router-dom'
  */
 const PageNotFound = () => {
   return (
-    <Container className="flex-grow-1 d-flex flex-column justify-content-center align-items-center">
-      <h1 className='fw-bold'>404: Page not found <i className="ms-1 fa-solid fa-xl fa-circle-exclamation"></i></h1>
-      <p className='mt-1'>Sorry, looks like this page doesn't exist. Maybe you're looking for something a user deleted.</p>
+    <Container className="flex-grow-1 d-flex flex-column justify-content-center align-items-center text-center">
+      <h1 className='fw-bold'>Page not found <i className="ms-1 fa-solid fa-xl fa-circle-exclamation"></i></h1>
+      <p className='mt-2'>Sorry, looks like this page doesn't exist. Maybe you're looking for something a user deleted.</p>
       <Link to='/'>
         <Button variant="primary" className='mt-1'>Take Me Home</Button>
       </Link>

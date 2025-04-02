@@ -8,8 +8,8 @@ import { axiosReq } from "../api/axiosDefaults";
  *                      functionality is being used for, returned from
  *                      either '/songs/:id' or /posts/:id' respectively.
  * 
- * @returns {[Function, Function, boolean, boolean, boolean, number]}
- *          An array containing:
+ * @returns {{Function, Function, boolean, boolean, boolean, number}}
+ *          An object containing:
  *          1) The upvote handler function
  *          2) The downvote handler function
  *          3) Whether the vote process is currently loading

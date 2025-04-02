@@ -55,8 +55,9 @@ const Feed = (props) => {
           placeholder='Search posts'
         />
       </Form>
-      { hasLoaded ? (<>
-        <InfiniteScroll 
+      { hasLoaded ? (
+        posts.results.length ? (
+          <InfiniteScroll 
           children=
             {posts.results.map((post) => (
               <Post
@@ -73,8 +74,12 @@ const Feed = (props) => {
             hasMore={!!posts.next}
             next={() => fetchMoreData(posts, setPosts)}
             scrollThreshold={0.93}
-        />
-      </>) : (<>
+        /> ) : (
+          <div className='text-center'>
+            <p className='mt-3'>No posts! <i className="fa-solid fa-heart-crack"></i></p>
+          </div>
+          )
+      ) : (<>
         <ComponentSpinner />
       </>)}
     </Container>
