@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button, Card, Col, Row } from 'react-bootstrap'
 
 import Avatar from '../profile/Avatar'
-import { axiosRes } from '../../api/axiosDefaults';
+import DeleteCommentModal from '../delete/DeleteCommentModal';
 import EditComment from './EditComment';
 
 /**
@@ -47,6 +47,7 @@ const Comment = (props) => {
     setComments
   } = props;
   const [buttonLoading, setButtonLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   
   /**
@@ -54,21 +55,21 @@ const Comment = (props) => {
    * Updates the parents comments list as to dynamically render the
    * deletion.
    */
-  const handleDelete = async () => {
-    if (buttonLoading) return;
-    try {
-      setButtonLoading(true);
-      await axiosRes.delete(`/comments/${id}/`)
-      setComments(prevComments => ({
-        ...prevComments,
-        results: prevComments.results.filter(comment => comment.id !== id)
-      }))
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setButtonLoading(false);
-    }
-  }
+  // const handleDelete = async () => {
+  //   if (buttonLoading) return;
+  //   try {
+  //     setButtonLoading(true);
+  //     await axiosRes.delete(`/comments/${id}/`)
+  //     setComments(prevComments => ({
+  //       ...prevComments,
+  //       results: prevComments.results.filter(comment => comment.id !== id)
+  //     }))
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     setButtonLoading(false);
+  //   }
+  // }
 
   return showEdit ? ( 
     <EditComment 
@@ -80,7 +81,7 @@ const Comment = (props) => {
       setComments={setComments}
       setShowEdit={setShowEdit}
     />
-  ) : (
+  ) : (<>
     <Card className={`bg-light mt-2`}>
     <Card.Body>
       <Row>
@@ -107,7 +108,7 @@ const Comment = (props) => {
               variant='danger' 
               className='py-1 px-2 mx-1'
               disabled={buttonLoading}
-              onClick={handleDelete}
+              onClick={() => {setShowModal(true)}}
             >
               <i className="fa-solid fa-trash"></i>
             </Button>
@@ -119,7 +120,15 @@ const Comment = (props) => {
       </Row>
     </Card.Body>
   </Card>
-  )
+  <DeleteCommentModal
+    id={id}
+    showModal={showModal}
+    setShowModal={setShowModal}
+    buttonLoading={buttonLoading}
+    setButtonLoading={setButtonLoading}
+    setComments={setComments}
+  />
+  </>)
 }
 
 export default Comment

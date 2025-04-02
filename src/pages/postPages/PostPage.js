@@ -55,9 +55,9 @@ const PostPage = () => {
                 scrollThreshold={0.93}
             />
           ) : currentUser ? (
-            <span className='mt-2'>No comments yet - why not be the first?</span>
+            <span className='mt-4 ms-1'>No comments yet - why not be the first?</span>
           ) : (
-            <span className='mt-2'>No comments yet. Log in to write the first.</span>
+            <span className='mt-4 ms-1'>No comments yet. Log in to write the first.</span>
           )}
       </>) : (<>
         <FullPageSpinner />
