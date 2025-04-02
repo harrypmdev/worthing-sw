@@ -17,6 +17,7 @@ import EditPost from './pages/postPages/EditPost';
 import EditProfile from './pages/profilePages/EditProfile';
 import MyFeed from './pages/postPages/MyFeed';
 import GeneralFeed from './pages/postPages/GeneralFeed';
+import PageNotFound from './pages/PageNotFound';
 
 /**
  * The root component of the application.
@@ -44,6 +45,7 @@ function App() {
           <Route exact path='/edit-song/:id/' element={<EditSong />} />
           <Route exact path='/create-post/' element={<CreatePost />} />
           <Route exact path='/edit-post/:id/' element={<EditPost />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Container>
     </div>

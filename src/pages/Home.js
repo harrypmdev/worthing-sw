@@ -8,7 +8,11 @@ import Image from 'react-bootstrap/Image';
 
 import homeImage from '../assets/home-image.webp';
 
-
+/**
+ * Render the Home page, including a brief website description and an image.
+ * 
+ * @returns {ReactNode} - An element displaying the full home page.
+ */
 const Home = () => {
   return (
     <Container className="flex-grow-1 d-flex flex-column">
