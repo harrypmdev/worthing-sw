@@ -404,7 +404,7 @@ profile in question (made evident by a visual change upon hover). The user's own
 
 ![Avatar Screenshot](/readme-assets/features/avatar.webp)
 
-</details> 
+</details>
 <br />
 
 ### Profile
