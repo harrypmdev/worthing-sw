@@ -22,7 +22,8 @@ export const useRedirect = (userAuthStatus) => {
         if (userAuthStatus === "loggedIn") {
           navigate("/general-feed/");
         }
-      } catch (err) {
+      // eslint-disable-next-line no-unused-vars
+      } catch (err) { 
         // if user is not logged in, the code below will run
         if (userAuthStatus === "loggedOut") {
           navigate("/");

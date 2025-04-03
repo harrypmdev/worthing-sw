@@ -41,8 +41,11 @@ upload songs, vote on content, personalise your profile and comment on others' p
   - [Vote](#vote)
 - [**Features Yet To Be Implemented**](#features-yet-to-be-implemented)
 - [**Testing**](#testing)
+  - [Validation](#validation)
   - [Lighthouse Testing](#lighthouse-testing)
+  - [Manual Testing](#manual-testing)
 - [**Error Pages**](#error-pages)
+- [**Bugs**](#bugs)
 - [**Credits and References**](#credits--references)
 
 
@@ -656,13 +659,39 @@ Worthing Sound Wave is a finished product, but several features could be impleme
 
 - **List of Following and Followers** -- allowing users to view a rendered list of all the profiles they are following and being followed by as avatars would allow users to more easily follow and unfollow users they are interested in and track the popularity of their own profile. This could provide another path for engagement between site users and improve the overall UX.
 
--**Post Images** -- posts were kept to text and songs for simplicity and to be concise in the aims and value of the site. A feature could be added however to optionally add an image to a post that appears only when the post is clicked on. This could allow users to further engage other users with their posts, by utilising both visual and audio content.
+- **Post Images** -- posts were kept to text and songs for simplicity and to be concise in the aims and value of the site. A feature could be added however to optionally add an image to a post that appears only when the post is clicked on. This could allow users to further engage other users with their posts, by utilising both visual and audio content.
 
 # Data Modelling & Schema
 
-# Validators
-
 # Testing
+
+## Validation
+
++ The code runs through linting and validation without errors.
++ Note that ESLint returns nothing when no errors are found to help developers keep a clear console.
+
+<br />
+<details>
+<summary> VS Code Problems Terminal Clear </summary>
+
+![VS Code Problems Terminal Clear](/readme-assets/validators-linters/js-problems.webp)
+
+</details>
+<br />
+<details>
+<summary> React Server No Warnings </summary>
+
+![React Server No Warnings](/readme-assets/validators-linters/js-terminal.webp)
+
+</details>
+<br />
+<details>
+<summary> Specific ESLint Check </summary>
+
+![Specific ESLint Check](/readme-assets/validators-linters/js-lint.webp)
+
+</details>
+<br />
 
 ## Lighthouse Testing
 
@@ -1223,6 +1252,17 @@ production version of the React project. However, the errors continued.
 
 # Credits & References
 
+### Code, Dependencies and Tools
+
++ Site built on <a href="https://react.dev/">React Framework</a>.
++ <a href="https://balsamiq.com/wireframes/desktop/">Balsamic</a> software used for wireframing.
++ Google fonts from Google -
+  - Lighthouse web page quality checker also provided by Google.
+  - Google sheets used for Agile breakdown spreadsheet showing evolution from themes to tasks.
++ JS (and by extension JSX) validation from <a href="https://eslint.org/">ESLint</a>.
++ <a href="https://jestjs.io/">Jest</a> (and <a href="https://babeljs.io/">Babel</a> configuration) used for JS testing.
++ <a href="https://getbootstrap.com/">Bootstrap</a> front-end framework used for easy styling.
+
 ### Media
 
 + Favicon (<code>static/images/favicon.ico</code>) and site icons from <a href='https://fontawesome.com/v4/license/'>Font Awesome by Dave Gandy</a>.
@@ -1233,4 +1273,6 @@ Harry Peter Miles.
    + <a href='https://www.freepik.com/free-photo/guitarist-blurred-pianst_1118716.htm#fromView=search&page=2&position=32&uuid=6771d36a-a799-47ec-9781-bcc146c486f6&query=music+band+live'><code>src/assets/home-image.webp</code></a>.
    + <a href='https://www.freepik.com/free-photo/rock-band-guitarist-performing-repetition-recording-studio_18042015.htm#fromView=search&page=1&position=29&uuid=7b6f4546-e684-4ae4-ac7d-a2f8307c783a&query=music+band+rock'><code>src/assets/register-image.webp</code></a>.
    + <a href='https://www.freepik.com/free-photo/close-up-artists-playing-instruments_19333207.htm#fromView=search&page=1&position=0&uuid=c9e52c7c-f610-433c-b3b6-a4667ca480dc&query=music+band+piano'><code>src/assets/login-image.webp</code></a>.
+   + <a href='https://www.freepik.com/free-photo/various-colors-sticky-post-notes-with-pushpin-cork-board_2978757.htm'><code>src/assets/add-post.webp</code></a>.
+   + <a href='https://www.freepik.com/free-vector/audio-musical-notation-background-composition_237130072.htm'><code>src/assets/create-song-image.webp</code></a>.
 

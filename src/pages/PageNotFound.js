@@ -11,7 +11,7 @@ const PageNotFound = () => {
   return (
     <Container className="flex-grow-1 d-flex flex-column justify-content-center align-items-center text-center">
       <h1 className='fw-bold'>Page not found <i className="ms-1 fa-solid fa-xl fa-circle-exclamation"></i></h1>
-      <p className='mt-2'>Sorry, looks like this page doesn't exist. Maybe you're looking for something a user deleted.</p>
+      <p className='mt-2'>Sorry, looks like this page doesn&#39;t exist. Maybe you&#39;re looking for something a user deleted.</p>
       <Row>
         <Col>
         <Link to='/'>

@@ -39,21 +39,21 @@ const PostPage = () => {
           ) : null}
           {comments.results.length ? (
             <InfiniteScroll
-              children=
-                {comments.results.map(comment => 
-                  <Comment 
-                    key={comment.id}
-                    {...comment}
-                    setComments={setComments}
-                  />
-                )}
-                className={infiniteScrollStyles.scroller}
-                dataLength={comments.results.length}
-                loader={<ComponentSpinner />}
-                hasMore={!!comments.next}
-                next={() => fetchMoreData(comments, setComments)}
-                scrollThreshold={0.93}
-            />
+              className={infiniteScrollStyles.scroller}
+              dataLength={comments.results.length}
+              loader={<ComponentSpinner />}
+              hasMore={!!comments.next}
+              next={() => fetchMoreData(comments, setComments)}
+              scrollThreshold={0.93}
+            >
+              {comments.results.map(comment => 
+                <Comment 
+                  key={comment.id}
+                  {...comment}
+                  setComments={setComments}
+                />
+              )}
+            </InfiniteScroll>
           ) : currentUser ? (
             <span className='mt-4 ms-1'>No comments yet - why not be the first?</span>
           ) : (

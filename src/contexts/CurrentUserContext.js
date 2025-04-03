@@ -33,7 +33,8 @@ export const CurrentUserProvider = ({ children }) => {
         if (shouldRefreshToken()) {
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
-          } catch (err) {
+          // eslint-disable-next-line no-unused-vars
+          } catch (err) { 
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
                 navigate("/login/");
@@ -57,7 +58,8 @@ export const CurrentUserProvider = ({ children }) => {
         if (err.response?.status === 401) {
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
-          } catch (err) {
+          // eslint-disable-next-line no-unused-vars
+          } catch (err) { 
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
                 navigate("/login/");

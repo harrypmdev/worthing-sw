@@ -59,7 +59,13 @@ const Feed = (props) => {
       { hasLoaded ? (
         posts.results.length ? (
           <InfiniteScroll 
-          children=
+            className={infiniteScrollStyles.scroller}
+            dataLength={posts.results.length}
+            loader={<ComponentSpinner />}
+            hasMore={!!posts.next}
+            next={() => fetchMoreData(posts, setPosts)}
+            scrollThreshold={0.93}
+          >
             {posts.results.map((post) => (
               <Post
                 useAvatar={useAvatars}
@@ -69,13 +75,8 @@ const Feed = (props) => {
                 followButton={followButtons}
               />
             ))}
-            className={infiniteScrollStyles.scroller}
-            dataLength={posts.results.length}
-            loader={<ComponentSpinner />}
-            hasMore={!!posts.next}
-            next={() => fetchMoreData(posts, setPosts)}
-            scrollThreshold={0.93}
-        /> ) : (
+          </InfiniteScroll>
+        ) : (
           <div className='text-center'>
             <p className='mt-3'>No posts! <i className="fa-solid fa-heart-crack"></i></p>
           </div>

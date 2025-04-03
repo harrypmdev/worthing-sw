@@ -94,7 +94,7 @@ function CreateSong() {
     try {
       audioToSave = await trimAudio(event.target.files[0], 15);
     } catch (err) {
-      setErrors({
+      setErrors({...err,
         non_field_errors: [
           'There was a problem trimming your file down to 15 seconds.' + 
           ' Please ensure it is a wav file under 10 minutes,' +
