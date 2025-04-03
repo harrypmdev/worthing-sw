@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Button, Col, Container, Form, Image, Row } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
 import { useCurrentUser, useSetCurrentUser } from '../../contexts/CurrentUserContext'
 import { axiosReq } from '../../api/axiosDefaults';
@@ -9,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import ErrorAlert from '../../components/ErrorAlert';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
 import useFetchProfileData from '../../hooks/useFetchProfileData';
+
 
 /**
  * Render the Edit Profile page.
@@ -65,9 +67,9 @@ const EditProfile = () => {
         ...currentUser,
         profile_image: data.image,
       }));
+      toast.success('Changes saved!', {position: 'bottom-left'});
       navigate(`/profile/${currentUser.profile_id}`);
     } catch (err) {
-      console.log(err);
       setErrors(err.response?.data);
     } finally {
       setIsSubmitting(false);

@@ -1,6 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
 import Container from 'react-bootstrap/Container';
 
+import { ToastContainer  } from 'react-toastify';
+
 import './App.css';
 import './api/axiosDefaults';
 import styles from './styles/App.module.css'
@@ -30,6 +32,7 @@ import PageNotFound from './pages/PageNotFound';
 function App() {
   return (
     <div className={`${styles.roboto} min-vh-100 d-flex flex-column`}>
+      <ToastContainer />
       <NavBar />
       <Container fluid className="d-flex flex-column flex-grow-1">
         <Routes>

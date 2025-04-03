@@ -19,6 +19,7 @@ import DeleteModal from '../../components/delete/DeleteModal';
 import DeleteButton from '../../components/delete/DeleteButton';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
 import useEditPostData from '../../hooks/useEditPostData';
+import { toast } from 'react-toastify';
 
 /**
  * Render the Edit post page, including an editable form which auto-fills
@@ -70,6 +71,7 @@ function EditPost() {
         content,
         song: selectedSong,
       });
+      toast.success('Changes saved!', {position: 'bottom-left'});
       navigate(`/profile/${currentUser.profile_id}`);
     } catch (err) {
       console.log(err);

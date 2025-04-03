@@ -7,6 +7,7 @@ import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Alert } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
 import createSongImage from '../../assets/create-song-image.webp';
 import styles from '../../styles/RegisterLogin.module.css';
@@ -17,6 +18,7 @@ import { trimAudio } from '../../utils/utils';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
 import useRedirectOnSongLimit from '../../hooks/useRedirectOnSongLimit';
 import FullPageSpinner from '../../components/spinner/FullPageSpinner';
+
 
 /**
  * Render the create song page, including a form in which to input the
@@ -71,12 +73,10 @@ function CreateSong() {
     if (audio_file) formData.append("audio_file", audio_file);
     try {
       await axiosReq.post("/songs/", formData);
+      toast.success('Song created!', {position: 'bottom-left'});
       navigate(`/profile/${currentUser.profile_id}`);
     } catch (err) {
-      console.log(err);
-      if (err.response?.status !== 401) {
-        setErrors(err.response?.data);
-      }
+      setErrors(err.response?.data);
       setIsSubmitting(false);
     }
   };
@@ -167,7 +167,7 @@ function CreateSong() {
                 onChange={handleChange}
               />
               <Form.Text className="text-muted">
-                You can only upload song clips of about 15 seconds. This option gives you a chance
+                You can only upload short clips. This option gives you a chance
                 to give a link to the full version of your song.
               </Form.Text>
             </Form.Group>
@@ -187,7 +187,8 @@ function CreateSong() {
                 onChange={handleSongChange}
               />
               <Form.Text className="text-muted">
-                Please upload a short WAV file.
+                Upload a short audio file in the WAV format. Song clips longer than 15 seconds
+                will be trimmed down.
               </Form.Text>
             </Form.Group>
             <Button 

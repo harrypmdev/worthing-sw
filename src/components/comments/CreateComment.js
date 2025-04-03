@@ -8,6 +8,7 @@ import Avatar from "../profile/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { Button } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { toast } from "react-toastify";
 
 /**
  * Render a form for the creation of a new comment.
@@ -36,6 +37,10 @@ function CommentCreate({post, setComments}) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!content) {
+      toast.error('Comments require contents.', {position: 'bottom-left', toastId: "commentError"});
+      return;
+    }
     if (postButtonLoading) return;
     try {
       setPostButtonLoading(true);
@@ -48,7 +53,12 @@ function CommentCreate({post, setComments}) {
         results: [data, ...prevComments.results],
       }));
       setContent("");
+      toast.success('Comment created!', {position: 'bottom-left'});
     } catch (err) {
+      toast.error(
+        'We encountered a problem creating this comment. Sorry!', 
+        {position: 'bottom-left', toastId: "commentDeleteError"}
+      );
       console.log(err);
     } finally {
       setPostButtonLoading(false);

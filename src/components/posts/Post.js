@@ -114,16 +114,6 @@ const Post = (props) => {
           </Row>
         </Col>
       </Card.Body>
-      {/* <div className={`${songDetails && 'd-lg-none mt-2'}`}>
-    {post.song && hasLoaded && songDetails ? (
-        <Song song={songData} includeDetails={songDetails}/>
-      ) : post.song && !hasLoaded && songDetails? (
-        <div className='d-flex justify-content-center'>
-          <Spinner />
-        </div>
-        ) : null
-    }
-    </div> */}
     </Card>
     { post.is_user && editable && (
       <Link

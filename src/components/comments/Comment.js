@@ -49,27 +49,6 @@ const Comment = (props) => {
   const [buttonLoading, setButtonLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-  
-  /**
-   * Handle deletion of the current comment.
-   * Updates the parents comments list as to dynamically render the
-   * deletion.
-   */
-  // const handleDelete = async () => {
-  //   if (buttonLoading) return;
-  //   try {
-  //     setButtonLoading(true);
-  //     await axiosRes.delete(`/comments/${id}/`)
-  //     setComments(prevComments => ({
-  //       ...prevComments,
-  //       results: prevComments.results.filter(comment => comment.id !== id)
-  //     }))
-  //   } catch (error) {
-  //     console.log(error);
-  //   } finally {
-  //     setButtonLoading(false);
-  //   }
-  // }
 
   return showEdit ? ( 
     <EditComment 

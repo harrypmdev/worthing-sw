@@ -17,6 +17,7 @@ import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 import ErrorAlert from '../../components/ErrorAlert';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
 import useFetchSong from '../../hooks/useFetchSong';
+import { toast } from 'react-toastify';
 
 /**
  * Render the create post page, including a form in which to input the
@@ -64,9 +65,9 @@ function CreatePost() {
         user: currentUser.pk,
         song: selectedSong,
       });
+      toast.success('Post created!', {position: 'bottom-left'});
       navigate(`/profile/${currentUser.profile_id}`);
     } catch (err) {
-      console.log(err);
       setErrors(err.response?.data);
       setIsSubmitting(false);
     }

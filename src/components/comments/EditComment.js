@@ -8,6 +8,7 @@ import Avatar from "../profile/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { Button } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { toast } from "react-toastify";
 
 /**
  * Render a form for the editing of an existing comment.
@@ -65,9 +66,14 @@ function EditComment({id, setComments, content, setShowEdit}) {
           : comment;
         }))
       }));
+      toast.success('Changes saved!', {position: 'bottom-left'});
       setSaveButtonLoading(false);
       setShowEdit(false);
     } catch (err) {
+      toast.error(
+        'We encountered a problem saving your changes. Sorry!', 
+        {position: 'bottom-left', toastId: "commentEditError"}
+      );
       console.log(err);
     }
   };

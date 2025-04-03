@@ -18,6 +18,7 @@ import DeleteModal from '../../components/delete/DeleteModal';
 import DeleteButton from '../../components/delete/DeleteButton';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
 import useFetchSong from '../../hooks/useFetchSong';
+import { toast } from 'react-toastify';
 
 /**
  * Render the Edit song page, including an editable form which auto-fills
@@ -68,9 +69,9 @@ function EditSong() {
   
     try {
       await axiosReq.put(`/songs/${id}`, formData);
+      toast.success('Changes saved!', {position: 'bottom-left'});
       navigate(`/profile/${currentUser.profile_id}`);
     } catch (err) {
-      console.log(err)
       setErrors(err.response?.data);
       setIsSubmitting(false);
     }

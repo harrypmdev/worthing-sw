@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 /**
  * Render a delete modal which shows conditionally dependant on the showModal prop.
@@ -45,8 +46,13 @@ const DeleteModal = (props) => {
     try {
       await axiosReq.delete(deleteEndpoint);
       navigate(navigateAfterDelete);
+      let capitalised = text.charAt(0).toUpperCase() + text.slice(1);
+      toast.success(`${capitalised} deleted!`, {position: 'bottom-left'});
     } catch (err) {
-      console.log(err);
+      toast.error(
+        `We encountered a problem deleting your ${text}. Sorry!`,
+         {position: 'bottom-left'}
+      );
       setDeleteLoading(false);
     }
   };

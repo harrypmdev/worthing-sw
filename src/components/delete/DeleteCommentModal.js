@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import { axiosRes } from '../../api/axiosDefaults';
+import { toast } from 'react-toastify';
 
 /**
  * Render a delete modal which shows conditionally dependant on the showModal prop.
@@ -48,8 +49,12 @@ const DeleteModal = (props) => {
         ...prevComments,
         results: prevComments.results.filter(comment => comment.id !== id)
       }))
+      toast.success('Comment deleted!', {position: 'bottom-left'});
     } catch (error) {
-      console.log(error);
+      toast.error(
+        'We encountered a problem deleting your comment. Sorry!', 
+        {position: 'bottom-left'}
+      );
     } finally {
       setButtonLoading(false);
     }
