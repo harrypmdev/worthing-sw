@@ -102,7 +102,7 @@ const EditProfile = () => {
                 <Image
                   src={profile.image}
                   roundedCircle
-                  alt="Profile"
+                  alt={`${profile?.user}'s Profile Image`}
                   className={`
                     border border-dark-subtle 
                     object-fit-cover w-75 text-center

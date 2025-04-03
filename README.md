@@ -8,6 +8,10 @@ upload songs, vote on content, personalise your profile and comment on others' p
 
 ![Responsive Mockup](/readme-assets/responsive.webp)
 
+# Contents
+
+--
+
 # Agile Methodology
 
 ## Overview

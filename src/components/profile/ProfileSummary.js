@@ -26,6 +26,7 @@ const ProfileSummary = ({profile, songData}) => {
     <Container className="mt-2">
         <Col xs='12' className='d-flex flex-column align-items-center'>
           <Image
+            alt={`${profile?.user}'s Profile Avatar`}
             roundedCircle
             className={`border border-dark-subtle object-fit-cover
                         w-50 text-center ${styles.profileSummaryPicture}`}

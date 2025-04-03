@@ -197,7 +197,13 @@ function CreateSong() {
             className='d-none d-md-block'
           /> {/* Col purely for layout formatting */}
         <Col xs="12" md="6" className="text-center d-none d-md-block">
-          <Image fluid rounded src={createSongImage} className={styles.registerImage} />
+          <Image 
+            fluid 
+            rounded 
+            src={createSongImage} 
+            className={styles.registerImage} 
+            alt='Create Song Image - abstract artwork representing written music'
+          />
         </Col>
       </Row>
       </Container>

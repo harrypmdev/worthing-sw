@@ -31,7 +31,7 @@ const Home = () => {
           </Link>
         </Col>
         <Col xs="12" md="6"  className='text-center d-md-block'>
-          <Image fluid rounded src={homeImage}/>
+          <Image fluid rounded src={homeImage} alt='Home Image - musicians playing together.'/>
         </Col>
       </Row>
     </Container>

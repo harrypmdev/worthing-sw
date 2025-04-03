@@ -151,7 +151,13 @@ function EditSong() {
           className='d-none d-lg-block'
         /> {/* Col purely for layout formatting */}
       <Col xs="12" lg="6" className="text-center d-none d-lg-block">
-        <Image fluid rounded src={createSongImage} className={styles.registerImage} />
+        <Image 
+          fluid 
+          rounded 
+          src={createSongImage} 
+          className={styles.registerImage} 
+          alt='Edit Song Image - abstract artwork representing written music'
+        />
       </Col>
     </Row>
     ) : (
