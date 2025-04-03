@@ -41,9 +41,10 @@ const Feed = (props) => {
   });
 
   return (
-    <Container id='page' className='flex-grow-1 d-flex flex-column mb-3'>
+    <Container className='flex-grow-1 d-flex flex-column mb-3'>
       <i className={`fas fa-search mt-3 ${styles.SearchIcon}`}></i>
       <Form
+        id='search-bar'
         className={styles.SearchBar}
         onSubmit={event => event.preventDefault()}
       >

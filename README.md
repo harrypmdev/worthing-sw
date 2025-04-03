@@ -1124,6 +1124,101 @@ Edit Comment|Usability|Click the delete button, then try to click the edit butto
 
 # Bugs
 
+|  Bug Number |  Problem | Outcome |
+|---|---|---|
+|1 |'Top Songs From Your Followed' on 'My Feed' appearing out of order| Fixed
+|2 |Edit Post page appearing briefly then loading infinitely| Fixed
+|3 |Clicking delete multiple times in quick succession causes error| Fixed
+|4 |Websocket error repeatedly logging to console despite no custom use of websockets| Fixed
+
+<br>
+
+**1.**
+
+- After refactoring what was the 'useEffect' functionality for many pages into custom hooks, I found an issue with
+the My Feed page.
+- The Top Songs were rendering in the wrong order, with lower voted songs appearing at the top.
+- The page had been refactored to use the useFetchSong hook, which was used on multiple pages and accepts a prop for a
+filter.
+- The filter being passed was a full endpoint - <code>`songs/?ordering=-net_votes&user__followed__user=${currentUser?.pk}`</code>
+  rather than just the filter itself, resulting in an improper endpoint being requested from the server.
+- The filter being passed in was amended to <code>`ordering=-net_votes&user__followed__user=${currentUser?.pk}`</code>.
+
+  <details>
+  <summary>Bug One</summary>
+
+  ![Bug One](/readme-assets/bugs/bug-one.webp)
+
+  </details>
+
+  <br>
+
+**2.**
+
+- During implementation of the edit post page, an issue was encountered in which the page would appear briefly,
+then switch to a loading spinner which would never end.
+- Many issues regarding race conditions were investigated it.
+- It turned out to be a simple case of incorrect variable naming. The <code>useEditPostData</code> hook returns a boolean
+if the hook has finished loading, but was being saved to a variable called '<code>isLoading</code>'.
+- The ternary expression was therefore rendering the opposite of what it should be, and rendering the spinner exactly when
+loading was finished.
+- The variable returned from <code>useEditPostData</code> was renamed hasLoaded and the ternary condition was swapped, fixing
+the issue.
+
+  <details>
+  <summary>Bug Two</summary>
+
+  ![Bug Two](/readme-assets/bugs/bug_two.png)
+
+  </details>
+
+  <br>
+
+**3.**
+
+- When implementing the delete button on the edit pages for posts and songs, I discovered an issue.
+- The user could click the delete button, or the delete button then other input buttons, in quick
+succession and cause multiple requests to occur, there causing errors to be logged to the console and
+inconsistent behaviour on the front-end.
+- This bug occurred because the delete button functionality relied on the user to only click the button
+once. The DELETE request takes time, but the processing of this was not conveyed to the user, meaning
+that that a confused user may easily click multiple times, not understand why they were not immediately given
+feedback.
+- A loading state was given to the button, so that upon clicking, it conveys that the deletion is in process and
+does not allow any other clicks until the process has finished.
+
+
+  <details>
+  <summary>Bug Three</summary>
+
+  ![Bug Three](/readme-assets/bugs/bug-three.webp)
+
+  </details>
+
+  <br>
+
+
+**4.**
+
+- An error, <code>WebSocket connection react_refresh:6 to '{site URL}' failed:</code> was appearing in the console
+about every 30 seconds, with seemingly no impact on site functionality and despite no use of custom code managing websockets.
+- Though the UX was not affected, mysterious console errors are not a positive and so multiple steps were taken to try and resolve
+the issue.
+- The issue was first assumed to be on the development server only. I deployed the site to Heroku, and ensured Heroku deployed the
+production version of the React project. However, the errors continued.
+- After researching online, it transpires the error is a commonly encountered issues with React's default configs 
+(https://github.com/facebook/create-react-app/issues/11897), and can be fixed by setting a single environment variable for React,
+<code>WDS_SOCKET_PORT=0</code>, which I set in the Heroku config vars, resolving the issue
+
+  <details>
+  <summary>Bug Four </summary>
+
+  ![Bug Four](/readme-assets/bugs/bug-four.webp)
+
+  </details>
+
+<br>
+
 # Deployment
 
 # Credits & References
