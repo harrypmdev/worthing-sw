@@ -101,7 +101,7 @@ const Post = (props) => {
                 </Col>
               )}
             </Col>
-            <Col lg='4' className='d-none d-lg-inline'>
+            <Col xs='12' lg='4' className='mt-3'>
               {post.song && hasLoaded ? (
                 <Song song={songData} includeDetails={songDetails}/>
               ) : post.song && !hasLoaded ? (
@@ -114,6 +114,16 @@ const Post = (props) => {
           </Row>
         </Col>
       </Card.Body>
+      {/* <div className={`${songDetails && 'd-lg-none mt-2'}`}>
+    {post.song && hasLoaded && songDetails ? (
+        <Song song={songData} includeDetails={songDetails}/>
+      ) : post.song && !hasLoaded && songDetails? (
+        <div className='d-flex justify-content-center'>
+          <Spinner />
+        </div>
+        ) : null
+    }
+    </div> */}
     </Card>
     { post.is_user && editable && (
       <Link
@@ -123,16 +133,6 @@ const Post = (props) => {
         <i className="fa-solid fa-pen-to-square"></i>
       </Link>
     )}
-    <div className={`${songDetails && 'd-lg-none mt-2'}`}>
-    {post.song && hasLoaded && songDetails ? (
-        <Song song={songData} includeDetails={songDetails}/>
-      ) : post.song && !hasLoaded && songDetails? (
-        <div className='d-flex justify-content-center'>
-          <Spinner />
-        </div>
-        ) : null
-    }
-    </div>
   </>
 }
 
