@@ -10,7 +10,41 @@ upload songs, vote on content, personalise your profile and comment on others' p
 
 # Contents
 
---
+- [**Agile Methodology**](#agile-methodology)
+  - [Overview](#project-goals)
+  - [Specific Implementation and Breakdown of Themes](#specific-implementation-and-breakdown-of-themes)
+- [**Technologies Used**](#technologies-used)
+  - [Languages](#languages)
+  - [Libraries and Frameworks](#libraries-and-frameworks)
+- [**UX Planning**](#ux-planning)
+  - [Overview](#overview-1)
+  - [Page Wireframes](#page-wireframes)
+  - [Authorisation Pages](#authorisation-pages)
+  - [Post Pages](#post-pages)
+  - [Profile Pages](#profile-pages)
+  - [Song Pages](#song-pages)
+- [**Features**](#features)
+  - [Navbar](#navbar)
+  - [Home](#home)
+  - [Feed](#search-bar)
+  - [Top Songs](#top-songs)
+  - [User Authentication](#user-authentication)
+  - [Avatar](#avatar)
+  - [Profile](#profile)
+  - [Edit Profile](#edit-profile)
+  - [Create Song](#create-song)
+  - [Edit Song](#edit-song)
+  - [Create Post](#create-post)
+  - [Edit Post](#edit-post)
+  - [Follow](#follow)
+  - [Vote](#vote)
+- [**Features Yet To Be Implemented**](#features-yet-to-be-implemented)
+- [**Testing**](#testing)
+  - [Lighthouse Testing](#lighthouse-testing)
+- [**Credits and References**](#credits--references)
+
+
+
 
 # Agile Methodology
 
@@ -21,7 +55,7 @@ GitHub projects was used to facilitate the agile development:
 <a href="https://github.com/users/harrypmdev/projects/9/" target="_blank">Worthing Sound Wave GitHub Agile Project</a>.
 
 
-## Specific Implementation
+## Specific Implementation and Breakdown of Themes
 
 + Overaraching themes for the project were identified.
 + These were split down into epics, then User Stories to guide development from the user's perspective.
@@ -62,6 +96,8 @@ one-by-one before the User Story was moved into the 'Done' column. These tasks a
 <br />
 
 # UX Planning
+
+## Overview
 
 A positive user experience was the end goal of all page design. Wireframing was done ahead of page creation for each page to guide development.
 A mobile-first approach was taken for the responsive design of the website, and both mobile and desktop displays were wireframed to provide guidelines for this.
