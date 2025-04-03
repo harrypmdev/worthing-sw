@@ -57,7 +57,7 @@ function CreatePost() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
-    try {
+    try {   
       await axiosReq.post("/posts/", {
         title,
         content,

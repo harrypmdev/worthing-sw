@@ -58,7 +58,13 @@ function CreateSong() {
     event.preventDefault();
     setIsSubmitting(true);
     const formData = new FormData();
-
+    if (!audio_file) {
+      setErrors({
+        non_field_errors: ['Please upload a wav file.']
+      });
+      setIsSubmitting(false);
+      return;
+    }
     formData.append("title", title);
     formData.append("artist_name", artist_name);
     if (link_to_song) formData.append("link_to_song", link_to_song);
@@ -88,7 +94,13 @@ function CreateSong() {
     try {
       audioToSave = await trimAudio(event.target.files[0], 15);
     } catch (err) {
-      console.log("Error attempting to trim given audio file: " + err);
+      setErrors({
+        non_field_errors: [
+          'There was a problem trimming your file down to 15 seconds.' + 
+          ' Please ensure it is a wav file under 10 minutes,' +
+          ' or try another file.'
+        ]
+      });
       audioToSave = event.target.files[0];
     }
     setSongData({

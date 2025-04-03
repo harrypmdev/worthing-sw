@@ -42,6 +42,7 @@ const Vote = ({song=null, post=null}) => {
           onClick={handleDownvote}
           disabled={loading} 
           className={`border-0 p-0 ${userDownvoted && 'opacity-25'}`}
+          aria-label='Downvote'
         >
           <i className="fa-solid fa-square-minus px-1 fa-lg text-danger"></i>
         </Button>
@@ -53,6 +54,7 @@ const Vote = ({song=null, post=null}) => {
           onClick={handleUpvote}
           disabled={loading} 
           className={`border-0 p-0 ${userUpvoted && 'opacity-25'}`}
+          aria-label='Upvote'
         >
           <i className="fa-solid fa-square-plus px-1 fa-lg text-success"></i>
         </Button>
