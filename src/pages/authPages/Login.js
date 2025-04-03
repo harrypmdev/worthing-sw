@@ -15,6 +15,7 @@ import { setTokenTimestamp } from '../../utils/utils';
 import { useRedirect } from '../../hooks/useRedirect';
 import ErrorAlert from '../../components/ErrorAlert';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
+import { toast } from 'react-toastify';
 
 /**
  * Render the login page, including a login form for user authentication.
@@ -46,6 +47,7 @@ function Login() {
       const {data} = await axios.post('/dj-rest-auth/login/', loginData)
       setCurrentUser(data.user);
       setTokenTimestamp(data);
+      toast.success('Logged in!', {position: 'bottom-left'});
       navigate('/general-feed/');
     } catch (err) {
       setErrors(err.response?.data);

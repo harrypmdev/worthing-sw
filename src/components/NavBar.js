@@ -11,6 +11,7 @@ import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContex
 import Avatar from './profile/Avatar';
 import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
 import { removeTokenTimestamp } from '../utils/utils';
+import { toast } from 'react-toastify';
 
 
 /**
@@ -37,6 +38,7 @@ function NavBar() {
       await axios.post('/dj-rest-auth/logout/');
       setCurrentUser(null);
       removeTokenTimestamp();
+      toast.success('Logged out!', {position: 'bottom-left'});
     } catch (err) {
       console.log(err);
     }

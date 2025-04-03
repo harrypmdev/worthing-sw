@@ -13,6 +13,7 @@ import { Alert } from 'react-bootstrap';
 import registerImage from '../../assets/register-image.webp';
 import styles from '../../styles/RegisterLogin.module.css';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
+import { toast } from 'react-toastify';
 
 /**
  * Render the register page, including a register form for user authentication.
@@ -45,6 +46,7 @@ function Register() {
     event.preventDefault();
     try { 
       await axios.post('/dj-rest-auth/registration/', registerData)
+      toast.success('Registered!', {position: 'bottom-left'})
       navigate('/login/');
     } catch (err) {
       setErrors(err.response?.data)
