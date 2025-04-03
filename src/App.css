@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+/* Overwrite bootstrap primary button colour to 
+be just a little darker for better accessibility contrast.
+*/
+.btn-primary {
+  background-color: #0250C5;
+  border-color: #0250C5;
+}
