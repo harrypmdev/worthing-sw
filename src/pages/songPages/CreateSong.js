@@ -19,7 +19,6 @@ import useFormDataHandler from '../../hooks/useFormDataHandler';
 import useRedirectOnSongLimit from '../../hooks/useRedirectOnSongLimit';
 import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 
-
 /**
  * Render the create song page, including a form in which to input the
  * information for the new song.

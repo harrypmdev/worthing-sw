@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { toast } from 'react-toastify';
 
 import createSongImage from '../../assets/create-song-image.webp';
 import styles from '../../styles/formPage.module.css';
@@ -18,7 +19,6 @@ import DeleteModal from '../../components/delete/DeleteModal';
 import DeleteButton from '../../components/delete/DeleteButton';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
 import useFetchSong from '../../hooks/useFetchSong';
-import { toast } from 'react-toastify';
 
 /**
  * Render the Edit song page, including an editable form which auto-fills

@@ -11,7 +11,6 @@ import ErrorAlert from '../../components/ErrorAlert';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
 import useFetchProfileData from '../../hooks/useFetchProfileData';
 
-
 /**
  * Render the Edit Profile page.
  * Displays the user's current profile image; a new image can be uploaded upon clicking

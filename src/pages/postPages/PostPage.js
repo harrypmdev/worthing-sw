@@ -39,7 +39,7 @@ const PostPage = () => {
           ) : null}
           {comments.results.length ? (
             <InfiniteScroll
-              className={infiniteScrollStyles.scroller}
+              className={`${infiniteScrollStyles.scroller} mb-3`}
               dataLength={comments.results.length}
               loader={<ComponentSpinner />}
               hasMore={!!comments.next}

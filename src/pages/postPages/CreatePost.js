@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { toast } from 'react-toastify';
 
 import createPostImage from '../../assets/add-post.webp';
 import styles from '../../styles/formPage.module.css';
@@ -16,7 +17,6 @@ import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 import ErrorAlert from '../../components/ErrorAlert';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
 import useFetchSong from '../../hooks/useFetchSong';
-import { toast } from 'react-toastify';
 
 /**
  * Render the create post page, including a form in which to input the

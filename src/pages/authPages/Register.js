@@ -7,9 +7,9 @@ import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import { useRedirect } from '../../hooks/useRedirect';
 import { Alert } from 'react-bootstrap';
 
+import { useRedirect } from '../../hooks/useRedirect';
 import registerImage from '../../assets/register-image.webp';
 import styles from '../../styles/formPage.module.css';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
