@@ -48,9 +48,10 @@ function Login() {
       setTokenTimestamp(data);
       navigate('/general-feed/');
     } catch (err) {
-      setErrors(err.response?.data)
+      setErrors(err.response?.data);
     }
-  }
+  };
+  
 
   return (
     <Container className="flex-grow-1 d-flex flex-column">

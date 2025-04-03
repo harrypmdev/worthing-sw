@@ -7,7 +7,7 @@
 
 .active {
     font-weight: bold;
-    background-color: rgb(103, 118, 255);
+    background-color: #0250C5;
     border-radius: 5px;
     padding: 10px;
     text-decoration: none;
@@ -20,14 +20,14 @@
 
 .navbarLogo {
   width: 190px;
-  height: 36px;
+  height: auto;
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   .navbarLogo {
     width: 220px;
-    height: 42px;
+    height: auto;
   }
 }
 
@@ -35,6 +35,6 @@
 @media only screen and (min-width: 992px) {
   .navbarLogo {
     width: 280px;
-    height: 50px;
+    height: auto;
   }
 }
