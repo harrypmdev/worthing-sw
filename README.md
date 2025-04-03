@@ -1250,6 +1250,114 @@ production version of the React project. However, the errors continued.
 
 # Deployment
 
+This project was deployed to [Heroku](https://www.heroku.com). The process for deployment is as follows:
+
+**1.**
+
+[Create a new GitHub respository](https://github.com/new) with no template.
+
+![New Repository](/readme-assets/deployment/new-repo.webp)
+
+**2.**
+
+Pull the repository down to your local machine.
+To do this, copy the HTTPS link GitHub provides on your new repository:
+
+![HTTPS Link](/readme-assets/deployment/quick-setup.webp)
+
+Then in a terminal on your machine (probably in your IDE such as VS Code), ensure you are in the directory
+you wish to work in and clone the repository with the command:
+<br />
+<code>git clone https://github.com/harrypmdev/my-sound-wave.git .</code>
+<br />
+Replacing the HTTPS link with your own, and remembering the full stop at the end, a space apart from the HTTPS link.
+
+![Git Clone](/readme-assets/deployment/git-clone.webp)
+
+**3.**
+
+Now we need to make a React application (you must have Node.js installed correctly already).
+Write the command:
+<br />
+<code>npx create-react-app . --use-npm</code>
+<br />
+This will create the app, taking a few minutes to do so.
+
+![Create React App](/readme-assets/deployment/create-react-app.webp)
+
+You can test your app is running correctly with:
+<br />
+<code>npm start</code>
+<br />
+
+**4.**
+
+Now push your app to GitHub. Use:
+<br />
+<code>git add .</code>
+<br />
+<code>git commit -m "Initial Commit"</code>
+<br />
+<code>git push</code>
+<br />
+
+![Git Push](/readme-assets/deployment/git-push.webp)
+
+**5.**
+
+Now we need to prepare the app for its production build.
+
+Create a <code>Procfile</code> in your app root directory, and add the following line:
+<br />
+<code>web: serve -s build</code>
+
+![Procfile](/readme-assets/deployment/procfile.webp)
+
+Then, add the following configuration variables to your <code>package.json</code> file:
+<br />
+<code>"heroku-prebuild": "npm install -g serve"</code>
+<br />
+<code>"serve": "serve -s build"</code>
+<br />
+<code>"postinstall": "npm run build"</code>
+<br />
+
+Your <code>package.json</code> scripts section should look something like this:
+
+![Package Scripts](/readme-assets/deployment/package-scripts.webp)
+
+Don't forget to commit and push your changes.
+
+**6**
+
+Finally, to deploy on Heroku.
+Navigate to the <a href="https://dashboard.heroku.com/new-app">create new app</a> section, enter an appropriate name, 
+and click 'Create App'.
+
+![Create New App](/readme-assets/deployment/create-new-app.webp)
+
+Then, go to the settings tab of your new app, click 'Add buildpack', and select <code>heroku/nodejs</code>.
+Then click 'reveal config vars' and add the following two config vars:
+<br />
+<code>NODE_ENV</code> : <code>production</code>
+<br />
+<code>WDS_SOCKET_PORT</code> : <code>0</code>
+<br />
+
+Your settings page you should something like this:
+
+![Config](/readme-assets/deployment/config.webp)
+
+Then go back to the deploy tab, scroll down, connect your GitHub repository and click 'Deploy Branch'.
+
+**7**
+
+And you're done! The React App is deployed and running a production build.
+
+![Production Build](/readme-assets/deployment/production-build.webp)
+
+<br />
+
 # Credits & References
 
 ### Code, Dependencies and Tools
@@ -1262,10 +1370,11 @@ production version of the React project. However, the errors continued.
 + JS (and by extension JSX) validation from <a href="https://eslint.org/">ESLint</a>.
 + <a href="https://jestjs.io/">Jest</a> (and <a href="https://babeljs.io/">Babel</a> configuration) used for JS testing.
 + <a href="https://getbootstrap.com/">Bootstrap</a> front-end framework used for easy styling.
++ <a href="https://axios-http.com/">Axios</a> library.
 
 ### Media
 
-+ Favicon (<code>static/images/favicon.ico</code>) and site icons from <a href='https://fontawesome.com/v4/license/'>Font Awesome by Dave Gandy</a>.
++ Favicon (<code>public/favicon.svg</code>) and site icons from <a href='https://fontawesome.com/v4/license/'>Font Awesome by Dave Gandy</a>.
 + <code>src/assets/logo.webp</code> is an original logo designed by myself,
 Harry Peter Miles.
 + All site images provided by Freepik under free license. This includes all images in <code>src/assets/</code> except the favicon and logo:
