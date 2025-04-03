@@ -610,6 +610,14 @@ Worthing Sound Wave is a finished product, but several features could be impleme
 
 ## Lighthouse Testing
 
+### Overview
+
++ The site's best practices score is consistently imperfect due to the site's use of third party cookies, a feature Chrome is now moving away from.
++ Also impacting the best practices score is the logging of errors by the browser that are handled in the site's code. This is due to code logic sometimes
+depending on 'failed' requests to determine if a user is authenticated. The logic is not flawed, but Chrome detracts points for the 'acceptable' errors.
+This could be reviewed in future, but is aligned with the taught practices of Code Institute.
++ Perhaps most importantly, the site scores perfectly on every page for accessibility and SEO.
+
 ### Home Page
 
 <br />
@@ -657,7 +665,7 @@ Worthing Sound Wave is a finished product, but several features could be impleme
 <br />
 
 #### Performance - 89
-  - A very good performance score overall
+  - A very good performance score overall.
   - The login image impacts the performance somewhat. It is a WEBP file, and was resized to as low of as a resolution as possible
   without affecting the UX. Alternate images could perhaps be sought to further increase the score, however this current performance
   was deeemed sufficient for the project scope.
@@ -685,7 +693,7 @@ Worthing Sound Wave is a finished product, but several features could be impleme
 <br />
 
 #### Performance - 88
-  - A very good performance score overall
+  - A good performance score overall.
   - The register image lowers the score slightly, like the login page.
 
 #### Accessibility - 100
@@ -711,7 +719,7 @@ Worthing Sound Wave is a finished product, but several features could be impleme
 <br />
 
 #### Performance - 90
-  - A very good performance score overall
+  - A very good performance score overall.
   - The image lowers the score slightly.
 
 #### Accessibility - 100
@@ -740,19 +748,232 @@ Worthing Sound Wave is a finished product, but several features could be impleme
 </details>
 <br />
 
-#### Performance - 90
-  - A very good performance score overall
+#### Performance - 86
+  - A good performance score overall.
   - The image lowers the score slightly.
 
 #### Accessibility - 100
   - Perfect accessibility score.
 
 #### Best Practices - 78
-  - Impacted by the 'acceptable' console errors like all site pages
-  - Further impacted by the use of third party cookies for user authentication. Like the console
-  errors, this is aligned with the taught logic of Code Institute, but Chrome is moving away from these
-  cookies and reflects this in their best practices score.
-  - Alternates aligned with Chrome's future plans could be sought in future.
+  - Impacted by the 'acceptable' console errors and third party cookes like all authenticated pages.
+
+#### SEO - 100
+- Perfect SEO score.
+
+<br />
+
+### General Feed Page
+
+<br />
+<details>
+<summary> General Feed Page Lighthouse </summary>
+
+![General Feed Page Lighthouse](/readme-assets/lighthouse/general-feed-lighthouse.webp)
+
+</details>
+<br />
+
+#### Performance - 91
+  - A good performance score overall.
+  - The large amount of posts and songs that render on this screen impact the performance slightly.
+  - Finding methods to reduce the layout shifting introduced by this kind of rendering could improve the performance.
+  The current performance was deemed satisfactory for the project scope.
+
+#### Accessibility - 100
+  - Perfect accessibility score.
+
+#### Best Practices - 78
+  - Impacted by the 'acceptable' console errors and third party cookes like all authenticated pages.
+
+#### SEO - 100
+- Perfect SEO score.
+
+<br />
+
+### My Feed Page
+
+<br />
+<details>
+<summary> My Feed Page Lighthouse </summary>
+
+![My Feed Page Lighthouse](/readme-assets/lighthouse/my-feed-lighthouse.webp)
+
+</details>
+<br />
+
+#### Performance - 94
+  - A good performance score overall.
+  - Similar to the general feed performance - acceptable for this project, but could possibly be improved with
+  use of methods to prevent heavy layout shifting.
+
+#### Accessibility - 100
+  - Perfect accessibility score.
+
+#### Best Practices - 78
+  - Impacted by the 'acceptable' console errors and third party cookes like all authenticated pages.
+
+#### SEO - 100
+- Perfect SEO score.
+
+<br />
+
+### Post Page
+
+<br />
+<details>
+<summary> Post Page Lighthouse </summary>
+
+![Post Page Lighthouse](/readme-assets/lighthouse/post-page-lighthouse.webp)
+
+</details>
+<br />
+
+#### Performance - 89
+  - A good performance score overall.
+  - The rendering of comments is particularly layout shifting. Like the feeds, this is acceptable for the project scope
+  but could be marginally improved with methods to prevent large shifts.
+
+#### Accessibility - 100
+  - Perfect accessibility score.
+
+#### Best Practices - 78
+  - Impacted by the 'acceptable' console errors and third party cookes like all authenticated pages.
+
+#### SEO - 100
+- Perfect SEO score.
+
+<br />
+
+### Profile Page
+
+<br />
+<details>
+<summary> Profile Page Lighthouse </summary>
+
+![Profile Page Lighthouse](/readme-assets/lighthouse/profile-page-lighthouse.webp)
+
+</details>
+<br />
+
+#### Performance - 71
+  - An acceptable but certainly flawed performance score.
+  - Mostly caused by the rendering of the high resolution PNG image the user uploaded for the profile image.
+  All images chosen for the site during development are WEBP and downscaled, but this process is not applied
+  to user uploaded images.
+  - The UX is not greatly impacted, however images could be converted to WEBP and downscaled to improve the
+  performance.
+
+#### Accessibility - 100
+  - Perfect accessibility score.
+
+#### Best Practices - 78
+  - Impacted by the 'acceptable' console errors and third party cookes like all authenticated pages.
+
+#### SEO - 100
+- Perfect SEO score.
+
+<br />
+
+### Edit Profile Page
+
+<br />
+<details>
+<summary> Edit Profile Page Lighthouse </summary>
+
+![Edit Profile Page Lighthouse](/readme-assets/lighthouse/edit-profile-page-lighthouse.webp)
+
+</details>
+<br />
+
+#### Performance - 74
+  - An acceptable but certainly flawed performance score.
+  - Like the profile page, is very impacted by the rendering of the high resolution PNG profile
+  image uploaded by a user. Similar conclusions apply.
+
+#### Accessibility - 100
+  - Perfect accessibility score.
+
+#### Best Practices - 78
+  - Impacted by the 'acceptable' console errors and third party cookes like all authenticated pages.
+
+#### SEO - 100
+- Perfect SEO score.
+
+<br />
+
+### Create Song Page
+
+<br />
+<details>
+<summary> Create Song Page Lighthouse </summary>
+
+![Create Song Page Lighthouse](/readme-assets/lighthouse/create-song-lighthouse.webp)
+
+</details>
+<br />
+
+#### Performance - 91
+  - A good performance score overall.
+  - The image lowers the score slightly.
+
+#### Accessibility - 100
+  - Perfect accessibility score.
+
+#### Best Practices - 78
+  - Impacted by the 'acceptable' console errors and third party cookes like all authenticated pages.
+
+#### SEO - 100
+- Perfect SEO score.
+
+<br />
+
+### Edit Song Page
+
+<br />
+<details>
+<summary> Edit Song Page Lighthouse </summary>
+
+![Edit Song Page Lighthouse ](/readme-assets/lighthouse/edit-song-lighthouse.webp)
+
+</details>
+<br />
+
+#### Performance - 88
+  - A good performance score overall.
+  - The image lowers the score slightly.
+
+#### Accessibility - 100
+  - Perfect accessibility score.
+
+#### Best Practices - 78
+  - Impacted by the 'acceptable' console errors and third party cookes like all authenticated pages.
+
+#### SEO - 100
+- Perfect SEO score.
+
+<br />
+
+### Page Not Found Page
+
+<br />
+<details>
+<summary> Page Not Found Page Lighthouse </summary>
+
+![Page Not Found Page Lighthouse ](/readme-assets/lighthouse/404-lighthouse.webp)
+
+</details>
+<br />
+
+#### Performance - 95
+  - A good performance score overall.
+  - The image lowers the score slightly.
+
+#### Accessibility - 100
+  - Perfect accessibility score.
+
+#### Best Practices - 96
+  - Impacted by the 'acceptable' console errors like all pages.
 
 #### SEO - 100
 - Perfect SEO score.
