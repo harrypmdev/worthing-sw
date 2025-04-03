@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 import createSongImage from '../../assets/create-song-image.webp';
-import styles from '../../styles/RegisterLogin.module.css';
+import styles from '../../styles/formPage.module.css';
 import { useRedirect } from '../../hooks/useRedirect';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
@@ -156,7 +156,7 @@ function EditSong() {
           fluid 
           rounded 
           src={createSongImage} 
-          className={styles.registerImage} 
+          className={styles.formImage} 
           alt='Edit Song Image - abstract artwork representing written music'
         />
       </Col>

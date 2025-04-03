@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
-import styles from "../../styles/CommentCreateEditForm.module.css";
+import styles from "../../styles/CommentForm.module.css";
 import Avatar from "../profile/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { Button } from "react-bootstrap";

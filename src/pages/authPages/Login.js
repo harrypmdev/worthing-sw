@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
 import loginImage from '../../assets/login-image.webp';
-import styles from '../../styles/RegisterLogin.module.css';
+import styles from '../../styles/formPage.module.css';
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 import { setTokenTimestamp } from '../../utils/utils';
 import { useRedirect } from '../../hooks/useRedirect';
@@ -63,7 +63,7 @@ function Login() {
               fluid 
               rounded 
               src={loginImage} 
-              className={styles.registerImage}
+              className={styles.formImage}
               alt='Login Image - musicians playing keyboards.'
             />
           </Col>

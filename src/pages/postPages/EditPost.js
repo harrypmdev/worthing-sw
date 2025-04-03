@@ -8,8 +8,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 import createPostImage from '../../assets/add-post.webp';
-import styles from '../../styles/RegisterLogin.module.css';
-import postStyles from '../../styles/CreateEditPost.module.css';
+import styles from '../../styles/formPage.module.css';
 import { useRedirect } from '../../hooks/useRedirect';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
@@ -111,7 +110,7 @@ function EditPost() {
                 rows={4}
                 placeholder="Content*"
                 name="content"
-                className={`mt-2 ${postStyles.noResize}`}  
+                className={`mt-2 ${styles.noResize}`}  
                 value={content}
                 onChange={handleChange}
               />
@@ -168,7 +167,7 @@ function EditPost() {
             fluid 
             rounded 
             src={createPostImage} 
-            className={styles.registerImage} 
+            className={styles.formImage} 
             alt='Edit Post Image - a post-it note on a corkboard.'
           />
         </Col>

@@ -10,7 +10,7 @@ import { Alert } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 
 import createSongImage from '../../assets/create-song-image.webp';
-import styles from '../../styles/RegisterLogin.module.css';
+import styles from '../../styles/formPage.module.css';
 import { useRedirect } from '../../hooks/useRedirect';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
@@ -215,7 +215,7 @@ function CreateSong() {
             fluid 
             rounded 
             src={createSongImage} 
-            className={styles.registerImage} 
+            className={styles.formImage} 
             alt='Create Song Image - abstract artwork representing written music'
           />
         </Col>

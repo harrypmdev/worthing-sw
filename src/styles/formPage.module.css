@@ -1,7 +1,11 @@
-.registerImage {
+.formImage {
     max-height: 80vh;
 }
 
 .dangerHelper {
   color: #8F0000;
+}
+
+.noResize {
+  resize: none;
 }

@@ -11,7 +11,7 @@ import { useRedirect } from '../../hooks/useRedirect';
 import { Alert } from 'react-bootstrap';
 
 import registerImage from '../../assets/register-image.webp';
-import styles from '../../styles/RegisterLogin.module.css';
+import styles from '../../styles/formPage.module.css';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
 import { toast } from 'react-toastify';
 
@@ -61,7 +61,7 @@ function Register() {
             fluid 
             rounded 
             src={registerImage} 
-            className={styles.registerImage} 
+            className={styles.formImage} 
             alt='Register Image - a man playing electric guitar.'
           />
         </Col>
