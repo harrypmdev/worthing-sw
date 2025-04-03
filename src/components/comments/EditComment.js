@@ -98,7 +98,8 @@ function EditComment({id, setComments, content, setShowEdit}) {
         <Button
           disabled={saveButtonLoading}
           variant="warning" 
-          type="submit" 
+          type="submit"
+          aria-label='Save Changes'
         >
         Save Changes
         </Button>

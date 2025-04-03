@@ -101,6 +101,7 @@ const Comment = (props) => {
               className='py-1 px-2 mx-1'
               disabled={buttonLoading}
               onClick={setShowEdit}
+              aria-label='Edit Comment'
             >
               <i className="fa-solid fa-pen-to-square"></i>
             </Button>
@@ -109,6 +110,7 @@ const Comment = (props) => {
               className='py-1 px-2 mx-1'
               disabled={buttonLoading}
               onClick={() => {setShowModal(true)}}
+              aria-label='Delete Comment'
             >
               <i className="fa-solid fa-trash"></i>
             </Button>
