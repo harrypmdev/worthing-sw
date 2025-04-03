@@ -36,11 +36,13 @@ upload songs, vote on content, personalise your profile and comment on others' p
   - [Edit Song](#edit-song)
   - [Create Post](#create-post)
   - [Edit Post](#edit-post)
+  - [Create Comment](#create-comment)
   - [Follow](#follow)
   - [Vote](#vote)
 - [**Features Yet To Be Implemented**](#features-yet-to-be-implemented)
 - [**Testing**](#testing)
   - [Lighthouse Testing](#lighthouse-testing)
+- [**Error Pages**](#error-pages)
 - [**Credits and References**](#credits--references)
 
 
@@ -591,6 +593,24 @@ profile in question (made evident by a visual change upon hover). The user's own
 </details> 
 <br />
 
+### Create Comment
+
++ The create comment feature allows users to add comments to posts so they can interact with posts and engage with other users better.
++ The form for comment creation is easily available below the post on any post page, and resembles a comment itself, making its functionality
+immediately clear and improving the page's overall aesthetic cohesion.
++ Comments appear immediately in on the page after being posted, giving clear feedback to the user.
+
+<br />
+<details>
+<summary> Create Comment Screenshot </summary>
+
+![Create Comment Screenshot](/readme-assets/features/create-comment.webp)
+
+</details>
+
+<br />
+
+
 ### Follow
 
 + The follow button allows users to follow other users, so they can stay updated on the users they are interested in.
@@ -1018,7 +1038,89 @@ This could be reviewed in future, but is aligned with the taught practices of Co
 
 ## Manual Testing
 
+All testing was performed both on a regular desktop view and mobile sized screen (via Devtools).
+
+### Navbar & Site Usability
+
+|  Feature | Testing Area |Testing action | Outcome |
+|---|---|---|---|
+Navbar|Role Dependence|Navigate between pages without being logged in.| The login and register pages are available but not the 'my feed' or profile page|
+Navbar|Role Dependence|Log in to account|Login and register options are replaced with profile avatar, log out and personalised 'my feed' navbar options|
+
+### Profiles
+
+|  Feature | Testing Area |Testing action | Outcome |
+|---|---|---|---|
+User Authentication|Authorisation|Briefly leave the website whilst logged in|The user stays logged in rather than being logged out immediately|
+User Authentication|Authorisation|Type the URL of a route restricted to authorised users|The user is redirected to the general feed page|
+User Authentication|Authorisation|Visit the profile page of another user|I can view all their public information but am given no edit buttons|
+Avatar|Usability|Hover over the avatar|The avatar's gradient background dims slightly to indicate it is clickable|
+Avatar|Functionality|Click the avatar|The user is linked to the profile shown on the respective avatar|
+Profile Page|Usability|Viewing a profile with no songs or posts|Messages explaining there is not songs or posts yet are shown|
+Profile Page|Usability|View a profile without a custome profile image|A default profile image of a guitar drawing is shown|
+Edit Profile|Validation|Try to upload an audio file as a profile image|The user is given a message explaining on wav audio files are accepted|
+Edit Profile|Validation|Remove all content from an existing bio|No bio is shown on the profile as this is acceptable and no bio is required|
+Edit Profile|Functionality|Add a bio to the profile|The user is redirected back to the profile on submission where the bio is visibile below the profile image|
+
+### Posts
+
+|  Feature | Testing Area |Testing action | Outcome |
+|---|---|---|---|
+Create Post|Validation|Try to submit a post without a title or contents|Error messages are shown informing the user each field cannot be blank respectively|
+Create Post|Functionality|Submit a post without an attached song|The post submits as this is acceptable and no 'song' is rendered for it, allowing it to act simply as a post|
+Create Post|Functionality|Submit a post with an attached song|The post submits and upon viewing, a 'song' is rendered for it, showing the votes and audio clip of the song in question|
+Edit Post|Functionality|View posts from the profile page|An edit button appears under the users posts which link to the edit post screen for the given post|
+Edit Post|Functionality|Edit the post to try an add a new song that didn't exist when the post was first created|The song appears as an option to attach to the post|
+Edit Post|Functionality|Change the song option to 'no song' on a post that was created with a song|The post no renders with no song as it is not required|
+Edit Post|Validation|Edit the post content to be empty|A message appears telling the user it is required, as when creating a song|
+Edit Post|Usability|Click the delete button|A modal screen appears informing of the consequences and ensuring the user is sure|
+Feed|Functionality|Visit the 'my feed' page|Posts only from users the user is following appear|
+Feed|Functionality|Scroll to the bottom of the rendered posts|A loading spinner is briefly shown then more posts render until there is no more posts|
+Top Songs|Functionality|Upvote a song, making the highest song on the site by net votes|Upon refresh, it is ranked number 1 on the general feed top songs|
+Top Songs|Functionality|Create over 10 songs|The general feed page shows only 10 songs maximum|
+Search|Functionality|Enter a query that matches a username|Only posts from this user, or posts with their username in the title are shown|
+Search|Usability|Type lots of characters in quick succession|A loading spinner is shown until the user has stopped typing for a second, then results are rendered|
+Search|Edge Cases|Enter a query that does not match with any posts|A message saying there is not posts appears|
+Vote|Functionality|Click upvote when there is already an upvote|The upvote is deleted, with the vote state shown by which buttons are greyed out|
+Vote|Functionality|Click upvote when there is already a downvote|The downvote is changed to an upvote, effectively jumping the score by two votes|
+Vote|Functionality|Click upvote and downvote buttons in quick succession|The net votes tally changes immediately but the buttons are disabled until the vote request is finished behind the scenes, meaning the clicks will not be counted until the page is ready to deal with the requests again (this is shown visually)|
+
+### Songs
+
+|  Feature | Testing Area |Testing action | Outcome |
+|---|---|---|---|
+Create Song|Edge Cases|Attempt to add a song when the user already has 3 (the max)|The add song button is not available on the profile, text is shown indicating there is 3 out of 3 songs. Navigating to the add song page manually results in a redirect|
+Create Song|Validation|Attempt to add a song without an audio file|A message is shown informing the user an audio file is mandatory|
+Create Song|Validation|Attempt to add a song with a long audio file (larger than 10MB)|The file is cut to the first 15 seconds and uploaded so it fits under the MB limit|
+Create Song|Usability|Add a song without manually adding an artist name|The field is auto-filled with the user's username unless they wish to change, so submits with this artist name|
+Edit Song|Usability|Click the delete button|A confirmation modal screen is shown|
+Edit Song|Usability|Click the delete button multiple times|The button is disabled until the first delete process is complete, at which point the user is redirected|
+
+### Comments
+
+|  Feature | Testing Area |Testing action | Outcome |
+|---|---|---|---|
+Add Comment|Functionality|Write content and click the post button|The button is immediately rendered below with the other comments|
+Edit Comment|Usability|Click the delete button, then try to click the edit button|A modal screen confirms the deletion. After confirming, all buttons are disabled until the comment is deleted and disappears|
+
+
+<br />
+
 ## Automated Testing
+
+# Error Pages
+
++ Rather than a blank page, attempts to access a non-existing page will render a custom 'page not found' page.
++ This helps prevent confusion, improve the professionalism of the site, meet users' expectations and improve the overall UX.
+
+<details>
+<summary> Page Not Found Page </summary>
+
+![404 Page Desktop](/readme-assets/custom-404.webp)
+
+</details> 
+
+<br />
 
 # Bugs
 
