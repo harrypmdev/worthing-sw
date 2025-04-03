@@ -610,6 +610,155 @@ Worthing Sound Wave is a finished product, but several features could be impleme
 
 ## Lighthouse Testing
 
+### Home Page
+
+<br />
+<details>
+<summary> Home Page Lighthouse </summary>
+
+![Home Page Lighthouse](/readme-assets/lighthouse/home-lighthouse.webp)
+
+</details>
+<br />
+
+#### Performance - 97
+  - Almost perfect performance, largely due to the page's simplicity.
+
+#### Accessibility - 100
+  - Perfect accessibility score.
+  - As on most pages of the site, this is aided by overwriting of Bootstrap primary colour
+  with a slightly darker blue, which is better for colour contrast accessibility.
+
+#### Best Practices - 96
+  - Despite all calls to the back-end API being error handled on the site, Chrome automatically
+  logs failed requests even if they are part of the site logic.
+  - The site's methods for keeping users logged in, refreshing tokens etc will sometimes trigger
+  'errors' from the backend when the user is not authenticated. This is not a problem, but nonetheless
+  Chrome logs the errors and this impacts the best practices score.
+  - The methods followed for this project were aligned with Code Instite's methods for programming
+  authentication on the front-end. However some alternate methods could be implemented in the future to avoid these
+  'acceptable' console errors, such as altering the server to return a 200 with the error in the payload,
+  rather than a 400~ error.
+
+#### SEO - 100
+- Perfect SEO score.
+
+<br />
+
+### Login Page
+
+<br />
+<details>
+<summary> Login Page Lighthouse </summary>
+
+![Login Page Lighthouse](/readme-assets/lighthouse/login-lighthouse.webp)
+
+</details>
+<br />
+
+#### Performance - 89
+  - A very good performance score overall
+  - The login image impacts the performance somewhat. It is a WEBP file, and was resized to as low of as a resolution as possible
+  without affecting the UX. Alternate images could perhaps be sought to further increase the score, however this current performance
+  was deeemed sufficient for the project scope.
+
+#### Accessibility - 100
+  - Perfect accessibility score.
+
+#### Best Practices - 96
+  - Impacted by the 'acceptable' console errors like all site pages.
+
+#### SEO - 100
+- Perfect SEO score.
+
+<br />
+
+### Register Page
+
+<br />
+<details>
+<summary> Register Page Lighthouse </summary>
+
+![Register Page Lighthouse](/readme-assets/lighthouse/register-lighthouse.webp)
+
+</details>
+<br />
+
+#### Performance - 88
+  - A very good performance score overall
+  - The register image lowers the score slightly, like the login page.
+
+#### Accessibility - 100
+  - Perfect accessibility score.
+
+#### Best Practices - 96
+  - Impacted by the 'acceptable' console errors like all site pages.
+
+#### SEO - 100
+- Perfect SEO score.
+
+<br />
+
+### Create Post Page
+
+<br />
+<details>
+<summary> Create Post Page Lighthouse </summary>
+
+![Create Post Page Lighthouse](/readme-assets/lighthouse/create-post-lighthouse.webp)
+
+</details>
+<br />
+
+#### Performance - 90
+  - A very good performance score overall
+  - The image lowers the score slightly.
+
+#### Accessibility - 100
+  - Perfect accessibility score.
+
+#### Best Practices - 78
+  - Impacted by the 'acceptable' console errors like all site pages
+  - Further impacted by the use of third party cookies for user authentication. Like the console
+  errors, this is aligned with the taught logic of Code Institute, but Chrome is moving away from these
+  cookies and reflects this in their best practices score.
+  - Alternates aligned with Chrome's future plans could be sought in future.
+
+#### SEO - 100
+- Perfect SEO score.
+
+<br />
+
+### Edit Post Page
+
+<br />
+<details>
+<summary> Edit Post Page Lighthouse </summary>
+
+![Edit Post Page Lighthouse](/readme-assets/lighthouse/edit-post-lighthouse.webp)
+
+</details>
+<br />
+
+#### Performance - 90
+  - A very good performance score overall
+  - The image lowers the score slightly.
+
+#### Accessibility - 100
+  - Perfect accessibility score.
+
+#### Best Practices - 78
+  - Impacted by the 'acceptable' console errors like all site pages
+  - Further impacted by the use of third party cookies for user authentication. Like the console
+  errors, this is aligned with the taught logic of Code Institute, but Chrome is moving away from these
+  cookies and reflects this in their best practices score.
+  - Alternates aligned with Chrome's future plans could be sought in future.
+
+#### SEO - 100
+- Perfect SEO score.
+
+<br />
+
 ## Manual Testing
 
 ## Automated Testing

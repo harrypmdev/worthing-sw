@@ -116,8 +116,9 @@ function EditPost() {
             </Form.Group>
             <ErrorAlert messages={errors?.content} />
             <Form.Group>
-              <Form.Label className='d-none'>Song</Form.Label>
+              <Form.Label id="song-label" className='d-none'>Song</Form.Label>
               <Form.Control 
+                aria-labelledby="song-label"
                 as='select'
                 className='mt-2'
                 value={selectedSong}
