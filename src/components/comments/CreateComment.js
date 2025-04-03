@@ -40,6 +40,11 @@ function CommentCreate({post, setComments}) {
     if (!content) {
       toast.error('Comments require contents.', {position: 'bottom-left', toastId: "commentError"});
       return;
+    } else if (content.length > 300) {
+      toast.error(
+        'Comments must be under 300 characters.', 
+        {position: 'bottom-left', toastId: "commentErrorLength"});
+      return;
     }
     if (postButtonLoading) return;
     try {
