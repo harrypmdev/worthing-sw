@@ -590,6 +590,14 @@ and top songs from the followed users will appear.
 
 # Features Yet To Be Implemented
 
+Worthing Sound Wave is a finished product, but several features could be implemented in the future to expand and improve the user experience.
+
+- **Comment Votes** -- allowing users to vote on comments and sorting them by net votes would allow users to further engage with the site community, and also view the most popular comments on a post first.
+
+- **List of Following and Followers** -- allowing users to view a rendered list of all the profiles they are following and being followed by as avatars would allow users to more easily follow and unfollow users they are interested in and track the popularity of their own profile. This could provide another path for engagement between site users and improve the overall UX.
+
+-**Post Images** -- posts were kept to text and songs for simplicity and to be concise in the aims and value of the site. A feature could be added however to optionally add an image to a post that appears only when the post is clicked on. This could allow users to further engage other users with their posts, by utilising both visual and audio content.
+
 # Data Modelling & Schema
 
 # Validators
