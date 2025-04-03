@@ -177,8 +177,9 @@ function CreateSong() {
                 </Alert>
             ))}
             <Form.Group>
-              <Form.Label className='d-none'>Upload WAV File</Form.Label>
+              <Form.Label id='file-label' className='d-none'>Upload WAV File</Form.Label>
               <Form.Control
+                aria-labelledby="file-label"
                 type="file"
                 name="audio_file"
                 accept=".wav"
