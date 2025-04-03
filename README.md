@@ -40,13 +40,17 @@ upload songs, vote on content, personalise your profile and comment on others' p
   - [Follow](#follow)
   - [Vote](#vote)
 - [**Features Yet To Be Implemented**](#features-yet-to-be-implemented)
+- [**Relationship To Backend**](#relationship-to-back-end)
 - [**Testing**](#testing)
   - [Validation](#validation)
   - [Lighthouse Testing](#lighthouse-testing)
   - [Manual Testing](#manual-testing)
 - [**Error Pages**](#error-pages)
 - [**Bugs**](#bugs)
+- [**Deployment**](#deployment)
 - [**Credits and References**](#credits--references)
+  - [Code, Dependencies and Tools](#code-dependencies-and-tools)
+  - [Media](#media)
 
 
 
@@ -661,7 +665,7 @@ Worthing Sound Wave is a finished product, but several features could be impleme
 
 - **Post Images** -- posts were kept to text and songs for simplicity and to be concise in the aims and value of the site. A feature could be added however to optionally add an image to a post that appears only when the post is clicked on. This could allow users to further engage other users with their posts, by utilising both visual and audio content.
 
-# Data Modelling & Schema
+# Relationship to Back-End
 
 # Testing
 
