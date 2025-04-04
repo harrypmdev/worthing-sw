@@ -1,12 +1,15 @@
 # Worthing Sound Wave
 
-Live site: <a href="https://worthing-sw-c84ec9c15d42.herokuapp.com/">
-https://worthing-sw-c84ec9c15d42.herokuapp.com/</a>
+Live site: https://worthing-sw-c84ec9c15d42.herokuapp.com/
 
 Worthing Sound Wave is a website that allows musicians based in Worthing to connect. You can make posts,
 upload songs, vote on content, personalise your profile and comment on others' posts.
 
 ![Responsive Mockup](/readme-assets/responsive.webp)
+
+Live API - https://worthing-sw-api-fc5a7cd44915.herokuapp.com/
+
+Back-End Repository and README.md - https://github.com/harrypmdev/worthing-sw-api
 
 # Contents
 
