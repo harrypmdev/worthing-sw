@@ -36,8 +36,9 @@ const Feed = (props) => {
 
   const [posts, setPosts] = useState({results: []});
   const [searchQuery, setSearchQuery] = useState('');
+  const [orderBy, setOrderBy] = useState('');
   const hasLoaded = useFetchDetailedPostList({
-    setPosts, filterByOwnershipId, filterByFollowingId, searchQuery
+    setPosts, filterByOwnershipId, filterByFollowingId, searchQuery, orderBy
   });
 
   return (
@@ -55,7 +56,29 @@ const Feed = (props) => {
           className='mr-sm-2 mt-3'
           placeholder='Search posts'
         />
+        <div className="d-flex align-items-center flex-no-wrap mt-1 mb-2">
+          <Form.Label id="order-by" className='flex-shrink-0 pe-2 pt-2'>Order By:</Form.Label>
+          <Form.Control 
+            aria-labelledby="order-by"
+            as='select'
+            onChange={event => setOrderBy(event.target.value)}
+          >
+            <option value='&ordering=-created_at'>
+              Newest First
+            </option>
+            <option value='&ordering=created_at'>
+              Oldest First
+            </option>
+            <option value='&ordering=-net_votes'>
+              Net Votes (Highest First)
+            </option>
+            <option value='&ordering=net_votes'>
+              Net Votes (Lowest First)
+            </option>
+          </Form.Control>
+        </div>
       </Form>
+
       { hasLoaded ? (
         posts.results.length ? (
           <InfiniteScroll 

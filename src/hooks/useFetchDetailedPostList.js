@@ -22,6 +22,8 @@ import { axiosReq } from "../api/axiosDefaults";
  * 
  * @param {string} [searchQuery=''] The search string which should optionally be used to filter the posts.
  * 
+ * @param {string} [orderBy=''] The ordering filter which should optionally be used.
+ * 
  * @returns {boolean} Whether or not the hook functionality has finished processing yet -
  *                    false if it is still processing, true once it has finished.
  */
@@ -31,6 +33,7 @@ const useFetchDetailedPostList = (props) => {
     filterByOwnershipId=null,
     filterByFollowingId=null,
     searchQuery='',
+    orderBy='',
   } = props;
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -45,7 +48,7 @@ const useFetchDetailedPostList = (props) => {
         let userFilter = filterByOwnershipId ? `user=${filterByOwnershipId}` : '';
         let followingFilter = filterByFollowingId ? `user__followed__user=${filterByFollowingId}` : '';
         let search = searchQuery ? `&search=${searchQuery}` : '';
-        const { data: posts } = await axiosReq.get(`/posts/?${userFilter}&${followingFilter}${search}`);
+        const { data: posts } = await axiosReq.get(`/posts/?${userFilter}&${followingFilter}${search}${orderBy}`);
         setPosts(posts);
         setHasLoaded(true);
       } catch (err) {
@@ -59,7 +62,7 @@ const useFetchDetailedPostList = (props) => {
     }, 1000);
     
     return () => clearTimeout(timer);
-  }, [setPosts, filterByOwnershipId, filterByFollowingId, searchQuery]);
+  }, [setPosts, filterByOwnershipId, filterByFollowingId, searchQuery, orderBy]);
   
   
   return hasLoaded;
