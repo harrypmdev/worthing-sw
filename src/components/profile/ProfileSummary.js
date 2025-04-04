@@ -69,7 +69,7 @@ const ProfileSummary = ({profile, songData}) => {
           <SongList profile={profile} songData={songData}/>
         </Col>
         <Col>
-          <VenueList editable={profile?.is_user}/>
+          <VenueList id={profile?.user_id} editable={profile?.is_user}/>
         </Col>
     </Container>
   )

@@ -19,7 +19,7 @@ import { toast } from 'react-toastify';
  * @param {string} deleteEndpoint The backend endpoint that the DELETE request should be
  *                                sent to - e.g `/posts/1/`.
  * 
- * @param {string} navigateAfterDelete The URL route the app should navigate to after the
+ * @param {string} [navigateAfterDelete=null] The URL route the app should navigate to after the
  *                                     deletion has finished.
  * 
  * @returns {ReactNode} - An element that conditionally displays a delete modal.
@@ -30,7 +30,7 @@ const DeleteModal = (props) => {
     setShowModal, 
     text,
     deleteEndpoint,
-    navigateAfterDelete
+    navigateAfterDelete=null
   } = props;
 
   const navigate = useNavigate();
@@ -45,10 +45,10 @@ const DeleteModal = (props) => {
     setDeleteLoading(true);
     try {
       await axiosReq.delete(deleteEndpoint);
-      navigate(navigateAfterDelete);
+      if (navigateAfterDelete) navigate(navigateAfterDelete);
       let capitalised = text.charAt(0).toUpperCase() + text.slice(1);
       toast.success(`${capitalised} deleted!`, {position: 'bottom-left'});
-    } catch (err) {
+    } catch (error) {
       toast.error(
         `We encountered a problem deleting your ${text}. Sorry!`,
          {position: 'bottom-left'}

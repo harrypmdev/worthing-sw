@@ -3,7 +3,6 @@ import { Container } from 'react-bootstrap';
 
 import Song from './Song';
 
-
 /**
  * Render a list of songs ranked from 1-3 by vote popularity.
  * 
