@@ -47,6 +47,7 @@ upload songs, vote on content, personalise your profile and comment on others' p
   - [Validation](#validation)
   - [Lighthouse Testing](#lighthouse-testing)
   - [Manual Testing](#manual-testing)
+  - [Automated Testing](#automated-testing)
 - [**Error Pages**](#error-pages)
 - [**Bugs**](#bugs)
 - [**Deployment**](#deployment)
@@ -1159,6 +1160,10 @@ Edit Comment|Usability|Click the delete button, then try to click the edit butto
 <br />
 
 ## Automated Testing
+
+The testing for this site was primarily done manually.
+Some automated testing was done however to check the correct functioning of the local storage utilities.
+This testing can be found in src/utils/utils.test.js.
 
 # Error Pages
 
