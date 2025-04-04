@@ -50,6 +50,7 @@ const DeleteModal = (props) => {
         results: prevComments.results.filter(comment => comment.id !== id)
       }))
       toast.success('Comment deleted!', {position: 'bottom-left'});
+      // eslint-disable-next-line no-unused-vars
     } catch (error) {
       toast.error(
         'We encountered a problem deleting your comment. Sorry!', 

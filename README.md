@@ -26,7 +26,9 @@ upload songs, vote on content, personalise your profile and comment on others' p
 - [**Features**](#features)
   - [Navbar](#navbar)
   - [Home](#home)
-  - [Feed](#search-bar)
+  - [Feed](#feed)
+  - [Search Bar](#search-bar)
+  - [Order By](#order-by)
   - [Top Songs](#top-songs)
   - [User Authentication](#user-authentication)
   - [Avatar](#avatar)
@@ -79,7 +81,7 @@ one-by-one before the User Story was moved into the 'Done' column. These tasks a
 <details>
 <summary> Breakdown of Themes, Epics, User Stories and Final State of Implementation </summary>
 
-![Agile Breakdown](/readme-assets/agile-breakdown.webp)
+![Agile Breakdown](/readme-assets/agile-breakdown-full.webp)
 
 </details>
 
@@ -100,8 +102,9 @@ one-by-one before the User Story was moved into the 'Done' column. These tasks a
 + <a href='https://fontawesome.com/'>Font Awesome</a> - Used for all site icons, based on HTML and CSS.
 + <a href='https://fonts.google.com/'>Google Fonts</a> - Utilised for the site's primary font, Roboto.
 + <a href='https://axios-http.com/'>Axios</a> - Node HTTP client for better network request functionality, including interceptors.
-+ <a href='https://www.npmjs.com/package/wav-encoder'>wav-encoder</a> - An NPM package allowing for conversion from buffer to wav.
-
++ <a href='https://www.npmjs.com/package/wav-encoder'>wav-encoder</a> - An NPM package allowing for conversion from buffer to wav
++ <a href='https://www.npmjs.com/package/react-toastify'>Toastify</a> - An NPM packaged used to provide an easy way to present users with feedback on their CRUD operations.
+ 
 <br />
 
 # UX Planning
@@ -380,6 +383,22 @@ stopped typing - this minimises API requests and makes the result rendering smoo
 <summary> Search Bar Screenshot </summary>
 
 ![Search Bar Screenshot](/readme-assets/features/search-bar.webp)
+
+</details> 
+<br />
+
+### Order By
+
++ Similary to the search bar, this feature is tied to the feed.
++ Users can order any feed by newest first, oldest first, highest votes first or lowest votes first.
++ Along with the search bar, this allows users to more quickly find what they are most interested in and
+therefore provides a better overall UX.
+
+<br />
+<details>
+<summary> Order By Selector Screenshot </summary>
+
+![Order By Selector Screenshot](/readme-assets/features/order-by.webp)
 
 </details> 
 <br />
@@ -1375,6 +1394,9 @@ And you're done! The React App is deployed and running a production build.
 + <a href="https://jestjs.io/">Jest</a> (and <a href="https://babeljs.io/">Babel</a> configuration) used for JS testing.
 + <a href="https://getbootstrap.com/">Bootstrap</a> front-end framework used for easy styling.
 + <a href="https://axios-http.com/">Axios</a> library.
++ Code from <a href="https://codeinstitute.net/">Code Institute</a> and especially the 'moments' project is used is several files,
+and altered in many more. Though the vast majority of code similar to the moments project has been heavily edited, Code Institute code
+nonetheless gave a useful foundation for edited files and is used verbatim in a small number.
 
 ### Media
 

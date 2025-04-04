@@ -18,6 +18,7 @@ export const CurrentUserProvider = ({ children }) => {
     try {
       const { data } = await axiosRes.get("dj-rest-auth/user/");
       setCurrentUser(data);
+    // eslint-disable-next-line no-empty, no-unused-vars
     } catch (err) {}
   };
 

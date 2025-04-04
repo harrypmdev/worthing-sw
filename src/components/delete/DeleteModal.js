@@ -48,6 +48,7 @@ const DeleteModal = (props) => {
       if (navigateAfterDelete) navigate(navigateAfterDelete);
       let capitalised = text.charAt(0).toUpperCase() + text.slice(1);
       toast.success(`${capitalised} deleted!`, {position: 'bottom-left'});
+      // eslint-disable-next-line no-unused-vars
     } catch (error) {
       toast.error(
         `We encountered a problem deleting your ${text}. Sorry!`,

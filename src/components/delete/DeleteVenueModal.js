@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import { axiosReq } from '../../api/axiosDefaults';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 /**
