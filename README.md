@@ -13,12 +13,15 @@ Back-End Repository and README.md - https://github.com/harrypmdev/worthing-sw-ap
 
 # Contents
 
+- [**Project Goals**](#project-goals)
 - [**Agile Methodology**](#agile-methodology)
   - [Overview](#project-goals)
   - [Specific Implementation and Breakdown of Themes](#specific-implementation-and-breakdown-of-themes)
+  - [Use of Agile Methods to Reach Project Goals](#use-of-agile-methods-to-reach-project-goals)
 - [**Technologies Used**](#technologies-used)
   - [Languages](#languages)
   - [Libraries and Frameworks](#libraries-and-frameworks)
+  - [A Word on React](#a-word-on-react)
 - [**UX Planning**](#ux-planning)
   - [Overview](#overview-1)
   - [Page Wireframes](#page-wireframes)
@@ -83,6 +86,7 @@ An agile methodology was used to develop this project, using iterations on a kan
 GitHub projects was used to facilitate the agile development:
 <a href="https://github.com/users/harrypmdev/projects/9/" target="_blank">Worthing Sound Wave GitHub Agile Project</a>.
 
+<br />
 
 ## Specific Implementation and Breakdown of Themes
 
@@ -122,30 +126,31 @@ The relationship between project goals, implemented user stories and site pages 
 </details>
 
 <br />
-|  Primary Project Goal | Primary Relevant Site Pages | User Story
+
+|Primary Project Goal|Primary Relevant Site Pages|User Story|
 |---|---|---|
-2|Login Page, Register Page|Register/Sign|
-2|Profile Page|Profile Pictures|
-2|Profile Page|Venues|
-3|Post Page, Profile Page|Following Profiles|
-3|General Feed, My Feed|Top Songs|
-2|Profile Page|View Profile|
-1|Create Post Page|Add Post|
-4|Edit Post Page|Edit Posts|
-1|Create Post Page|Add Songs to Posts|
-3|General Feed, My Feed, Profile Page, Post Page|Song Details|
-3|General Feed|View General Feed of Posts|
-3|My Feed|View Posts from Following|
-3|General Feed, My Feed, Profile Page|Search For Posts|
-3|General Feed, My Feed, Profile Page|Ordering Filter|
-3|General Feed, My Feed, Profile Page, Post Page|Post Voting|
-3|Post Page, Profile Page|Song Voting|
-1|Post Page|Add Comment|
-4|Post Page|Edit and Delete Comments|
-3|Post Page|View Comments|
-5|All Pages|Navbar|
-2|All Pages|Role Dependant Navbar|
-5|Home Page|Landing Page Information|
+| 2 |Login Page, Register Page|Register/Sign|
+| 2 |Profile Page|Profile Pictures|
+|2|Profile Page|Venues|
+|3|Post Page, Profile Page|Following Profiles|
+|3|General Feed, My Feed|Top Songs|
+|2|Profile Page|View Profile|
+|1|Create Post Page|Add Post|
+|4|Edit Post Page|Edit Posts|
+|1|Create Post Page|Add Songs to Posts|
+|3|General Feed, My Feed, Profile Page, Post Page|Song Details|
+|3|General Feed|View General Feed of Posts|
+|3|My Feed|View Posts from Following|
+|3|General Feed, My Feed, Profile Page|Search For Posts|
+|3|General Feed, My Feed, Profile Page|Ordering Filter|
+|3|General Feed, My Feed, Profile Page, Post Page|Post Voting|
+|3|Post Page, Profile Page|Song Voting|
+|1|Post Page|Add Comment|
+|4|Post Page|Edit and Delete Comments|
+|3|Post Page|View Comments|
+|5|All Pages|Navbar|
+|2|All Pages|Role Dependant Navbar|
+|5|Home Page|Landing Page Information|
 
 These categorisations are separate to those of themes and epics, as those are divided by implementation and development, whilst this is fully focused on the user experience.
 
@@ -758,8 +763,6 @@ Worthing Sound Wave is a finished product, but several features could be impleme
 - **List of Following and Followers** -- allowing users to view a rendered list of all the profiles they are following and being followed by as avatars would allow users to more easily follow and unfollow users they are interested in and track the popularity of their own profile. This could provide another path for engagement between site users and improve the overall UX.
 
 - **Post Images** -- posts were kept to text and songs for simplicity and to be concise in the aims and value of the site. A feature could be added however to optionally add an image to a post that appears only when the post is clicked on. This could allow users to further engage other users with their posts, by utilising both visual and audio content.
-
-# Relationship to Back-End
 
 # Testing
 
