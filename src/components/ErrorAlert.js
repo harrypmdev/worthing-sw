@@ -1,7 +1,6 @@
 import React from 'react';
 import { Alert } from 'react-bootstrap';
 
-
 /**
  * Render error messages conditionally.
  * 
@@ -12,7 +11,7 @@ import { Alert } from 'react-bootstrap';
 function ErrorAlert({ messages }) {
   return <>
       {messages?.map((message, idx) => (
-        <Alert key={idx} variant="warning">
+        <Alert key={idx} variant='warning'>
           {message}
         </Alert>
       ))}

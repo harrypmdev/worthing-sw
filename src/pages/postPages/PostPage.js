@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 
 import Post from '../../components/posts/Post';
 import CreateComment from '../../components/comments/CreateComment';
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 import infiniteScrollStyles from '../../styles/InfiniteScrollStyles.module.css';
 import Comment from '../../components/comments/Comment';
@@ -30,7 +30,7 @@ const PostPage = () => {
   const hasLoaded = useFetchPostData({id, setPost, setComments});
 
   return (
-    <Container className="flex-grow-1 d-flex flex-column">
+    <Container className='flex-grow-1 d-flex flex-column'>
       { hasLoaded ? (<>
           <Post post={post} link={false} songDetails followButton={true} />
           <hr />

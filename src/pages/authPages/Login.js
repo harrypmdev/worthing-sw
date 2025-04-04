@@ -7,6 +7,7 @@ import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import loginImage from '../../assets/login-image.webp';
 import styles from '../../styles/formPage.module.css';
@@ -15,7 +16,6 @@ import { setTokenTimestamp } from '../../utils/utils';
 import { useRedirect } from '../../hooks/useRedirect';
 import ErrorAlert from '../../components/ErrorAlert';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
-import { toast } from 'react-toastify';
 
 /**
  * Render the login page, including a login form for user authentication.
@@ -56,9 +56,9 @@ function Login() {
   
 
   return (
-    <Container className="flex-grow-1 d-flex flex-column">
-      <Row className="d-flex flex-grow-1 align-items-center pb-6">
-          <Col xs="12" md="6" className="text-center d-none d-md-block">
+    <Container className='flex-grow-1 d-flex flex-column'>
+      <Row className='d-flex flex-grow-1 align-items-center pb-6'>
+          <Col xs='12' md='6' className='text-center d-none d-md-block'>
             <Image 
               fluid 
               rounded 
@@ -73,11 +73,11 @@ function Login() {
               className='d-none d-md-block'
             /> {/* Col purely for layout formatting */}
           <Col
-            xs="12" 
-            md="5"
-            className="bg-light p-3 text-center rounded shadow-sm"
+            xs='12'
+            md='5'
+            className='bg-light p-3 text-center rounded shadow-sm'
           > {/* Col for all actual form box content */}
-            <h1 className="h2 mb-3">Login</h1>
+            <h1 className='h2 mb-3'>Login</h1>
             <hr />
             <Form onSubmit={handleSubmit}>
               <Form.Group>
@@ -86,10 +86,10 @@ function Login() {
                 </Form.Label>
                 <Form.Control
                   id='username-entry'
-                  type="text"
+                  type='text'
                   autoComplete='username'
-                  placeholder="Username"
-                  name="username"
+                  placeholder='Username'
+                  name='username'
                   value={username}
                   onChange={handleChange}
                 />
@@ -101,16 +101,16 @@ function Login() {
                 </Form.Label>
                 <Form.Control
                   id='password-entry'
-                  type="password"
-                  placeholder="Password"
-                  name="password"
+                  type='password'
+                  placeholder='Password'
+                  name='password'
                   className='mt-3 mb-3'
                   value={password}
                   onChange={handleChange}
                 />
               </Form.Group>
               <ErrorAlert messages={errors?.password} />
-              <Button type="submit" className='w-100'>
+              <Button type='submit' className='w-100'>
                 Submit
               </Button>
               <ErrorAlert messages={errors?.non_field_errors} />

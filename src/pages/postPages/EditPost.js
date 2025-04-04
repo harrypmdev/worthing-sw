@@ -80,24 +80,24 @@ function EditPost() {
   };
 
   return (
-    <Container className="flex-grow-1 d-flex flex-column">
+    <Container className='flex-grow-1 d-flex flex-column'>
     { hasLoaded ? ( 
-      <Row className="d-flex flex-grow-1 align-items-center pb-6">
+      <Row className='d-flex flex-grow-1 align-items-center pb-6'>
         <Col
-        xs="12" 
-        md="5"
-        className="bg-light p-3 text-center rounded shadow-sm mt-2"
+        xs='12'
+        md='5'
+        className='bg-light p-3 text-center rounded shadow-sm mt-2'
         >
-          <h1 className="h2 mb-3">Edit Post</h1>
+          <h1 className='h2 mb-3'>Edit Post</h1>
           <hr />
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label htmlFor='title-entry' className='d-none'>Title</Form.Label>
               <Form.Control
                 id='title-entry'
-                type="text"
-                placeholder="Title*"
-                name="title"
+                type='text'
+                placeholder='Title*'
+                name='title'
                 className='mt-3'
                 value={title}
                 onChange={handleChange}
@@ -110,8 +110,8 @@ function EditPost() {
                 as='textarea'
                 id='content-entry'
                 rows={4}
-                placeholder="Content*"
-                name="content"
+                placeholder='Content*'
+                name='content'
                 className={`mt-2 ${styles.noResize}`}  
                 value={content}
                 onChange={handleChange}
@@ -119,9 +119,9 @@ function EditPost() {
             </Form.Group>
             <ErrorAlert messages={errors?.content} />
             <Form.Group>
-              <Form.Label htmlFor='song-entry' id="song-label" className='d-none'>Song</Form.Label>
+              <Form.Label htmlFor='song-entry' id='song-label' className='d-none'>Song</Form.Label>
               <Form.Control 
-                aria-labelledby="song-label"
+                aria-labelledby='song-label'
                 id='song-entry'
                 as='select'
                 className='mt-2'
@@ -137,14 +137,14 @@ function EditPost() {
                   </option>
                 ))}
               </Form.Control>
-              <Form.Text className="text-muted">
+              <Form.Text className='text-muted'>
                 You can link a song from your profile to your post. To add 
                 new songs, visit your profile page.
               </Form.Text>
             </Form.Group>
             <ErrorAlert messages={errors?.song} />
             <Button 
-              type="submit" 
+              type='submit' 
               className='w-100 mt-2'
               disabled={isSubmitting}
             >
@@ -165,7 +165,7 @@ function EditPost() {
             md='1'
             className='d-none d-md-block'
           /> {/* Col purely for layout formatting */}
-        <Col xs="12" md="6" className="text-center d-none d-md-block">
+        <Col xs='12' md='6' className='text-center d-none d-md-block'>
           <Image 
             fluid 
             rounded 

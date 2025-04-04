@@ -8,12 +8,12 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { Alert } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
 import { useRedirect } from '../../hooks/useRedirect';
 import registerImage from '../../assets/register-image.webp';
 import styles from '../../styles/formPage.module.css';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
-import { toast } from 'react-toastify';
 
 /**
  * Render the register page, including a register form for user authentication.
@@ -54,9 +54,9 @@ function Register() {
   }
 
   return (
-    <Container className="flex-grow-1 d-flex flex-column">
-      <Row className="d-flex flex-grow-1 align-items-center pb-6">
-        <Col xs="12" md="6" className="text-center d-none d-md-block">
+    <Container className='flex-grow-1 d-flex flex-column'>
+      <Row className='d-flex flex-grow-1 align-items-center pb-6'>
+        <Col xs='12' md='6' className='text-center d-none d-md-block'>
           <Image 
             fluid 
             rounded 
@@ -71,11 +71,11 @@ function Register() {
           className='d-none d-md-block'
         />
         <Col
-          xs="12" 
-          md="5"
-          className="text-center bg-light my-2 p-3 rounded shadow-sm"
+          xs='12'
+          md='5'
+          className='text-center bg-light my-2 p-3 rounded shadow-sm'
         >
-          <h1 className="h2 mb-3">Register</h1>
+          <h1 className='h2 mb-3'>Register</h1>
           <hr />
           <Form onSubmit={handleSubmit}>
             <Form.Group>
@@ -85,9 +85,9 @@ function Register() {
               <Form.Control
                 id='username-entry'
                 autoComplete='username'
-                type="text"
-                placeholder="Username*"
-                name="username"
+                type='text'
+                placeholder='Username*'
+                name='username'
                 value={username}
                 className='mt-1 mb-3'
                 onChange={handleChange}
@@ -103,9 +103,9 @@ function Register() {
               <Form.Control
                 id='email-entry'
                 autoComplete='email'
-                type="email"
-                placeholder="Email"
-                name="email"
+                type='email'
+                placeholder='Email'
+                name='email'
                 value={email}
                 className='my-3'
                 onChange={handleChange}
@@ -120,9 +120,9 @@ function Register() {
               </Form.Label>
               <Form.Control
                 id='password-entry'
-                type="password"
-                placeholder="Password*"
-                name="password1"
+                type='password'
+                placeholder='Password*'
+                name='password1'
                 value={password1}
                 className='my-3'
                 onChange={handleChange}
@@ -137,9 +137,9 @@ function Register() {
               </Form.Label>
               <Form.Control
                 id='confirm-password-entry'
-                type="password"
-                placeholder="Confirm Password*"
-                name="password2"
+                type='password'
+                placeholder='Confirm Password*'
+                name='password2'
                 value={password2}
                 className='my-3'
                 onChange={handleChange}
@@ -148,11 +148,11 @@ function Register() {
             {errors.password2?.map((message, idx) => 
               <Alert variant='warning' key={idx}>{message}</Alert>
             )}
-            <Button type="submit" className="w-100" >
+            <Button type='submit' className='w-100' >
               Submit
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
-              <Alert key={idx} variant='warning' className="mt-3">
+              <Alert key={idx} variant='warning' className='mt-3'>
                 {message}
               </Alert>
             ))}

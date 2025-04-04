@@ -82,7 +82,7 @@ const Comment = (props) => {
               onClick={setShowEdit}
               aria-label='Edit Comment'
             >
-              <i className="fa-solid fa-pen-to-square"></i>
+              <i className='fa-solid fa-pen-to-square'></i>
             </Button>
             <Button 
               variant='danger' 
@@ -91,7 +91,7 @@ const Comment = (props) => {
               onClick={() => {setShowModal(true)}}
               aria-label='Delete Comment'
             >
-              <i className="fa-solid fa-trash"></i>
+              <i className='fa-solid fa-trash'></i>
             </Button>
             </div>}
         </Col>

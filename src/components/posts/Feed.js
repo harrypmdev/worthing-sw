@@ -58,11 +58,11 @@ const Feed = (props) => {
           placeholder='Search posts'
         />
         <div className='d-flex align-items-center flex-no-wrap mt-1 mb-2'>
-          <Form.Label id="order-by" htmlFor='order-by-input' className='flex-shrink-0 pe-2 pt-2'>
+          <Form.Label id='order-by' htmlFor='order-by-input' className='flex-shrink-0 pe-2 pt-2'>
             Order By:
           </Form.Label>
           <Form.Control 
-            aria-labelledby="order-by"
+            aria-labelledby='order-by'
             id='order-by-input'
             as='select'
             onChange={event => setOrderBy(event.target.value)}
@@ -105,7 +105,7 @@ const Feed = (props) => {
           </InfiniteScroll>
         ) : (
           <div className='text-center'>
-            <p className='mt-3'>No posts! <i className="fa-solid fa-heart-crack"></i></p>
+            <p className='mt-3'>No posts! <i className='fa-solid fa-heart-crack'></i></p>
           </div>
           )
       ) : (<>

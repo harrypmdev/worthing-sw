@@ -79,7 +79,7 @@ const Post = (props) => {
                 {avatarAndFollow}
               </Col>
             )}
-            <Col xs="auto" className="ms-auto">
+            <Col xs='auto' className='ms-auto'>
               <Vote post={post} />
             </Col>
           </Row>
@@ -120,7 +120,7 @@ const Post = (props) => {
         to={`/edit-post/${post.id}`}
         className='btn btn-warning w-100 rounded-top-0 text-center mb-3'>
         Edit&ensp;
-        <i className="fa-solid fa-pen-to-square"></i>
+        <i className='fa-solid fa-pen-to-square'></i>
       </Link>
     )}
   </>

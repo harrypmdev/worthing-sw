@@ -33,21 +33,21 @@ function App() {
     <div className={`${styles.roboto} min-vh-100 d-flex flex-column`}>
       <ToastContainer />
       <NavBar />
-      <Container fluid className="d-flex flex-column flex-grow-1">
+      <Container fluid className='d-flex flex-column flex-grow-1'>
         <Routes>
-          <Route exact path="/" element={<Home />}/>
-          <Route exact path="/login/" element={<Login />}/>
-          <Route exact path="/register/" element={<Register />}/>
+          <Route exact path='/' element={<Home />}/>
+          <Route exact path='/login/' element={<Login />}/>
+          <Route exact path='/register/' element={<Register />}/>
           <Route exact path='/profile/:id' element={<Profile />}/>
           <Route exact path='/edit-profile/' element={<EditProfile />}/>
           <Route exact path='/general-feed/' element={<GeneralFeed />}/>
           <Route exact path='/my-feed/' element={<MyFeed />}/>
-          <Route exact path="/posts/:id" element ={<PostPage />} />
+          <Route exact path='/posts/:id' element ={<PostPage />} />
           <Route exact path='/create-song/' element={<CreateSong />} /> 
           <Route exact path='/edit-song/:id/' element={<EditSong />} />
           <Route exact path='/create-post/' element={<CreatePost />} />
           <Route exact path='/edit-post/:id/' element={<EditPost />} />
-          <Route path="*" element={<PageNotFound />} />
+          <Route path='*' element={<PageNotFound />} />
         </Routes>
       </Container>
     </div>

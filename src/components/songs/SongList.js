@@ -15,7 +15,7 @@ import Song from './Song';
  */
 const SongList = ({songData, profile=null}) => {
   return (
-    <Container className="flex-grow-1 d-flex flex-column">
+    <Container className='flex-grow-1 d-flex flex-column'>
       { songData.length > 0 && profile && (
         <h2 className='h6 text-center fw-bold'>Songs ({profile.songs_count}/3)</h2>
       )}

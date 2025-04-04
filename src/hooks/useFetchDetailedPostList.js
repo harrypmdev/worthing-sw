@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { axiosReq } from "../api/axiosDefaults";
+import { axiosReq } from '../api/axiosDefaults';
 
 /**
  * Fetch posts from the backend as an object and pass this into a given setter function.

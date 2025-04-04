@@ -66,12 +66,12 @@ function CreateSong() {
       setIsSubmitting(false);
       return;
     }
-    formData.append("title", title);
-    formData.append("artist_name", artist_name);
-    if (link_to_song) formData.append("link_to_song", link_to_song);
-    if (audio_file) formData.append("audio_file", audio_file);
+    formData.append('title', title);
+    formData.append('artist_name', artist_name);
+    if (link_to_song) formData.append('link_to_song', link_to_song);
+    if (audio_file) formData.append('audio_file', audio_file);
     try {
-      await axiosReq.post("/songs/", formData);
+      await axiosReq.post('/songs/', formData);
       toast.success('Song created!', {position: 'bottom-left'});
       navigate(`/profile/${currentUser.profile_id}`);
     } catch (err) {
@@ -112,14 +112,14 @@ function CreateSong() {
     isLoading ? ( 
       <FullPageSpinner /> 
     ) : ( 
-      <Container className="flex-grow-1 d-flex flex-column">
-      <Row className="d-flex flex-grow-1 align-items-center pb-6">
+      <Container className='flex-grow-1 d-flex flex-column'>
+      <Row className='d-flex flex-grow-1 align-items-center pb-6'>
         <Col
-        xs="12" 
-        md="5"
-        className="bg-light p-3 text-center rounded shadow-sm"
+        xs='12' 
+        md='5'
+        className='bg-light p-3 text-center rounded shadow-sm'
         > {/* Col for all actual form box content */}
-          <h1 className="h2 mb-3">Create Song</h1>
+          <h1 className='h2 mb-3'>Create Song</h1>
           <p>Add a new song to your profile. You can have up to three.</p>
           <hr />
           <Form onSubmit={handleSubmit}>
@@ -129,16 +129,16 @@ function CreateSong() {
               </Form.Label>
               <Form.Control 
                 id='artist-name-entry'
-                type="text"
+                type='text'
                 placeholder="Artist's Name*"
-                name="artist_name"
+                name='artist_name'
                 className='mt-3 mb-1'
                 value={artist_name || ''}
                 onChange={handleChange}
               />
             </Form.Group>
             {errors.link_to_song?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
+                <Alert key={idx} variant='warning'>
                   {message}
                 </Alert>
             ))}
@@ -148,16 +148,16 @@ function CreateSong() {
               </Form.Label>
               <Form.Control 
                 id='song-title-entry'
-                type="text"
-                placeholder="Song Title*"
-                name="title"
+                type='text'
+                placeholder='Song Title*'
+                name='title'
                 className='mt-2'
                 value={title}
                 onChange={handleChange}
               />
             </Form.Group>
             {errors.title?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
+                <Alert key={idx} variant='warning'>
                   {message}
                 </Alert>
             ))}
@@ -167,20 +167,20 @@ function CreateSong() {
               </Form.Label>
               <Form.Control
                 id='link-to-full-entry'
-                type="url"
-                placeholder="Link To Full Song (Optional)"
-                name="link_to_song"
+                type='url'
+                placeholder='Link To Full Song (Optional)'
+                name='link_to_song'
                 className='mt-2 mb-1'
                 value={link_to_song || ''}
                 onChange={handleChange}
               />
-              <Form.Text className="text-muted">
+              <Form.Text className='text-muted'>
                 You can only upload short clips. This option gives you a chance
                 to give a link to the full version of your song.
               </Form.Text>
             </Form.Group>
             {errors.link_to_song?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
+                <Alert key={idx} variant='warning'>
                   {message}
                 </Alert>
             ))}
@@ -193,27 +193,27 @@ function CreateSong() {
                 Upload WAV File</Form.Label>
               <Form.Control
                 id='file-entry'
-                aria-labelledby="file-label"
-                type="file"
-                name="audio_file"
-                accept=".wav"
-                className="mt-2"
+                aria-labelledby='file-label'
+                type='file'
+                name='audio_file'
+                accept='.wav'
+                className='mt-2'
                 onChange={handleSongChange}
               />
-              <Form.Text className="text-muted">
+              <Form.Text className='text-muted'>
                 Upload a short audio file in the WAV format. Song clips longer than 15 seconds
                 will be trimmed down.
               </Form.Text>
             </Form.Group>
             <Button 
-                type="submit" 
+                type='submit'
                 className='w-100 mt-2'
                 disabled={isSubmitting}
               >
                 { isSubmitting ? 'Submitting...' : 'Submit'}
               </Button>
             {errors.non_field_errors?.map((message, idx) => (
-                <Alert key={idx} variant="warning" className="mt-3">
+                <Alert key={idx} variant='warning' className='mt-3'>
                   {message}
                 </Alert>
             ))}
@@ -224,7 +224,7 @@ function CreateSong() {
             md='1'
             className='d-none d-md-block'
           /> {/* Col purely for layout formatting */}
-        <Col xs="12" md="6" className="text-center d-none d-md-block">
+        <Col xs='12' md='6' className='text-center d-none d-md-block'>
           <Image 
             fluid 
             rounded 

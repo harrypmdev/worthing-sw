@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react'
 import { Button, Col, Container, Form, Image, Row } from 'react-bootstrap';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 import { useCurrentUser, useSetCurrentUser } from '../../contexts/CurrentUserContext'
 import { axiosReq } from '../../api/axiosDefaults';
 import FullPageSpinner from '../../components/spinner/FullPageSpinner';
 import styles from '../../styles/EditProfile.module.css';
-import { useNavigate } from 'react-router-dom';
 import ErrorAlert from '../../components/ErrorAlert';
 import useFormDataHandler from '../../hooks/useFormDataHandler';
 import useFetchProfileData from '../../hooks/useFetchProfileData';
@@ -57,7 +57,7 @@ const EditProfile = () => {
     const formData = new FormData();
     formData.append('bio', profile.bio);
     if (imageFile?.current?.files[0]) {
-      formData.append("image", imageFile?.current?.files[0]);
+      formData.append('image', imageFile?.current?.files[0]);
     }
 
     try {
@@ -92,7 +92,7 @@ const EditProfile = () => {
   }
 
   return (
-    <Container fluid className="flex-grow-1 d-flex flex-column mt-2 justify-content-center">
+    <Container fluid className='flex-grow-1 d-flex flex-column mt-2 justify-content-center'>
       {hasLoaded && currentUser ? (
         <Row>
           <Form onSubmit={handleSubmit} className='mt-3'>
@@ -116,17 +116,17 @@ const EditProfile = () => {
                 Change profile image
               </Form.Label>
               <Form.Control
-                type="file"
-                accept="image/*"
-                id="imageUpload"
+                type='file'
+                accept='image/*'
+                id='imageUpload'
                 name='image'
                 onChange={handleImageChange}
                 ref={imageFile}
-                className="d-none"
+                className='d-none'
               />
             </Form.Group>
             </Col>
-            <Form.Text className="text-muted my-2">
+            <Form.Text className='text-muted my-2'>
                 Click or tap your profile image to change it.
             </Form.Text>
             <div className='d-flex justify-content-center'>
@@ -135,16 +135,16 @@ const EditProfile = () => {
               </div>
             </div>
             <Col xs='12' className='d-flex flex-column'>
-            <Form.Group className="mb-4 d-flex flex-column flex-grow-1">
+            <Form.Group className='mb-4 d-flex flex-column flex-grow-1'>
               <Form.Label className='fw-bold' htmlFor='bio-form'>Bio</Form.Label>
               <Form.Control
                 id='bio-form'
-                as="textarea"
+                as='textarea'
                 rows={4}
                 value={profile.bio}
                 name='bio'
                 className={`flex-grow-1 ${styles.noResize}`}
-                placeholder="Write something about yourself..."
+                placeholder='Write something about yourself...'
                 onChange={handleChange}
               />
             </Form.Group>
@@ -152,9 +152,9 @@ const EditProfile = () => {
           </Row>
           <Col xs='12' className='text-center mt-2'>
             <Button 
-              variant="primary" 
-              type="submit" 
-              className="w-25"
+              variant='primary' 
+              type='submit'
+              className='w-25'
               disabled={isSubmitting}
             >
               { isSubmitting ? 'Submitting...' : 'Submit'}

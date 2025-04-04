@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import { toast } from 'react-toastify';
 
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-
-import styles from "../../styles/CommentForm.module.css";
-import Avatar from "../profile/Avatar";
-import { axiosRes } from "../../api/axiosDefaults";
-import { Button } from "react-bootstrap";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { toast } from "react-toastify";
+import styles from '../../styles/CommentForm.module.css';
+import Avatar from '../profile/Avatar';
+import { axiosRes } from '../../api/axiosDefaults';
+import { Button } from 'react-bootstrap';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 /**
  * Render a form for the creation of a new comment.
@@ -24,7 +23,7 @@ import { toast } from "react-toastify";
 function CommentCreate({post, setComments}) {
   const currentUser = useCurrentUser();
   const [postButtonLoading, setPostButtonLoading] = useState(false);
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState('');
 
   /**
    * Handle the changing of the content text.
@@ -38,18 +37,18 @@ function CommentCreate({post, setComments}) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!content) {
-      toast.error('Comments require contents.', {position: 'bottom-left', toastId: "commentError"});
+      toast.error('Comments require contents.', {position: 'bottom-left', toastId: 'commentError'});
       return;
     } else if (content.length > 300) {
       toast.error(
         'Comments must be under 300 characters.', 
-        {position: 'bottom-left', toastId: "commentErrorLength"});
+        {position: 'bottom-left', toastId: 'commentErrorLength'});
       return;
     }
     if (postButtonLoading) return;
     try {
       setPostButtonLoading(true);
-      const { data } = await axiosRes.post("/comments/", {
+      const { data } = await axiosRes.post('/comments/', {
         content,
         post,
       });
@@ -57,12 +56,12 @@ function CommentCreate({post, setComments}) {
         ...prevComments,
         results: [data, ...prevComments.results],
       }));
-      setContent("");
+      setContent('');
       toast.success('Comment created!', {position: 'bottom-left'});
     } catch (err) {
       toast.error(
         'We encountered a problem creating this comment. Sorry!', 
-        {position: 'bottom-left', toastId: "commentDeleteError"}
+        {position: 'bottom-left', toastId: 'commentDeleteError'}
       );
       console.log(err);
     } finally {
@@ -71,10 +70,10 @@ function CommentCreate({post, setComments}) {
   };
 
   return (
-    <Form className="mt-2 border border-secondary-subtle rounded bg-light" onSubmit={handleSubmit}>
+    <Form className='mt-2 border border-secondary-subtle rounded bg-light' onSubmit={handleSubmit}>
       <Form.Group>
         <InputGroup className='mt-2'>
-          <div className="ps-2">
+          <div className='ps-2'>
             <Avatar
               image={currentUser?.profile_image}
               username={currentUser?.username}
@@ -84,20 +83,20 @@ function CommentCreate({post, setComments}) {
           </div>
           <Form.Control
             className={`${styles.Form} bg-light`}
-            placeholder="Write your comment..."
+            placeholder='Write your comment...'
             name='comment-writing-text-area'
-            as="textarea"
+            as='textarea'
             value={content}
             onChange={handleChange}
             rows={4}
           />
         </InputGroup>
       </Form.Group>
-      <div className="text-end my-2 me-2">
+      <div className='text-end my-2 me-2'>
         <Button
           disabled={postButtonLoading}
-          variant="primary" 
-          type="submit" 
+          variant='primary'
+          type='submit'
         >
         Post
         </Button>

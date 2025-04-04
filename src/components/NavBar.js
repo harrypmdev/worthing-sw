@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import logo from '../assets/logo.webp'
 import styles from '../styles/NavBar.module.css'
@@ -11,8 +12,6 @@ import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContex
 import Avatar from './profile/Avatar';
 import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
 import { removeTokenTimestamp } from '../utils/utils';
-import { toast } from 'react-toastify';
-
 
 /**
  * Render the site's navigation bar, conditionally displaying links based on user login state.
@@ -58,17 +57,17 @@ function NavBar() {
   );
 
   const loggedOut = <>
-    <NavLink to="/" className={getRelevantClasses}>Home</NavLink>
-    <NavLink to="/general-feed/" className={getRelevantClasses}>General Feed</NavLink>
-    <NavLink to="/login/" className={getRelevantClasses}>Login</NavLink>
-    <NavLink to="/register/" className={getRelevantClasses}>Register</NavLink>
+    <NavLink to='/' className={getRelevantClasses}>Home</NavLink>
+    <NavLink to='/general-feed/' className={getRelevantClasses}>General Feed</NavLink>
+    <NavLink to='/login/' className={getRelevantClasses}>Login</NavLink>
+    <NavLink to='/register/' className={getRelevantClasses}>Register</NavLink>
   </>
 
   const loggedIn = <>
-    <NavLink to="/create-post/" className={getRelevantClasses}>New Post</NavLink>
-    <NavLink to="/my-feed/" className={getRelevantClasses}>My Feed</NavLink>
-    <NavLink to="/general-feed/" className={getRelevantClasses}>General Feed</NavLink>
-    <NavLink to="/" className={styles.NavLink} onClick={handleSignOut}>
+    <NavLink to='/create-post/' className={getRelevantClasses}>New Post</NavLink>
+    <NavLink to='/my-feed/' className={getRelevantClasses}>My Feed</NavLink>
+    <NavLink to='/general-feed/' className={getRelevantClasses}>General Feed</NavLink>
+    <NavLink to='/' className={styles.NavLink} onClick={handleSignOut}>
       Logout
     </NavLink>
     <Avatar 
@@ -82,22 +81,22 @@ function NavBar() {
 
   return (
     <Navbar 
-      expand="lg" 
-      className="bg-body-tertiary" 
-      sticky="top"
+      expand='lg'
+      className='bg-body-tertiary'
+      sticky='top'
       onToggle={toggleNav}
       expanded={navExpanded}
     >
       <Container>
-        <Navbar.Brand href="/">
+        <Navbar.Brand href='/'>
             <img 
-              alt="Worthing Sound Wave" 
+              alt='Worthing Sound Wave'
               src={logo}
               className={styles.navbarLogo}
             />
         </Navbar.Brand>
-        <Navbar.Toggle ref={ref} aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Toggle ref={ref} aria-controls='basic-navbar-nav' />
+        <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='ms-auto align-items-lg-center'>
             {currentUser ? loggedIn : loggedOut}
           </Nav>

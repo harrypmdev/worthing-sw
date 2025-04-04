@@ -25,7 +25,7 @@ const ProfileSummary = ({profile, songData}) => {
   const showCreateSongsButton = profile.is_user && (profile.songs_count < 3);
 
   return (
-    <Container className="mt-2">
+    <Container className='mt-2'>
         <Col xs='12' className='d-flex flex-column align-items-center'>
           <Image
             alt={`${profile?.user}'s Profile Avatar`}
@@ -52,14 +52,14 @@ const ProfileSummary = ({profile, songData}) => {
             {profile.is_user && (
               <Link to='/edit-profile/'>
                 <Button variant='outline-dark' className='mb-3 me-1'>
-                  Edit Profile <i className="fa-solid fa-gear ms-1"></i>
+                  Edit Profile <i className='fa-solid fa-gear ms-1'></i>
                 </Button>
               </Link>
             )}
             {showCreateSongsButton && (
               <Link to='/create-song/'>
                 <Button variant='outline-primary' className='mb-3 ms-1'>
-                  Add Song <i className="fa-solid fa-plus ms-1"></i>
+                  Add Song <i className='fa-solid fa-plus ms-1'></i>
                 </Button>
               </Link>
             )}

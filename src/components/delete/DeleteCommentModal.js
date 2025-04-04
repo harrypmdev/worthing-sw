@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button, Modal } from 'react-bootstrap';
-import { axiosRes } from '../../api/axiosDefaults';
 import { toast } from 'react-toastify';
+
+import { axiosRes } from '../../api/axiosDefaults';
 
 /**
  * Render a delete modal which shows conditionally dependant on the showModal prop.
@@ -71,14 +72,14 @@ const DeleteModal = (props) => {
       </Modal.Body>
       <Modal.Footer>
         <Button 
-          variant="secondary" 
+          variant='secondary'
           onClick={() => setShowModal(false)}
           disabled={buttonLoading}
         >
           Cancel
         </Button>
         <Button 
-          variant="danger" 
+          variant='danger'
           disabled={buttonLoading}
           onClick={buttonLoading ? null : handleDelete}
         >

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 import Vote from '../Vote'
 
-
 /**
  * Render a song depending on the given props, rendering an audio player and other details
  * if appropriate.
@@ -85,7 +84,7 @@ const Song = ({song, includeDetails=false, editable=false, number=false}) => {
               ${(song.is_user && editable) && 'rounded-end-0'}`
             }>
             Full&ensp;
-            <i className="fa-solid fa-up-right-from-square"></i>
+            <i className='fa-solid fa-up-right-from-square'></i>
           </Link>
         </Col>
       )}
@@ -99,7 +98,7 @@ const Song = ({song, includeDetails=false, editable=false, number=false}) => {
             }
           >
             Edit&ensp;
-            <i className="fa-solid fa-pen-to-square"></i>
+            <i className='fa-solid fa-pen-to-square'></i>
           </Link>
         )}
       </Col>

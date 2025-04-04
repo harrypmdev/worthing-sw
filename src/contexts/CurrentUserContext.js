@@ -1,8 +1,9 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import axios from "axios";
-import { axiosReq, axiosRes } from "../api/axiosDefaults";
-import { useNavigate } from "react-router";
-import { removeTokenTimestamp, shouldRefreshToken } from "../utils/utils";
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router';
+
+import { axiosReq, axiosRes } from '../api/axiosDefaults';
+import { removeTokenTimestamp, shouldRefreshToken } from '../utils/utils';
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -16,7 +17,7 @@ export const CurrentUserProvider = ({ children }) => {
 
   const handleMount = async () => {
     try {
-      const { data } = await axiosRes.get("dj-rest-auth/user/");
+      const { data } = await axiosRes.get('dj-rest-auth/user/');
       setCurrentUser(data);
     // eslint-disable-next-line no-empty, no-unused-vars
     } catch (err) {}
@@ -31,12 +32,12 @@ export const CurrentUserProvider = ({ children }) => {
       async (config) => {
         if (shouldRefreshToken()) {
           try {
-            await axios.post("/dj-rest-auth/token/refresh/");
+            await axios.post('/dj-rest-auth/token/refresh/');
           // eslint-disable-next-line no-unused-vars
           } catch (err) { 
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
-                navigate("/login/");
+                navigate('/login/');
               }
               return null;
             });
@@ -56,12 +57,12 @@ export const CurrentUserProvider = ({ children }) => {
       async (err) => {
         if (err.response?.status === 401) {
           try {
-            await axios.post("/dj-rest-auth/token/refresh/");
+            await axios.post('/dj-rest-auth/token/refresh/');
           // eslint-disable-next-line no-unused-vars
           } catch (err) { 
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
-                navigate("/login/");
+                navigate('/login/');
               }
               return null;
             });

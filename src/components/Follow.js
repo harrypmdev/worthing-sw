@@ -3,7 +3,6 @@ import { Button } from 'react-bootstrap'
 
 import { axiosReq } from '../api/axiosDefaults';
 
-
 /**
  * Render a follow or unfollow button depending on whether the user is following a given user.
  * 
@@ -52,7 +51,7 @@ const Follow = ({ userToFollow, currentFollower=null }) => {
     setButtonLoaded(false);
     try {
       setFollowing(true);
-      const {data} = await axiosReq.post("/followers/", {followed: userToFollow});
+      const {data} = await axiosReq.post('/followers/', {followed: userToFollow});
       setCurrentFollowerState(data.id);
     } catch (err) {
       console.log(err);
@@ -65,14 +64,14 @@ const Follow = ({ userToFollow, currentFollower=null }) => {
   return (<>
     { following ? (
       <Button variant='outline-success' className='me-2' onClick={handleUnfollow} disabled={!buttonLoaded}>
-        <span className="d-flex align-items-center">
-          Unfollow <i className="fa-solid fa-user-plus ms-1"></i>
+        <span className='d-flex align-items-center'>
+          Unfollow <i className='fa-solid fa-user-plus ms-1'></i>
         </span>
       </Button>                 
     ) : (
       <Button variant='success' className='me-2' onClick={handleFollow} disabled={!buttonLoaded}>
-        <span className="d-flex align-items-center">
-          Follow <i className="fa-solid fa-user-plus ms-1"></i>
+        <span className='d-flex align-items-center'>
+          Follow <i className='fa-solid fa-user-plus ms-1'></i>
         </span>
       </Button>
     )}

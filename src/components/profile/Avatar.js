@@ -43,8 +43,8 @@ const Avatar = (props) => {
         src={image} 
         height={dimensions}
         width={dimensions}
-        alt="Avatar"
-        className="rounded-circle m-0 object-fit-cover me-2"
+        alt='Avatar'
+        className='rounded-circle m-0 object-fit-cover me-2'
       />
       {username && <span>{username}</span>}
     </ NavLink>

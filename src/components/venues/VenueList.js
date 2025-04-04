@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Button, Container, Form} from 'react-bootstrap'
-import { axiosReq } from '../../api/axiosDefaults';
 import { toast } from 'react-toastify';
 
+import { axiosReq } from '../../api/axiosDefaults';
 import Venue from './Venue'
 import useFetchVenues from '../../hooks/useFetchVenues';
 import ComponentSpinner from '../spinner/ComponentSpinner';
@@ -42,7 +42,7 @@ const VenueList = ({id, editable=false}) => {
     if (!selectedVenue) return;
     setInputLoading(true);
     try {
-        const {data: newVenue} = await axiosReq.post("/user_venues/", {
+        const {data: newVenue} = await axiosReq.post('/user_venues/', {
         user: id,
         venue: selectedVenue,
       });
@@ -64,12 +64,12 @@ const VenueList = ({id, editable=false}) => {
 
   return (<>
     { pageHasLoaded ? (
-      <Container className="flex-grow-1 d-flex flex-column text-center mb-4">
+      <Container className='flex-grow-1 d-flex flex-column text-center mb-4'>
         { (favouriteVenues?.length > 0 || editable) && <h2 className='h5 mb-2'>Favourite Venues</h2>}
         { editable && venueOptions?.length > 0 && (<>
         <Form.Select 
           name='venue-selector'
-          aria-label="Venue Selector" 
+          aria-label='Venue Selector' 
           className='rounded-bottom-0'
           value={selectedVenue}
           onChange={event => setSelectedVenue(event.target.value)}
@@ -83,7 +83,7 @@ const VenueList = ({id, editable=false}) => {
           ))}
         </Form.Select>
         <Button 
-          variant="primary" 
+          variant='primary'
           className='mb-3 w-100 rounded-top-0'
           onClick={handleAddVenue}
           disabled={inputLoading}

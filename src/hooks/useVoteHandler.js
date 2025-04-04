@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { axiosReq } from "../api/axiosDefaults";
+import { useState } from 'react';
+import { axiosReq } from '../api/axiosDefaults';
 
 /**
  * A hook to handle the functionality for the voting feature. 

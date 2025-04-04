@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import { Button } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-
-import styles from "../../styles/CommentForm.module.css";
-import Avatar from "../profile/Avatar";
-import { axiosRes } from "../../api/axiosDefaults";
-import { Button } from "react-bootstrap";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { toast } from "react-toastify";
+import styles from '../../styles/CommentForm.module.css';
+import Avatar from '../profile/Avatar';
+import { axiosRes } from '../../api/axiosDefaults';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 /**
  * Render a form for the editing of an existing comment.
@@ -72,17 +71,17 @@ function EditComment({id, setComments, content, setShowEdit}) {
     } catch (err) {
       toast.error(
         'We encountered a problem saving your changes. Sorry!', 
-        {position: 'bottom-left', toastId: "commentEditError"}
+        {position: 'bottom-left', toastId: 'commentEditError'}
       );
       console.log(err);
     }
   };
 
   return (
-    <Form className="mt-2 border border-secondary-subtle rounded bg-light" onSubmit={handleSubmit}>
+    <Form className='mt-2 border border-secondary-subtle rounded bg-light' onSubmit={handleSubmit}>
       <Form.Group>
         <InputGroup className='mt-2'>
-          <div className="ps-2">
+          <div className='ps-2'>
             <Avatar
               image={currentUser?.profile_image}
               username={currentUser?.username}
@@ -92,19 +91,19 @@ function EditComment({id, setComments, content, setShowEdit}) {
           </div>
           <Form.Control
             className={`${styles.Form} bg-light`}
-            placeholder="Edit your comment..."
-            as="textarea"
+            placeholder='Edit your comment...'
+            as='textarea'
             value={formContent}
             onChange={handleChange}
             rows={4}
           />
         </InputGroup>
       </Form.Group>
-      <div className="text-end my-2 me-2">
+      <div className='text-end my-2 me-2'>
         <Button
           disabled={saveButtonLoading}
-          variant="warning" 
-          type="submit"
+          variant='warning' 
+          type='submit'
           aria-label='Save Changes'
         >
         Save Changes

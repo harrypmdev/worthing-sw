@@ -20,8 +20,8 @@ import { Button } from 'react-bootstrap'
 const DeleteButton = ({text, setShowModal, disabled}) => {
   return (
     <Button
-    variant="danger"
-    className="w-100 mt-1"
+    variant='danger'
+    className='w-100 mt-1'
     onClick={() => setShowModal(true)} // Open the modal
     disabled={disabled}
   >

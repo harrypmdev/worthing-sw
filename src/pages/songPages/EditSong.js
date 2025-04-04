@@ -63,9 +63,9 @@ function EditSong() {
     setIsSubmitting(true);
 
     const formData = new FormData();
-    formData.append("title", title);
-    formData.append("artist_name", artist_name);
-    formData.append("link_to_song", link_to_song);
+    formData.append('title', title);
+    formData.append('artist_name', artist_name);
+    formData.append('link_to_song', link_to_song);
   
     try {
       await axiosReq.put(`/songs/${id}`, formData);
@@ -78,15 +78,15 @@ function EditSong() {
   };
 
   return (
-    <Container className="flex-grow-1 d-flex flex-column">
+    <Container className='flex-grow-1 d-flex flex-column'>
     { hasLoaded ? (
-    <Row className="d-flex flex-grow-1 align-items-center pb-6 pt-2">
+    <Row className='d-flex flex-grow-1 align-items-center pb-6 pt-2'>
       <Col
-      xs="12" 
-      lg="5"
-      className="bg-light p-3 text-center rounded shadow-sm"
+      xs='12' 
+      lg='5'
+      className='bg-light p-3 text-center rounded shadow-sm'
       >
-        <h1 className="h2 mb-3">Edit Song</h1>
+        <h1 className='h2 mb-3'>Edit Song</h1>
         <hr />
         <Form onSubmit={handleSubmit}>
           <Form.Group>
@@ -95,9 +95,9 @@ function EditSong() {
             </Form.Label>
             <Form.Control
               id='artist-name-entry'
-              type="text"
+              type='text'
               placeholder="Artist's Name*"
-              name="artist_name"
+              name='artist_name'
               className='mt-3'
               value={artist_name || ''}
               onChange={handleChange}
@@ -110,9 +110,9 @@ function EditSong() {
             </Form.Label>
             <Form.Control
               id='song-title-entry'
-              type="text"
-              placeholder="Song Title*"
-              name="title"
+              type='text'
+              placeholder='Song Title*'
+              name='title'
               className='mt-3'
               value={title}
               onChange={handleChange}
@@ -125,9 +125,9 @@ function EditSong() {
             </Form.Label>
             <Form.Control
               id='link-to-full-entry'
-              type="url"
-              placeholder="Link To Full Song (Optional)"
-              name="link_to_song"
+              type='url'
+              placeholder='Link To Full Song (Optional)'
+              name='link_to_song'
               className='mt-3 mb-1'
               value={link_to_song}
               onChange={handleChange}
@@ -139,7 +139,7 @@ function EditSong() {
           </Form.Group>
           <ErrorAlert messages={errors?.link_to_song} />
           <Button 
-              type="submit" 
+              type='submit'
               className='w-100 mt-2'
               disabled={isSubmitting}
             >
@@ -160,7 +160,7 @@ function EditSong() {
           lg='1'
           className='d-none d-lg-block'
         /> {/* Col purely for layout formatting */}
-      <Col xs="12" lg="6" className="text-center d-none d-lg-block">
+      <Col xs='12' lg='6' className='text-center d-none d-lg-block'>
         <Image 
           fluid 
           rounded 

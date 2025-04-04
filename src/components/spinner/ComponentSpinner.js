@@ -13,7 +13,7 @@ import styles from '../../styles/ComponentSpinner.module.css';
 const ComponentSpinner = () => {
   return (
     <div className={`${styles.componentSpinner} p-4`}>
-      <Spinner animation="border" />
+      <Spinner animation='border' />
     </div>
   );
 };
