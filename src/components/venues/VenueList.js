@@ -68,6 +68,7 @@ const VenueList = ({id, editable=false}) => {
         { (favouriteVenues?.length > 0 || editable) && <h2 className='h5 mb-2'>Favourite Venues</h2>}
         { editable && venueOptions?.length > 0 && (<>
         <Form.Select 
+          name='venue-selector'
           aria-label="Venue Selector" 
           className='rounded-bottom-0'
           value={selectedVenue}

@@ -92,8 +92,9 @@ function EditPost() {
           <hr />
           <Form onSubmit={handleSubmit}>
             <Form.Group>
-              <Form.Label className='d-none'>Title</Form.Label>
-              <Form.Control 
+              <Form.Label htmlFor='title-entry' className='d-none'>Title</Form.Label>
+              <Form.Control
+                id='title-entry'
                 type="text"
                 placeholder="Title*"
                 name="title"
@@ -104,9 +105,10 @@ function EditPost() {
             </Form.Group>
             <ErrorAlert messages={errors?.title} />
             <Form.Group>
-              <Form.Label className='d-none'>Content</Form.Label>
+              <Form.Label htmlFor='content-entry' className='d-none'>Content</Form.Label>
               <Form.Control 
                 as='textarea'
+                id='content-entry'
                 rows={4}
                 placeholder="Content*"
                 name="content"
@@ -117,9 +119,10 @@ function EditPost() {
             </Form.Group>
             <ErrorAlert messages={errors?.content} />
             <Form.Group>
-              <Form.Label id="song-label" className='d-none'>Song</Form.Label>
+              <Form.Label htmlFor='song-entry' id="song-label" className='d-none'>Song</Form.Label>
               <Form.Control 
                 aria-labelledby="song-label"
+                id='song-entry'
                 as='select'
                 className='mt-2'
                 value={selectedSong}

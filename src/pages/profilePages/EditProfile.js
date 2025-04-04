@@ -112,7 +112,9 @@ const EditProfile = () => {
                 />
                 <i className={`fa-solid fa-arrow-up-from-bracket fa-2xl ${styles.uploadIcon}`}></i>
               </div>
-              <Form.Label className='d-none' htmlFor="imageUpload">Change profile image</Form.Label>
+              <Form.Label className='d-none' htmlFor='imageUpload'>
+                Change profile image
+              </Form.Label>
               <Form.Control
                 type="file"
                 accept="image/*"
@@ -134,8 +136,9 @@ const EditProfile = () => {
             </div>
             <Col xs='12' className='d-flex flex-column'>
             <Form.Group className="mb-4 d-flex flex-column flex-grow-1">
-              <Form.Label className='fw-bold'>Bio</Form.Label>
+              <Form.Label className='fw-bold' htmlFor='bio-form'>Bio</Form.Label>
               <Form.Control
+                id='bio-form'
                 as="textarea"
                 rows={4}
                 value={profile.bio}

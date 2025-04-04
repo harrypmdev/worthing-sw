@@ -81,9 +81,13 @@ function Login() {
             <hr />
             <Form onSubmit={handleSubmit}>
               <Form.Group>
-                <Form.Label className='d-none'>Username</Form.Label>
-                <Form.Control 
+                <Form.Label htmlFor='username-entry' className='d-none'>
+                  Username
+                </Form.Label>
+                <Form.Control
+                  id='username-entry'
                   type="text"
+                  autoComplete='username'
                   placeholder="Username"
                   name="username"
                   value={username}
@@ -92,8 +96,11 @@ function Login() {
               </Form.Group>
               <ErrorAlert messages={errors?.username} />
               <Form.Group>
-                <Form.Label className='d-none'>Password</Form.Label>
-                <Form.Control 
+                <Form.Label htmlFor='password-entry' className='d-none'>
+                  Password
+                </Form.Label>
+                <Form.Control
+                  id='password-entry'
                   type="password"
                   placeholder="Password"
                   name="password"

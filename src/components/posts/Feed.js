@@ -50,16 +50,20 @@ const Feed = (props) => {
         onSubmit={event => event.preventDefault()}
       >
         <Form.Control
+          name='search-bar'
           value={searchQuery}
           onChange={event => setSearchQuery(event.target.value)}
           type='text'
           className='mr-sm-2 mt-3'
           placeholder='Search posts'
         />
-        <div className="d-flex align-items-center flex-no-wrap mt-1 mb-2">
-          <Form.Label id="order-by" className='flex-shrink-0 pe-2 pt-2'>Order By:</Form.Label>
+        <div className='d-flex align-items-center flex-no-wrap mt-1 mb-2'>
+          <Form.Label id="order-by" htmlFor='order-by-input' className='flex-shrink-0 pe-2 pt-2'>
+            Order By:
+          </Form.Label>
           <Form.Control 
             aria-labelledby="order-by"
+            id='order-by-input'
             as='select'
             onChange={event => setOrderBy(event.target.value)}
           >

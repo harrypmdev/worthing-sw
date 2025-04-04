@@ -85,6 +85,7 @@ function CommentCreate({post, setComments}) {
           <Form.Control
             className={`${styles.Form} bg-light`}
             placeholder="Write your comment..."
+            name='comment-writing-text-area'
             as="textarea"
             value={content}
             onChange={handleChange}

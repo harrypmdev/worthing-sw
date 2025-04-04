@@ -79,8 +79,12 @@ function Register() {
           <hr />
           <Form onSubmit={handleSubmit}>
             <Form.Group>
-              <Form.Label className='d-none'>Username</Form.Label>
-              <Form.Control 
+              <Form.Label htmlFor='username-entry' className='d-none'>
+                Username
+              </Form.Label>
+              <Form.Control
+                id='username-entry'
+                autoComplete='username'
                 type="text"
                 placeholder="Username*"
                 name="username"
@@ -93,8 +97,12 @@ function Register() {
               <Alert variant='warning' key={idx}>{message}</Alert>
             )}
             <Form.Group>
-              <Form.Label className='d-none'>Email</Form.Label>
-              <Form.Control 
+              <Form.Label htmlFor='email-entry' className='d-none'>
+                Email
+              </Form.Label>
+              <Form.Control
+                id='email-entry'
+                autoComplete='email'
                 type="email"
                 placeholder="Email"
                 name="email"
@@ -107,8 +115,11 @@ function Register() {
               <Alert variant='warning' key={idx}>{message}</Alert>
             )}
             <Form.Group>
-              <Form.Label className='d-none'>Password</Form.Label>
-              <Form.Control 
+              <Form.Label htmlFor='password-entry' className='d-none'>
+                Password
+              </Form.Label>
+              <Form.Control
+                id='password-entry'
                 type="password"
                 placeholder="Password*"
                 name="password1"
@@ -121,8 +132,11 @@ function Register() {
               <Alert variant='warning' key={idx}>{message}</Alert>
             )}
             <Form.Group>
-              <Form.Label className='d-none'>Confirm Password</Form.Label>
-              <Form.Control 
+              <Form.Label htmlFor='confirm-password-entry' className='d-none'>
+                Confirm Password
+              </Form.Label>
+              <Form.Control
+                id='confirm-password-entry'
                 type="password"
                 placeholder="Confirm Password*"
                 name="password2"

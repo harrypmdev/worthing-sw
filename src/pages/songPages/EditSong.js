@@ -90,8 +90,11 @@ function EditSong() {
         <hr />
         <Form onSubmit={handleSubmit}>
           <Form.Group>
-            <Form.Label className='d-none'>Artist Name</Form.Label>
-            <Form.Control 
+            <Form.Label htmlFor='artist-name-entry' className='d-none'>
+              Artist Name
+            </Form.Label>
+            <Form.Control
+              id='artist-name-entry'
               type="text"
               placeholder="Artist's Name*"
               name="artist_name"
@@ -102,8 +105,11 @@ function EditSong() {
           </Form.Group>
           <ErrorAlert messages={errors?.artist_name} />
           <Form.Group>
-            <Form.Label className='d-none'>Song Title</Form.Label>
-            <Form.Control 
+            <Form.Label htmlFor='song-title-entry' className='d-none'>
+              Song Title
+            </Form.Label>
+            <Form.Control
+              id='song-title-entry'
               type="text"
               placeholder="Song Title*"
               name="title"
@@ -114,8 +120,11 @@ function EditSong() {
           </Form.Group>
           <ErrorAlert messages={errors?.title} />
           <Form.Group>
-            <Form.Label className='d-none'>Link To Full Song</Form.Label>
-            <Form.Control 
+            <Form.Label htmlFor='link-to-full-entry' className='d-none'>
+              Link To Full Song
+            </Form.Label>
+            <Form.Control
+              id='link-to-full-entry'
               type="url"
               placeholder="Link To Full Song (Optional)"
               name="link_to_song"

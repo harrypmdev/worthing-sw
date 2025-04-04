@@ -124,8 +124,11 @@ function CreateSong() {
           <hr />
           <Form onSubmit={handleSubmit}>
             <Form.Group>
-              <Form.Label className='d-none'>Artist Name</Form.Label>
+              <Form.Label htmlFor='artist-name-entry' className='d-none'>
+                Artist Name
+              </Form.Label>
               <Form.Control 
+                id='artist-name-entry'
                 type="text"
                 placeholder="Artist's Name*"
                 name="artist_name"
@@ -140,8 +143,11 @@ function CreateSong() {
                 </Alert>
             ))}
             <Form.Group>
-              <Form.Label className='d-none'>Song Title</Form.Label>
+              <Form.Label htmlFor='song-title-entry' className='d-none'>
+                Song Title
+              </Form.Label>
               <Form.Control 
+                id='song-title-entry'
                 type="text"
                 placeholder="Song Title*"
                 name="title"
@@ -156,8 +162,11 @@ function CreateSong() {
                 </Alert>
             ))}
             <Form.Group>
-              <Form.Label className='d-none'>Link To Full Song</Form.Label>
-              <Form.Control 
+              <Form.Label htmlFor='link-to-full-entry' className='d-none'>
+                Link To Full Song
+              </Form.Label>
+              <Form.Control
+                id='link-to-full-entry'
                 type="url"
                 placeholder="Link To Full Song (Optional)"
                 name="link_to_song"
@@ -176,8 +185,14 @@ function CreateSong() {
                 </Alert>
             ))}
             <Form.Group>
-              <Form.Label id='file-label' className='d-none'>Upload WAV File</Form.Label>
+              <Form.Label 
+                htmlFor='file-entry'  
+                id='file-label'
+                className='d-none'
+              >
+                Upload WAV File</Form.Label>
               <Form.Control
+                id='file-entry'
                 aria-labelledby="file-label"
                 type="file"
                 name="audio_file"
