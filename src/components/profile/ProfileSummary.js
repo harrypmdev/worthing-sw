@@ -6,11 +6,13 @@ import SongList from '../songs/SongList';
 import styles from '../../styles/ProfileSummary.module.css';
 import Follow from '../Follow';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import VenueList from '../venues/VenueList';
 
 
 /**
  * Render a summary of a profile, including the profile image, followers,
  * songs and profile editing options if it belongs to the current user.
+ * 
  * 
  * @param {Object} profile An object containing profile details as retrieved from the '/profiles' endpoint.
  * 
@@ -65,6 +67,9 @@ const ProfileSummary = ({profile, songData}) => {
         </Col>
         <Col xs='12'>
           <SongList profile={profile} songData={songData}/>
+        </Col>
+        <Col>
+          <VenueList editable={profile?.is_user}/>
         </Col>
     </Container>
   )
