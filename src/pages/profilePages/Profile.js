@@ -21,7 +21,7 @@ const Profile = () => {
   const hasLoaded = useFetchProfileData({id, setProfile, setSongData});
 
   return (
-    <Container fluid className="flex-grow-1 d-flex flex-column mt-2">
+    <Container fluid className='flex-grow-1 d-flex flex-column mt-2'>
       {hasLoaded ? (
         <Row>
           <Col xs='12' lg='4'>

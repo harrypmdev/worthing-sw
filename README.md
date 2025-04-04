@@ -171,6 +171,15 @@ Notably there is much cross-over, and must user stories work towards multiple go
 + <a href='https://www.npmjs.com/package/wav-encoder'>wav-encoder</a> - An NPM package allowing for conversion from buffer to wav
 + <a href='https://www.npmjs.com/package/react-toastify'>Toastify</a> - An NPM packaged used to provide an easy way to present users with feedback on their CRUD operations.
  
+## A Word on React
+
+All efforts were taken on to understand React and engage with it as a development paradigm and framework, rather than a library.
+Components such as the Feed component (<code>src/components/posts/Feed.js</code>) are used multiple times and can vary their content and functionality drastically based on their use cases.
+
+Where possible, logic was separated into custom hooks (<code>src/hooks/</code>) to help keep the component pages clean and make the logic reusable.
+
+I found React to be very useful in supporting the DRY principle of programming (Don't Repeat Yourself). One example of this is the ErrorAlert component (<code>src/components/ErrorAlert.js</code>). Because of the necessity of data validation and feedback of errors to users all acoss the site, the code in ErrorAlert was used almost verbatim dozens of times around the site. The Code Institute 'Moments' project similarly uses the code a lot. The refactoring of this functionality into a single component drastically reduced the bloat of components.
+
 <br />
 
 # UX Planning

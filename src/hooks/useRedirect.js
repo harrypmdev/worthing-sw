@@ -1,6 +1,6 @@
-import axios from "axios";
-import { useEffect } from "react";
-import { useNavigate } from "react-router";
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
 /**
  * Hook to redirect users if their authorisation status is improper
@@ -17,16 +17,16 @@ export const useRedirect = (userAuthStatus) => {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        await axios.post("/dj-rest-auth/token/refresh/");
+        await axios.post('/dj-rest-auth/token/refresh/');
         // if user is logged in, the code below will run
-        if (userAuthStatus === "loggedIn") {
-          navigate("/general-feed/");
+        if (userAuthStatus === 'loggedIn') {
+          navigate('/general-feed/');
         }
       // eslint-disable-next-line no-unused-vars
       } catch (err) { 
         // if user is not logged in, the code below will run
-        if (userAuthStatus === "loggedOut") {
-          navigate("/");
+        if (userAuthStatus === 'loggedOut') {
+          navigate('/');
         }
       }
     };
