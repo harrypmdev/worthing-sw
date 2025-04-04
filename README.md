@@ -45,7 +45,6 @@ Back-End Repository and README.md - https://github.com/harrypmdev/worthing-sw-ap
   - [Follow](#follow)
   - [Vote](#vote)
 - [**Features Yet To Be Implemented**](#features-yet-to-be-implemented)
-- [**Relationship To Backend**](#relationship-to-back-end)
 - [**Testing**](#testing)
   - [Validation](#validation)
   - [Lighthouse Testing](#lighthouse-testing)
@@ -58,8 +57,23 @@ Back-End Repository and README.md - https://github.com/harrypmdev/worthing-sw-ap
   - [Code, Dependencies and Tools](#code-dependencies-and-tools)
   - [Media](#media)
 
+<br />
 
+# Project Goals
 
+Worthing Sound Wave is a site fundamentally about connecting musicians, allowing them to share content and allowing them to engage with each others content.
+Key project goals were devised to guide the project:
+
+1) Users can share written content and audio files on the site.
+2) Users can craft an online identity.
+3) Users can easily find and engage with other users' content.
+4) Users can manipulate their own content freely.
+5) Users will find the website to elicit a positive overall emotional reaction.
+
+The Agile methodology section below goes into more depth on the approach taken with themes, epics and user stories.
+These goals will be returned to at the bottom of that section to show the strong link between the project goals and the user stories.
+
+<br />
 
 # Agile Methodology
 
@@ -88,6 +102,54 @@ one-by-one before the User Story was moved into the 'Done' column. These tasks a
 ![Agile Breakdown](/readme-assets/agile-breakdown-full.webp)
 
 </details>
+
+<br />
+
+## Use of Agile Methods to Reach Project Goals
+
+The relationship between project goals, implemented user stories and site pages is shown below:
+(Full user stories including the user perspective statements, completion criteria and tasks can be found on the relevant GitHub project page)
+
+<details>
+<summary> Reminder of Project Goals </summary>
+
+1) Users can share written content and audio files on the site.
+2) Users can craft an online identity.
+3) Users can easily find and engage with other users' content.
+4) Users can manipulate their own content freely.
+5) Users will find the website to elicit a positive overall emotional reaction.
+
+</details>
+
+<br />
+|  Primary Project Goal | Primary Relevant Site Pages | User Story
+|---|---|---|
+2|Login Page, Register Page|Register/Sign|
+2|Profile Page|Profile Pictures|
+2|Profile Page|Venues|
+3|Post Page, Profile Page|Following Profiles|
+3|General Feed, My Feed|Top Songs|
+2|Profile Page|View Profile|
+1|Create Post Page|Add Post|
+4|Edit Post Page|Edit Posts|
+1|Create Post Page|Add Songs to Posts|
+3|General Feed, My Feed, Profile Page, Post Page|Song Details|
+3|General Feed|View General Feed of Posts|
+3|My Feed|View Posts from Following|
+3|General Feed, My Feed, Profile Page|Search For Posts|
+3|General Feed, My Feed, Profile Page|Ordering Filter|
+3|General Feed, My Feed, Profile Page, Post Page|Post Voting|
+3|Post Page, Profile Page|Song Voting|
+1|Post Page|Add Comment|
+4|Post Page|Edit and Delete Comments|
+3|Post Page|View Comments|
+5|All Pages|Navbar|
+2|All Pages|Role Dependant Navbar|
+5|Home Page|Landing Page Information|
+
+These categorisations are separate to those of themes and epics, as those are divided by implementation and development, whilst this is fully focused on the user experience.
+
+Notably there is much cross-over, and must user stories work towards multiple goals. The most prominent goals was chosen here for each user story to demonstrate how every part of the project was done with the project goals and a positive user experience in mind.
 
 <br />
 
