@@ -47,8 +47,10 @@ function Register() {
     try { 
       await axios.post('/dj-rest-auth/registration/', registerData)
       toast.success('Registered!', {position: 'bottom-left'})
+      console.log('sent!')
       navigate('/login/');
     } catch (err) {
+      console.log(err);
       setErrors(err.response?.data)
     }
   }

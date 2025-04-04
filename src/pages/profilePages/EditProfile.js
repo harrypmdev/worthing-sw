@@ -69,6 +69,12 @@ const EditProfile = () => {
       toast.success('Changes saved!', {position: 'bottom-left'});
       navigate(`/profile/${currentUser.profile_id}`);
     } catch (err) {
+      if (err.response?.data?.bio) {
+        toast.error(
+          err.response?.data?.bio[0], 
+          {position: 'bottom-left', toastId: 'bioError'}
+        );
+      }
       setErrors(err.response?.data);
     } finally {
       setIsSubmitting(false);
@@ -148,7 +154,6 @@ const EditProfile = () => {
                 onChange={handleChange}
               />
             </Form.Group>
-            <ErrorAlert messages={errors?.bio} />
             </Col>
           </Row>
           <Col xs='12' className='text-center mt-2'>

@@ -42,7 +42,8 @@ function CommentCreate({post, setComments}) {
     } else if (content.length > 300) {
       toast.error(
         'Comments must be under 300 characters.', 
-        {position: 'bottom-left', toastId: 'commentErrorLength'});
+        {position: 'bottom-left', toastId: 'commentErrorLength'}
+      );
       return;
     }
     if (postButtonLoading) return;
