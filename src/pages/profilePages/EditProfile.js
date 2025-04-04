@@ -148,6 +148,7 @@ const EditProfile = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            <ErrorAlert messages={errors?.bio} />
             </Col>
           </Row>
           <Col xs='12' className='text-center mt-2'>
