@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
 import { axiosReq } from '../api/axiosDefaults';
 
@@ -32,7 +33,10 @@ const Follow = ({ userToFollow, currentFollower=null }) => {
       await axiosReq.delete(`/followers/${currentFollowerState}`);
       setCurrentFollowerState(null);
     } catch (err) {
-      console.log(err);
+      toast.error(
+        'We encountered an error unfollowing this user right now, sorry! Refresh the page and try again.', 
+        {position: 'bottom-left', toastId: 'unfollowError'}
+      );
       setFollowing(true);
     } finally {
       setButtonLoaded(true);
@@ -54,7 +58,10 @@ const Follow = ({ userToFollow, currentFollower=null }) => {
       const {data} = await axiosReq.post('/followers/', {followed: userToFollow});
       setCurrentFollowerState(data.id);
     } catch (err) {
-      console.log(err);
+      toast.error(
+        'We encountered an error following this user right now, sorry! Refresh the page and try again.', 
+        {position: 'bottom-left', toastId: 'followError'}
+      );
       setFollowing(false);
     } finally {
       setButtonLoaded(true);

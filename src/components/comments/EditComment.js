@@ -73,7 +73,6 @@ function EditComment({id, setComments, content, setShowEdit}) {
         'We encountered a problem saving your changes. Sorry!', 
         {position: 'bottom-left', toastId: 'commentEditError'}
       );
-      console.log(err);
     }
   };
 

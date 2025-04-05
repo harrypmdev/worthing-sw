@@ -39,7 +39,10 @@ function NavBar() {
       removeTokenTimestamp();
       toast.success('Logged out!', {position: 'bottom-left'});
     } catch (err) {
-      console.log(err);
+      toast.error(
+        'We encountered an error logging out, sorry! Please refresh and try again.',
+         {position: 'bottom-left'}
+      );
     }
   };
 

@@ -73,7 +73,10 @@ function EditPost() {
       toast.success('Changes saved!', {position: 'bottom-left'});
       navigate(`/profile/${currentUser.profile_id}`);
     } catch (err) {
-      console.log(err);
+      toast.error(
+        'We encountered an error submitting you changes, sorry! Refresh the page and try again.', 
+        {position: 'bottom-left', toastId: 'submitEditPostError'}
+      );
       setErrors(err.response?.data);
       setIsSubmitting(false);
     }

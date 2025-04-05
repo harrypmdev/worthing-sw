@@ -53,7 +53,6 @@ const VenueList = ({id, editable=false}) => {
       toast.success('Venue added!', {position: 'bottom-left'});
       setInputLoading(false);
     } catch (err) {
-      console.log(err);
       toast.error(
         'We encountered an issue adding this venue. Sorry!', 
         {position: 'bottom-left'}

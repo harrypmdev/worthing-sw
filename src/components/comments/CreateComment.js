@@ -64,7 +64,6 @@ function CommentCreate({post, setComments}) {
         'We encountered a problem creating this comment. Sorry!', 
         {position: 'bottom-left', toastId: 'commentDeleteError'}
       );
-      console.log(err);
     } finally {
       setPostButtonLoading(false);
     }

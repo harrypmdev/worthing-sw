@@ -65,7 +65,6 @@ const DeleteVenueModal = (props) => {
       toast.success(`Venue deleted!`, {position: 'bottom-left'});
       setShowModal(false);
     } catch (error) {
-      console.log(error);
       toast.error(
         `We encountered a problem deleting your venue. Sorry!`,
          {position: 'bottom-left'}
