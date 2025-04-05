@@ -1,5 +1,5 @@
-import React from 'react'
-import { Container, Spinner } from 'react-bootstrap'
+import React from 'react';
+import { Container, Spinner } from 'react-bootstrap';
 
 /**
  * Render a loading spinner that will fill the whole page.

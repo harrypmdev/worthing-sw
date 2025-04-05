@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Card, Col, Row, Spinner } from 'react-bootstrap'
+import React, { useState } from 'react';
+import { Card, Col, Row, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import Avatar from '../profile/Avatar';

@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { Button, Card, Col, Row } from 'react-bootstrap'
+import React, { useState } from 'react';
+import { Button, Card, Col, Row } from 'react-bootstrap';
 
-import Avatar from '../profile/Avatar'
+import Avatar from '../profile/Avatar';
 import DeleteCommentModal from '../delete/DeleteCommentModal';
 import EditComment from './EditComment';
 

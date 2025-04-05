@@ -1,8 +1,8 @@
-import React from 'react'
-import { Col, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Col, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-import Vote from '../Vote'
+import Vote from '../Vote';
 
 /**
  * Render a song depending on the given props, rendering an audio player and other details

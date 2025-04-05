@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Button } from 'react-bootstrap'
+import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
 
 import { axiosReq } from '../api/axiosDefaults';
 

@@ -1,4 +1,4 @@
-import { jwtDecode } from "jwt-decode"
+import { jwtDecode } from "jwt-decode";
 import WavEncoder from 'wav-encoder';
 import { axiosReq } from "../api/axiosDefaults";
 

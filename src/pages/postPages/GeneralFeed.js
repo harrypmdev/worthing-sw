@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Col, Row } from 'react-bootstrap'
+import React, { useState } from 'react';
+import { Col, Row } from 'react-bootstrap';
 
 import SongList from '../../components/songs/SongList';
 import Feed from '../../components/posts/Feed';

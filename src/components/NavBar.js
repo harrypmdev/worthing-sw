@@ -6,8 +6,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-import logo from '../assets/logo.webp'
-import styles from '../styles/NavBar.module.css'
+import logo from '../assets/logo.webp';
+import styles from '../styles/NavBar.module.css';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import Avatar from './profile/Avatar';
 import useClickOutsideToggle from '../hooks/useClickOutsideToggle';

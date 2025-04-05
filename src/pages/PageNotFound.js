@@ -1,6 +1,6 @@
-import React from 'react'
-import { Button, Col, Container, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 /**
  * Render the Page Not Found page, with an explanation message and a button to return home.

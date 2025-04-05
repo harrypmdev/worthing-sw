@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 
 import { useCurrentUser } from '../../contexts/CurrentUserContext';

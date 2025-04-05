@@ -1,10 +1,10 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import { ToastContainer  } from 'react-toastify';
 
 import './App.css';
 import './api/axiosDefaults';
-import styles from './styles/App.module.css'
+import styles from './styles/App.module.css';
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import Register from './pages/authPages/Register';
