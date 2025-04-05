@@ -172,7 +172,7 @@ Notably there is much cross-over, and most user stories work towards multiple go
 + <a href='https://fontawesome.com/'>Font Awesome</a> - Used for all site icons, based on HTML and CSS.
 + <a href='https://fonts.google.com/'>Google Fonts</a> - Utilised for the site's primary font, Roboto.
 + <a href='https://axios-http.com/'>Axios</a> - Node HTTP client for better network request functionality, including interceptors.
-+ <a href='https://www.npmjs.com/package/wav-encoder'>wav-encoder</a> - An NPM package allowing for conversion from buffer to wav.
++ <a href='https://www.npmjs.com/package/wav-encoder'>wav-encoder</a> - An NPM package allowing for conversion from buffer to wav, used as part of the functionality to cut long audio files down to 15 seconds.
 + <a href='https://www.npmjs.com/package/react-toastify'>Toastify</a> - An NPM packaged used to provide an easy way to present users with feedback on their CRUD operations.
  
 ## A Word on React
@@ -199,7 +199,15 @@ Some other components that helped prevent code repetition include:
 
 ## Overview
 
-A positive user experience was the end goal of all page design. Wireframing was done ahead of page creation for each page to guide development.
+A positive user experience was the end goal of all page design. 
+
+The 'Roboto' font was chosen for its easy readibility and balancing of both classic and modern font styles to appeal to broad audiences.
+It is a sans-serif font, which is standard for creating a 'modern' website look, however it is also remiscent of classic typefaces.
+
+A light colour theme was chosen for the site overall, using Bootstrap's 'light' classes and its complementing colour classes such as 'secondary'
+and 'secondary-subtle'. This was done to stop the page being visually overstimulating and to allow users to focus on the site content.
+
+Wireframing was done ahead of page creation for each page to guide development.
 A mobile-first approach was taken for the responsive design of the website, and both mobile and desktop displays were wireframed to provide guidelines for this.
 
 Some differences between the wireframes and final page appearances can be seen; this is because the wireframes existed to guide design and ensure a positive overall
