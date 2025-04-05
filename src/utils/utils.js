@@ -6,6 +6,8 @@ import { axiosReq } from "../api/axiosDefaults";
  * Fetch more data from the given resource and update the resource
  * to include any new and unique data.
  * For use in the 'InfiniteScroll' component.
+ * If a page dynamically changes from a scrolling page to a page without enough content
+ * to scroll, will product a GET error which does not impede functinality at all.
  * 
  * @param {Object} resource - The paginated resource object, as retrieved from an endpoint
  *                            such as '/posts' or '/comments'.
