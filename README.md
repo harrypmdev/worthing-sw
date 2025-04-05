@@ -1185,6 +1185,7 @@ This could be reviewed in future, but is aligned with the taught practices of Co
 ## Manual Testing
 
 All testing was performed both on a regular desktop view and mobile sized screen (via Devtools).
+All testing was also done both in development and for the deployed site.
 
 ### Navbar & Site Usability
 
