@@ -75,7 +75,7 @@ const VenueList = ({id, editable=false}) => {
           onChange={event => setSelectedVenue(event.target.value)}
           disabled={inputLoading}
         >
-          <option>Add a favoured venue</option>
+          <option>Select a venue to add</option>
           { venueOptions?.map(venue => (
             <option key={venue.id} value={venue.id}>
               {venue.name}
