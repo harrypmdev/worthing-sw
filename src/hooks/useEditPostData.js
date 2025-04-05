@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 import { axiosReq } from '../api/axiosDefaults';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
@@ -45,7 +46,11 @@ const useEditPostData = ({id, setSongData, setSelectedSong, setPost}) => {
         setSongData(songs.results);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        toast.error(
+          'We encountered an error settings up this page, sorry!'
+          + ' Try refreshing the page or relogging.', 
+          {position: 'bottom-left', toastId: 'editPageError'}
+        );
       }
     };
     setHasLoaded(false);

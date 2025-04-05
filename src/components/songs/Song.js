@@ -50,7 +50,8 @@ const Song = ({song, includeDetails=false, editable=false, number=false}) => {
         <Row className='d-flex m-2 align-items-center flex-nowrap'>
           {number && (
             <Col xs='auto' className='text-start'>
-              <i className={`fa-solid fa-${number}`}/>
+              <i className={`fa-solid fa-${number > 9 ? '1' : number}`}/>
+              {number > 9 && <i className='fa-solid fa-0'></i>}
             </Col>
           )}
           <Col className='flex-grow-1 text-center text-break'>

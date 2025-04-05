@@ -89,6 +89,13 @@ function CreateSong() {
    *                      song file form section.
    */
   const handleSongChange = async event => {
+    if (!event.target.files[0].name.endsWith('.wav')) {
+      setErrors({...errors, non_field_errors: [
+        'Please upload a valid .wav file.'
+      ]});
+      event.target.value = '';
+      return;
+    }
     let audioToSave;
     try {
       audioToSave = await trimAudio(event.target.files[0], 15);

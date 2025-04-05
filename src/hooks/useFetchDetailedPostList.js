@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { axiosReq } from '../api/axiosDefaults';
 
@@ -52,7 +53,11 @@ const useFetchDetailedPostList = (props) => {
         setPosts(posts);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        toast.error(
+          'We encountered an error retrieving your data, sorry!'
+          + ' Try refreshing the page or relogging.', 
+          {position: 'bottom-left', toastId: 'detailedPostListError'}
+        );
       }
     };
 

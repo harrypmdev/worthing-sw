@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { axiosReq } from '../api/axiosDefaults';
 
@@ -52,7 +53,11 @@ const useFetchSong = (props) => {
         setSongData(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        toast.error(
+          'We encountered an error retrieving your data, sorry!'
+          + ' Try refreshing the page or relogging.', 
+          {position: 'bottom-left', toastId: 'songError'}
+        );
       }
     };
     setHasLoaded(false);

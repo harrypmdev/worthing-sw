@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { axiosReq } from '../api/axiosDefaults';
@@ -28,7 +29,12 @@ const useRedirectOnSongLimit = () => {
         const { data } = await axiosReq.get(`/profiles/${currentUser?.profile_id}/`);
         return data.songs_count;
       } catch (err) {
-        console.log(err);
+        navigate(`/profile/${currentUser.profile_id}`);
+        toast.error(
+          'We encountered an error validating your data, sorry!'
+          + ' Try refreshing the page or relogging.', 
+          {position: 'bottom-left', toastId: 'redirectOnSongLimitError'}
+        );
       }
     };
     const redirectIfLimit = async () => {

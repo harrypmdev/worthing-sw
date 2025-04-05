@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { axiosReq } from '../api/axiosDefaults';
 
@@ -32,7 +33,11 @@ const useFetchVenues = ({id, setVenueOptions, setFavouriteVenues}) => {
           setFavouriteVenues(userVenuesResponse.data.results);
           setHasLoaded(true);
         } catch(err){
-          console.log(err)
+          toast.error(
+            'We encountered an error retrieving your data, sorry!'
+            + ' Try refreshing the page or relogging.', 
+            {position: 'bottom-left', toastId: 'venuesError'}
+          );
         }
     }
     setHasLoaded(false);
