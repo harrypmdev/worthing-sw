@@ -64,7 +64,7 @@ Back-End Repository and README.md - https://github.com/harrypmdev/worthing-sw-ap
 
 # Project Goals
 
-Worthing Sound Wave is a site fundamentally about connecting musicians, allowing them to share content and allowing them to engage with each others content.
+Worthing Sound Wave is a site fundamentally about connecting musicians, allowing them to share content and engage with other musicians and their content.
 Key project goals were devised to guide the project:
 
 1) Users can share written content and audio files on the site.
@@ -90,7 +90,7 @@ GitHub projects was used to facilitate the agile development:
 
 ## Specific Implementation and Breakdown of Themes
 
-+ Overaraching themes for the project were identified.
++ Overarching themes for the project were identified.
 + These were split down into epics, then User Stories to guide development from the user's perspective.
 + The project development was split into four iterations.
 + A prioritised backlog for the User Stories was utilised to ensure continuous re-evaluation of the project priorities.
@@ -112,7 +112,6 @@ one-by-one before the User Story was moved into the 'Done' column. These tasks a
 ## Use of Agile Methods to Reach Project Goals
 
 The relationship between project goals, implemented user stories and site pages is shown below:
-(Full user stories including the user perspective statements, completion criteria and tasks can be found on the relevant GitHub project page)
 
 <details>
 <summary> Reminder of Project Goals </summary>
@@ -149,12 +148,12 @@ The relationship between project goals, implemented user stories and site pages 
 |4|Post Page|Edit and Delete Comments|
 |3|Post Page|View Comments|
 |5|All Pages|Navbar|
-|2|All Pages|Role Dependant Navbar|
+|2|All Pages|Role Dependent Navbar|
 |5|Home Page|Landing Page Information|
 
 These categorisations are separate to those of themes and epics, as those are divided by implementation and development, whilst this is fully focused on the user experience.
 
-Notably there is much cross-over, and must user stories work towards multiple goals. The most prominent goals was chosen here for each user story to demonstrate how every part of the project was done with the project goals and a positive user experience in mind.
+Notably there is much cross-over, and most user stories work towards multiple goals. The most prominent goals were chosen here for each user story to demonstrate how every part of the project was done with the project goals and a positive user experience in mind.
 
 <br />
 
@@ -162,7 +161,7 @@ Notably there is much cross-over, and must user stories work towards multiple go
 
 ## Languages
 
-+ JavaScript - Used alongside a form of HTML caused JSX in the React framework.
++ JavaScript - Used alongside a form of mixed JS and HTML called JSX in the React framework.
 + HTML5 - Used alongside JS in React's JSX.
 + CSS3 - Utilised both indirectly through the Bootstrap framework and directly through modular custom CSS code.
 
@@ -173,7 +172,7 @@ Notably there is much cross-over, and must user stories work towards multiple go
 + <a href='https://fontawesome.com/'>Font Awesome</a> - Used for all site icons, based on HTML and CSS.
 + <a href='https://fonts.google.com/'>Google Fonts</a> - Utilised for the site's primary font, Roboto.
 + <a href='https://axios-http.com/'>Axios</a> - Node HTTP client for better network request functionality, including interceptors.
-+ <a href='https://www.npmjs.com/package/wav-encoder'>wav-encoder</a> - An NPM package allowing for conversion from buffer to wav
++ <a href='https://www.npmjs.com/package/wav-encoder'>wav-encoder</a> - An NPM package allowing for conversion from buffer to wav.
 + <a href='https://www.npmjs.com/package/react-toastify'>Toastify</a> - An NPM packaged used to provide an easy way to present users with feedback on their CRUD operations.
  
 ## A Word on React
@@ -185,6 +184,15 @@ Where possible, logic was separated into custom hooks (<code>src/hooks/</code>) 
 
 I found React to be very useful in supporting the DRY principle of programming (Don't Repeat Yourself). One example of this is the ErrorAlert component (<code>src/components/ErrorAlert.js</code>). Because of the necessity of data validation and feedback of errors to users all acoss the site, the code in ErrorAlert was used almost verbatim dozens of times around the site. The Code Institute 'Moments' project similarly uses the code a lot. The refactoring of this functionality into a single component drastically reduced the bloat of components.
 
+Some other components that helped prevent code repetition include:
+
++ <code>src/components/delete/DeleteButton.js</code>
++ <code>src/components/delete/DeleteModal.js</code>
++ <code>src/components/posts/Post.js</code>
++ <code>src/components/songs/SongList.js</code>
++ <code>src/components/Follow.js</code>
++ <code>src/components/Vote.js</code>
+
 <br />
 
 # UX Planning
@@ -194,7 +202,7 @@ I found React to be very useful in supporting the DRY principle of programming (
 A positive user experience was the end goal of all page design. Wireframing was done ahead of page creation for each page to guide development.
 A mobile-first approach was taken for the responsive design of the website, and both mobile and desktop displays were wireframed to provide guidelines for this.
 
-Some differences between the wireframes and final page appearances can be seen - this is because the wireframes existed to guide design and ensure a positive overall
+Some differences between the wireframes and final page appearances can be seen; this is because the wireframes existed to guide design and ensure a positive overall
 user experience, rather than dictate specific details of the implementation.
 
 ## Page Wireframes
@@ -244,7 +252,7 @@ user experience, rather than dictate specific details of the implementation.
 
 The desktop General Feed and My Feed pages include a column to the left of the feed, 'Top 
 Profiles' and 'Last Online from your following' respectively. These were excluded in the final
-product as they were deemed unnecessary for the overrall user experience and the project scope.
+product as they were deemed unnecessary for the overall user experience and the project scope.
 
 <details>
 <summary> Create Post Page Wireframe (Desktop)</summary>
@@ -403,7 +411,7 @@ better responsivity.
 ### Home
 
 + Provides a simple landing page for new and returning users that explains
-that basic purpose of the site, and invites the user to get involved by
+the basic purpose of the site, and invites the user to get involved by
 registering or viewing the general feed with two simple call to action buttons.
 + Includes one large image and only two buttons, to present new users with accessible, easy to process choices that provide a better UX.
 
@@ -431,7 +439,7 @@ they can view the posts of the users they follow, recent posts all users,
 or the posts of a specific profile. These are on the My Feed, General Feed
 and Profile pages respectively, to separate the functionality clearly for the user.
 + The feed scrolls infinitely, loading new data as required, so the user is
-unencumbered by page number and has a better experience more overall in line
+unencumbered by pagination buttons and has a better experience more in line
 with modern web standards.
 
 <br />
@@ -544,7 +552,7 @@ access music they are likely to enjoy.
 + The avatar feature allows user profiles to be represented succinctly and consistently across the site.
 + The avatar contains a profile image and username, and serves as a link to the
 profile in question (made evident by a visual change upon hover). The user's own profile can be accessed by their avatar on the navbar, and each post and comment is accompanied by the avatar of the poster.
-+ This allows users to intuively understand the avatar functionality across the site, as they already understand it from the navbar. It also allows for links to the profile pages to be included without a separate button providing the link, therefore giving a better overall UX.
++ This allows users to intuitively understand the avatar functionality across the site, as they already understand it from the navbar. It also allows for links to the profile pages to be included without a separate button providing the link, therefore giving a better overall UX.
 
 <br />
 <details>
@@ -599,7 +607,7 @@ profile in question (made evident by a visual change upon hover). The user's own
 
 ### Create Song
 
-+ The create song feature allows users to add up to three short audio clips to their profile so they can easily show off their music to other users and find similar musicians.
++ The create song feature allows users to add up to three short audio clips to their profile, allowing them to easily show off their music to other users and find similar musicians.
 + The 'add song' button is present on their profile so they can add songs to it at any time and see them appear on the song list underneath after returning from the add song page.
 + The audio file upload form section cuts audio files to their first 15 seconds so users do not have to manually cut their songs into clips, providing a better overall experience.
 
@@ -704,7 +712,7 @@ profile in question (made evident by a visual change upon hover). The user's own
 + The create comment feature allows users to add comments to posts so they can interact with posts and engage with other users better.
 + The form for comment creation is easily available below the post on any post page, and resembles a comment itself, making its functionality
 immediately clear and improving the page's overall aesthetic cohesion.
-+ Comments appear immediately in on the page after being posted, giving clear feedback to the user.
++ Comments appear immediately on the page after being posted, giving clear feedback to the user.
 
 <br />
 <details>
@@ -743,7 +751,7 @@ and top songs from the followed users will appear.
 ### Vote
 
 + The vote feature allows users to upvote and downvote both posts and songs to express their opinions and interact with the site community.
-+ The net votes immediately updates and the upvote and downvote buttons visually represent the user's current vote, showing them their current vote state visually and thus aiding a positive UX.
++ The net votes tally immediately updates and the upvote and downvote buttons visually represent the user's current vote, showing them their current vote state visually and thus aiding a positive UX.
 
 <br />
 <details>
@@ -762,7 +770,7 @@ Worthing Sound Wave is a finished product, but several features could be impleme
 
 - **List of Following and Followers** -- allowing users to view a rendered list of all the profiles they are following and being followed by as avatars would allow users to more easily follow and unfollow users they are interested in and track the popularity of their own profile. This could provide another path for engagement between site users and improve the overall UX.
 
-- **Post Images** -- posts were kept to text and songs for simplicity and to be concise in the aims and value of the site. A feature could be added however to optionally add an image to a post that appears only when the post is clicked on. This could allow users to further engage other users with their posts, by utilising both visual and audio content.
+- **Post Images** -- posts were kept to consisting only of text and songs for simplicity, and to be concise in the aims and value of the site. A feature could be added however to optionally add an image to a post, that appears only when the post is clicked on. This could allow users to further engage other users with their posts, by utilising both visual and audio content.
 
 # Testing
 
@@ -825,7 +833,7 @@ This could be reviewed in future, but is aligned with the taught practices of Co
 
 #### Best Practices - 96
   - Despite all calls to the back-end API being error handled on the site, Chrome automatically
-  logs failed requests even if they are part of the site logic.
+  logs failed requests, even if they are part of the site logic.
   - The site's methods for keeping users logged in, refreshing tokens etc will sometimes trigger
   'errors' from the backend when the user is not authenticated. This is not a problem, but nonetheless
   Chrome logs the errors and this impacts the best practices score.
@@ -916,7 +924,7 @@ This could be reviewed in future, but is aligned with the taught practices of Co
   - Further impacted by the use of third party cookies for user authentication. Like the console
   errors, this is aligned with the taught logic of Code Institute, but Chrome is moving away from these
   cookies and reflects this in their best practices score.
-  - Alternates aligned with Chrome's future plans could be sought in future.
+  - Alternatives aligned with Chrome's future plans could be sought in future.
 
 #### SEO - 100
 - Perfect SEO score.
@@ -942,7 +950,7 @@ This could be reviewed in future, but is aligned with the taught practices of Co
   - Perfect accessibility score.
 
 #### Best Practices - 78
-  - Impacted by the 'acceptable' console errors and third party cookes like all authenticated pages.
+  - Impacted by the 'acceptable' console errors and third party cookies, like all authenticated pages.
 
 #### SEO - 100
 - Perfect SEO score.
@@ -970,7 +978,7 @@ This could be reviewed in future, but is aligned with the taught practices of Co
   - Perfect accessibility score.
 
 #### Best Practices - 78
-  - Impacted by the 'acceptable' console errors and third party cookes like all authenticated pages.
+  - Impacted by the 'acceptable' console errors and third party cookies, like all authenticated pages.
 
 #### SEO - 100
 - Perfect SEO score.
@@ -997,7 +1005,7 @@ This could be reviewed in future, but is aligned with the taught practices of Co
   - Perfect accessibility score.
 
 #### Best Practices - 78
-  - Impacted by the 'acceptable' console errors and third party cookes like all authenticated pages.
+  - Impacted by the 'acceptable' console errors and third party cookies, like all authenticated pages.
 
 #### SEO - 100
 - Perfect SEO score.
@@ -1024,7 +1032,7 @@ This could be reviewed in future, but is aligned with the taught practices of Co
   - Perfect accessibility score.
 
 #### Best Practices - 78
-  - Impacted by the 'acceptable' console errors and third party cookes like all authenticated pages.
+  - Impacted by the 'acceptable' console errors and third party cookies, like all authenticated pages.
 
 #### SEO - 100
 - Perfect SEO score.
@@ -1054,7 +1062,7 @@ This could be reviewed in future, but is aligned with the taught practices of Co
   - Perfect accessibility score.
 
 #### Best Practices - 78
-  - Impacted by the 'acceptable' console errors and third party cookes like all authenticated pages.
+  - Impacted by the 'acceptable' console errors and third party cookies, like all authenticated pages.
 
 #### SEO - 100
 - Perfect SEO score.
@@ -1081,7 +1089,7 @@ This could be reviewed in future, but is aligned with the taught practices of Co
   - Perfect accessibility score.
 
 #### Best Practices - 78
-  - Impacted by the 'acceptable' console errors and third party cookes like all authenticated pages.
+  - Impacted by the 'acceptable' console errors and third party cookies, like all authenticated pages.
 
 #### SEO - 100
 - Perfect SEO score.
@@ -1107,7 +1115,7 @@ This could be reviewed in future, but is aligned with the taught practices of Co
   - Perfect accessibility score.
 
 #### Best Practices - 78
-  - Impacted by the 'acceptable' console errors and third party cookes like all authenticated pages.
+  - Impacted by the 'acceptable' console errors and third party cookies, like all authenticated pages.
 
 #### SEO - 100
 - Perfect SEO score.
@@ -1133,7 +1141,7 @@ This could be reviewed in future, but is aligned with the taught practices of Co
   - Perfect accessibility score.
 
 #### Best Practices - 78
-  - Impacted by the 'acceptable' console errors and third party cookes like all authenticated pages.
+  - Impacted by the 'acceptable' console errors and third party cookies, like all authenticated pages.
 
 #### SEO - 100
 - Perfect SEO score.
@@ -1174,7 +1182,7 @@ All testing was performed both on a regular desktop view and mobile sized screen
 
 |  Feature | Testing Area |Testing action | Outcome |
 |---|---|---|---|
-Navbar|Role Dependence|Navigate between pages without being logged in.| The login and register pages are available but not the 'my feed' or profile page|
+Navbar|Role Dependence|Navigate between pages without being logged in| The login and register pages are available but not the 'my feed' or profile page|
 Navbar|Role Dependence|Log in to account|Login and register options are replaced with profile avatar, log out and personalised 'my feed' navbar options|
 
 ### Profiles
@@ -1183,12 +1191,12 @@ Navbar|Role Dependence|Log in to account|Login and register options are replaced
 |---|---|---|---|
 User Authentication|Authorisation|Briefly leave the website whilst logged in|The user stays logged in rather than being logged out immediately|
 User Authentication|Authorisation|Type the URL of a route restricted to authorised users|The user is redirected to the general feed page|
-User Authentication|Authorisation|Visit the profile page of another user|I can view all their public information but am given no edit buttons|
+User Authentication|Authorisation|Visit the profile page of another user|The user can view all their public information but is given no edit buttons|
 Avatar|Usability|Hover over the avatar|The avatar's gradient background dims slightly to indicate it is clickable|
 Avatar|Functionality|Click the avatar|The user is linked to the profile shown on the respective avatar|
-Profile Page|Usability|Viewing a profile with no songs or posts|Messages explaining there is not songs or posts yet are shown|
+Profile Page|Usability|Viewing a profile with no songs or posts|Messages explaining there is no songs or posts yet are shown|
 Profile Page|Usability|View a profile without a custome profile image|A default profile image of a guitar drawing is shown|
-Edit Profile|Validation|Try to upload an audio file as a profile image|The user is given a message explaining on wav audio files are accepted|
+Edit Profile|Validation|Try to upload an audio file as a profile image|The user is given a message explaining they must upload an image|
 Edit Profile|Validation|Remove all content from an existing bio|No bio is shown on the profile as this is acceptable and no bio is required|
 Edit Profile|Functionality|Add a bio to the profile|The user is redirected back to the profile on submission where the bio is visibile below the profile image|
 
@@ -1205,12 +1213,12 @@ Edit Post|Functionality|Change the song option to 'no song' on a post that was c
 Edit Post|Validation|Edit the post content to be empty|A message appears telling the user it is required, as when creating a song|
 Edit Post|Usability|Click the delete button|A modal screen appears informing of the consequences and ensuring the user is sure|
 Feed|Functionality|Visit the 'my feed' page|Posts only from users the user is following appear|
-Feed|Functionality|Scroll to the bottom of the rendered posts|A loading spinner is briefly shown then more posts render until there is no more posts|
+Feed|Functionality|Scroll to the bottom of the rendered posts|A loading spinner is briefly shown, then more posts render until there is no more posts|
 Top Songs|Functionality|Upvote a song, making the highest song on the site by net votes|Upon refresh, it is ranked number 1 on the general feed top songs|
 Top Songs|Functionality|Create over 10 songs|The general feed page shows only 10 songs maximum|
 Search|Functionality|Enter a query that matches a username|Only posts from this user, or posts with their username in the title are shown|
 Search|Usability|Type lots of characters in quick succession|A loading spinner is shown until the user has stopped typing for a second, then results are rendered|
-Search|Edge Cases|Enter a query that does not match with any posts|A message saying there is not posts appears|
+Search|Edge Cases|Enter a query that does not match with any posts|A message saying there is no posts appears|
 Vote|Functionality|Click upvote when there is already an upvote|The upvote is deleted, with the vote state shown by which buttons are greyed out|
 Vote|Functionality|Click upvote when there is already a downvote|The downvote is changed to an upvote, effectively jumping the score by two votes|
 Vote|Functionality|Click upvote and downvote buttons in quick succession|The net votes tally changes immediately but the buttons are disabled until the vote request is finished behind the scenes, meaning the clicks will not be counted until the page is ready to deal with the requests again (this is shown visually)|
@@ -1219,7 +1227,7 @@ Vote|Functionality|Click upvote and downvote buttons in quick succession|The net
 
 |  Feature | Testing Area |Testing action | Outcome |
 |---|---|---|---|
-Create Song|Edge Cases|Attempt to add a song when the user already has 3 (the max)|The add song button is not available on the profile, text is shown indicating there is 3 out of 3 songs. Navigating to the add song page manually results in a redirect|
+Create Song|Edge Cases|Attempt to add a song when the user already has 3 (the max)|The add song button is not available on the profile, text is shown indicating there are 3 out of 3 songs. Navigating to the add song page manually results in a redirect|
 Create Song|Validation|Attempt to add a song without an audio file|A message is shown informing the user an audio file is mandatory|
 Create Song|Validation|Attempt to add a song with a long audio file (larger than 10MB)|The file is cut to the first 15 seconds and uploaded so it fits under the MB limit|
 Create Song|Usability|Add a song without manually adding an artist name|The field is auto-filled with the user's username unless they wish to change, so submits with this artist name|
@@ -1230,7 +1238,7 @@ Edit Song|Usability|Click the delete button multiple times|The button is disable
 
 |  Feature | Testing Area |Testing action | Outcome |
 |---|---|---|---|
-Add Comment|Functionality|Write content and click the post button|The button is immediately rendered below with the other comments|
+Add Comment|Functionality|Write content and click the post button|The comment is immediately rendered below with the other comments|
 Edit Comment|Usability|Click the delete button, then try to click the edit button|A modal screen confirms the deletion. After confirming, all buttons are disabled until the comment is deleted and disappears|
 
 
@@ -1261,7 +1269,7 @@ This testing can be found in src/utils/utils.test.js.
 |  Bug Number |  Problem | Outcome |
 |---|---|---|
 |1 |'Top Songs From Your Followed' on 'My Feed' appearing out of order| Fixed
-|2 |Edit Post page appearing briefly then loading infinitely| Fixed
+|2 |Edit Post page appearing briefly, then loading infinitely| Fixed
 |3 |Clicking delete multiple times in quick succession causes error| Fixed
 |4 |Websocket error repeatedly logging to console despite no custom use of websockets| Fixed
 
@@ -1291,7 +1299,7 @@ filter.
 
 - During implementation of the edit post page, an issue was encountered in which the page would appear briefly,
 then switch to a loading spinner which would never end.
-- Many issues regarding race conditions were investigated it.
+- Many issues regarding race conditions were investigated.
 - It turned out to be a simple case of incorrect variable naming. The <code>useEditPostData</code> hook returns a boolean
 if the hook has finished loading, but was being saved to a variable called '<code>isLoading</code>'.
 - The ternary expression was therefore rendering the opposite of what it should be, and rendering the spinner exactly when
@@ -1302,7 +1310,7 @@ the issue.
   <details>
   <summary>Bug Two</summary>
 
-  ![Bug Two](/readme-assets/bugs/bug_two.png)
+  ![Bug Two](/readme-assets/bugs/bug-two.webp)
 
   </details>
 
@@ -1316,7 +1324,7 @@ succession and cause multiple requests to occur, there causing errors to be logg
 inconsistent behaviour on the front-end.
 - This bug occurred because the delete button functionality relied on the user to only click the button
 once. The DELETE request takes time, but the processing of this was not conveyed to the user, meaning
-that that a confused user may easily click multiple times, not understand why they were not immediately given
+that a confused user may easily click multiple times, not understanding why they were not immediately given
 feedback.
 - A loading state was given to the button, so that upon clicking, it conveys that the deletion is in process and
 does not allow any other clicks until the process has finished.
@@ -1342,7 +1350,7 @@ the issue.
 production version of the React project. However, the errors continued.
 - After researching online, it transpires the error is a commonly encountered issues with React's default configs 
 (https://github.com/facebook/create-react-app/issues/11897), and can be fixed by setting a single environment variable for React,
-<code>WDS_SOCKET_PORT=0</code>, which I set in the Heroku config vars, resolving the issue
+<code>WDS_SOCKET_PORT=0</code>, which I set in the Heroku config vars, resolving the issue.
 
   <details>
   <summary>Bug Four </summary>
@@ -1476,7 +1484,7 @@ And you're done! The React App is deployed and running a production build.
 + <a href="https://jestjs.io/">Jest</a> (and <a href="https://babeljs.io/">Babel</a> configuration) used for JS testing.
 + <a href="https://getbootstrap.com/">Bootstrap</a> front-end framework used for easy styling.
 + <a href="https://axios-http.com/">Axios</a> library.
-+ Code from <a href="https://codeinstitute.net/">Code Institute</a> and especially the 'moments' project is used is several files,
++ Code from <a href="https://codeinstitute.net/">Code Institute</a> and especially the 'moments' project is used in several files,
 and altered in many more. Though the vast majority of code similar to the moments project has been heavily edited, Code Institute code
 nonetheless gave a useful foundation for edited files and is used verbatim in a small number.
 

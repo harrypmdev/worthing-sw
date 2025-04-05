@@ -3,7 +3,7 @@ import { Button, Container, Form} from 'react-bootstrap';
 import { toast } from 'react-toastify';
 
 import { axiosReq } from '../../api/axiosDefaults';
-import Venue from './Venue'
+import Venue from './Venue';
 import useFetchVenues from '../../hooks/useFetchVenues';
 import ComponentSpinner from '../spinner/ComponentSpinner';
 import DeleteVenueModal from '../delete/DeleteVenueModal';
