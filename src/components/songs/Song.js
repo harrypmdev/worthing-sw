@@ -53,7 +53,7 @@ const Song = ({song, includeDetails=false, editable=false, number=false}) => {
               <i className={`fa-solid fa-${number}`}/>
             </Col>
           )}
-          <Col className='flex-grow-1 text-center text-wrap'>
+          <Col className='flex-grow-1 text-center text-break'>
             <span className='fw-bold'>{song.title}</span> by <span className='fw-bold'>{song.artist_name}</span>
           </Col>
           <Col xs='auto' className='text-end'>
